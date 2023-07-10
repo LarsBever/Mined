@@ -5,11 +5,11 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mined", "Mined.csproj", "{4108BEDE-C606-4C68-8C03-F93C29D18F46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mined.DataAccess", "..\Mined.DataAccess\Mined.DataAccess.csproj", "{FC5CF0BD-2AFE-4938-987F-0132F17C3ABB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mined.DataAccess", "..\Mined.DataAccess\Mined.DataAccess.csproj", "{FC5CF0BD-2AFE-4938-987F-0132F17C3ABB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mined.Models", "..\Mined.Models\Mined.Models.csproj", "{FA820C36-D15C-410F-96A7-E2044C54F70C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mined.Models", "..\Mined.Models\Mined.Models.csproj", "{FA820C36-D15C-410F-96A7-E2044C54F70C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mined.Utility", "..\Mined.Utility\Mined.Utility.csproj", "{82920C41-5689-4196-BE89-BE9A8C5AE390}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mined.Utility", "..\Mined.Utility\Mined.Utility.csproj", "{82920C41-5689-4196-BE89-BE9A8C5AE390}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

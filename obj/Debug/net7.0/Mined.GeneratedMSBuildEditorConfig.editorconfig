@@ -16,6 +16,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Admin/Uxos/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXhvc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Admin/Uxos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXhvc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
