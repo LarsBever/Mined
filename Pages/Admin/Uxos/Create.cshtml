@@ -1,4 +1,86 @@
 ﻿@page
 @model Mined.Pages.Admin.Uxos.CreateModel
-@{
-}
+
+<form method="post">
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary pl-3">Add UXO</h2>
+			<hr />
+		</div>
+		<div class="row pb-2">
+			<h4 class="text-primary pl-3">UXO data</h4>
+			<hr />
+		</div>
+		<div class="mb-3">
+			UXO Name:
+			<input type="text"/>
+		</div>
+		<div class="mb-3">
+			Category Name:
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			NATO Name:
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			Russian Name:
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			Origin Name:
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			Nickname:
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			Dept. of Defense Code:
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			NATO Code:
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			Dutch Description:
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			English Description:
+			<input type="text" />
+		</div>
+		<div class="row pb-2">
+			<hr />
+			<h4 class="text-primary pl-3">UXO Payload Data</h4>
+			<hr />
+		</div>
+		<div class="mb-3">
+			Russian Abbreviation
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			NATO Abbreviation
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			Payload Type (English)
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			Payload Type (Dutch)
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			Chemical Payload
+			<input type="text" />
+		</div>
+		<div class="row pb-2">
+			<hr />
+			<h4 class="text-primary pl-3">UXO Image</h4>
+			<hr />
+		</div>
+		<button type="submit" class="btn btn-primary" style="width:150px;">Add</button>
+	</div>
+</form>
