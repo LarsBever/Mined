@@ -24,6 +24,7 @@
   
 
   <ItemGroup>
+    <Folder Include="Pages\Admin\Scoreboard\" />
     <Folder Include="Pages\Player\" />
   </ItemGroup>
 

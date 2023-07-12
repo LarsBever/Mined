@@ -12,44 +12,46 @@
 			<hr />
 		</div>
 		<div class="mb-3">
-			UXO Name:
-			<input type="text"/>
+			<label asp-for="@Model.Uxo.UxoName">Uxo Name</label>
+			<input asp-for="@Model.Uxo.UxoName"/>
 		</div>
 		<div class="mb-3">
-			Category Name:
-			<input type="text" />
+			<!Hiervan een listbox maken>
+			<label asp-for="@Model.Uxo.CategoryName">Category Name</label>
+			<input asp-for="@Model.Uxo.CategoryName"/>
 		</div>
 		<div class="mb-3">
-			NATO Name:
-			<input type="text" />
+			<label asp-for="@Model.Uxo.NameNato">NATO Name</label>
+			<input asp-for="@Model.Uxo.NameNato" />
 		</div>
 		<div class="mb-3">
-			Russian Name:
-			<input type="text" />
+			<label asp-for="@Model.Uxo.NameRussian">Russian Name</label>
+			<input asp-for="@Model.Uxo.NameRussian"/>
 		</div>
 		<div class="mb-3">
-			Origin Name:
-			<input type="text" />
+			<label asp-for="@Model.Uxo.NameOrigin">Origin Name</label>
+			<input asp-for="@Model.Uxo.NameOrigin"/>
 		</div>
 		<div class="mb-3">
-			Nickname:
-			<input type="text" />
+			<label asp-for="@Model.Uxo.NickName">Nickname</label>
+			<input asp-for="@Model.Uxo.NickName"/>
 		</div>
 		<div class="mb-3">
-			Dept. of Defense Code:
-			<input type="text" />
+			<label asp-for="@Model.Uxo.Dod_Code">Department of Defense Code</label>
+			<input asp-for="@Model.Uxo.Dod_Code"/>
 		</div>
 		<div class="mb-3">
-			NATO Code:
-			<input type="text" />
+			<label asp-for="@Model.Uxo.Nato_Code">NATO Code</label>
+			<input asp-for="@Model.Uxo.Nato_Code"/>
 		</div>
 		<div class="mb-3">
-			Dutch Description:
-			<input type="text" />
+			<label asp-for="@Model.Uxo.Description_Nl">Dutch Description</label>
+			<input asp-for="@Model.Uxo.Description_Nl" />
 		</div>
 		<div class="mb-3">
 			English Description:
-			<input type="text" />
+			<label asp-for="@Model.Uxo.Description_Eng">English Description</label>
+			<input asp-for="@Model.Uxo.Description_Eng"/>
 		</div>
 		<div class="row pb-2">
 			<hr />
@@ -57,29 +59,78 @@
 			<hr />
 		</div>
 		<div class="mb-3">
-			Russian Abbreviation
-			<input type="text" />
+			<label asp-for="@Model.Payload.AbbreviationRussian">Russian Abbreviation</label>
+			<input asp-for="@Model.Uxo.Description_Nl"/>
 		</div>
 		<div class="mb-3">
 			NATO Abbreviation
-			<input type="text" />
+			<label asp-for="@Model.Payload.AbbreviationNato">Russian Abbreviation</label>
+			<input asp-for="@Model.Payload.AbbreviationNato"/>
 		</div>
 		<div class="mb-3">
-			Payload Type (English)
-			<input type="text" />
+			<!Hiervan een listbox maken>
+			<label asp-for="@Model.Payload.PayloadTypeEng">Payload Type (English)</label>
+			<input asp-for="@Model.Payload.PayloadTypeEng"/>
 		</div>
 		<div class="mb-3">
-			Payload Type (Dutch)
-			<input type="text" />
+			<!Hiervan een listbox maken>
+			<label asp-for="@Model.Payload.PayloadTypeNl">Payload Type (Dutch)</label>
+			<input asp-for="@Model.Payload.PayloadTypeNl" />
 		</div>
 		<div class="mb-3">
-			Chemical Payload
-			<input type="text" />
+			<!Hiervan een listbox maken>
+			<label asp-for="@Model.Payload.ChemicalPayload">Chemical Payload</label>
+			<input asp-for="@Model.Payload.ChemicalPayload"/>
 		</div>
 		<div class="row pb-2">
 			<hr />
 			<h4 class="text-primary pl-3">UXO Image</h4>
 			<hr />
+		</div>
+		<div class="row pb-2">
+			<hr />
+			<h4 class="text-primary pl-3">UXO Category Data</h4>
+			<hr />
+		</div>
+		<div class="mb-3">
+			NATO Main Category (English)
+			<!Hiervan een listbox maken>
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			NATO Subcategory (English)
+			<!Hiervan een listbox maken>
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			US Main Category (English)
+			<!Hiervan een listbox maken>
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			US Subcategory (English)
+			<!Hiervan een listbox maken>
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			NATO Main Category (Dutch)
+			<!Hiervan een listbox maken>
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			NATO Subcategory (Dutch)
+			<!Hiervan een listbox maken>
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			US Main Category (Dutch)
+			<!Hiervan een listbox maken>
+			<input type="text" />
+		</div>
+		<div class="mb-3">
+			US Subcategory (Dutch)
+			<!Hiervan een listbox maken>
+			<input type="text" />
 		</div>
 		<button type="submit" class="btn btn-primary" style="width:150px;">Add</button>
 	</div>
