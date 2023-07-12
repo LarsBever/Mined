@@ -9,6 +9,11 @@
 		</div>
 		<div asp-validation-summary="All"></div>
 		<div class="mb-3">
+			<label asp-for="@Model.Uxo.Id">Id</label>
+			<input asp-for="@Model.Uxo.Id" />
+			<span asp-validation-for="Uxo.UxoName" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
 			<label asp-for="@Model.Uxo.UxoName">Uxo Name</label>
 			<input asp-for="@Model.Uxo.UxoName"/>
 			<span asp-validation-for="Uxo.UxoName" class="text-danger"></span>
@@ -65,6 +70,11 @@
 			<hr />
 		</div>
 		<div class="mb-3">
+			<label asp-for="@Model.Payload.Id">Payload Id</label>
+			<input asp-for="@Model.Payload.Id" />
+			<span asp-validation-for="Payload.Id" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
 			<label asp-for="@Model.Payload.AbbreviationRussian">Russian Abbreviation</label>
 			<input asp-for="@Model.Payload.AbbreviationRussian"/>
 			<span asp-validation-for="Payload.AbbreviationRussian" class="text-danger"></span>
@@ -101,6 +111,11 @@
 			<hr />
 			<h4 class="text-primary pl-3">UXO Category Data</h4>
 			<hr />
+		</div>
+		<div class="mb-3">
+			<label asp-for="@Model.Category.Id">Id</label>
+			<input asp-for="@Model.Category.Id" />
+			<span asp-validation-for="Category.Id" class="text-danger"></span>
 		</div>
 		<div class="mb-3">
 			<!Hiervan een listbox maken>
