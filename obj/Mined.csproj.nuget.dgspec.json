@@ -46,11 +46,11 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.8, )"
+              "version": "[7.0.9, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[7.0.8, )"
+              "version": "[7.0.9, )"
             },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
@@ -71,6 +71,10 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.19, 6.0.19]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
               "version": "[6.0.19, 6.0.19]"
             },
             {
@@ -126,6 +130,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.9, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -203,21 +213,17 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.8, )"
+              "version": "[7.0.9, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.8, )"
+              "version": "[7.0.9, )"
             },
             "MySql.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.2, )"
-            },
-            "Pomelo.EntityFrameworkCore.MySql.Json.Microsoft": {
-              "target": "Package",
-              "version": "[7.0.0, )"
             }
           },
           "imports": [

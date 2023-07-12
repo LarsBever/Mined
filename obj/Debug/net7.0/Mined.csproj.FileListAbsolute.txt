@@ -4,7 +4,6 @@ C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\Mined.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\Mined.RazorAssemblyInfo.cache
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\Mined.RazorAssemblyInfo.cs
-C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\EFCoreMySqlJsonMicrosoft.cs
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\bin\Debug\net7.0\appsettings.json
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\bin\Debug\net7.0\Mined.staticwebassets.runtime.json
@@ -29,7 +28,6 @@ C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\bin\Debug
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\bin\Debug\net7.0\MySql.EntityFrameworkCore.dll
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\bin\Debug\net7.0\MySqlConnector.dll
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
-C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.Json.Microsoft.dll
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\bin\Debug\net7.0\BouncyCastle.Crypto.dll
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\bin\Debug\net7.0\System.CodeDom.dll
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
