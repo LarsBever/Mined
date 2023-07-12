@@ -23,7 +23,7 @@ namespace Mined.Pages.Admin.Uxos
 		public void OnGet()
         {
         }
-		public async Task<IActionResult> OnPostAddUxo(Category category)
+		public async Task<IActionResult> OnPost(Category category)
         {
 			if (ModelState.IsValid) 
             {
