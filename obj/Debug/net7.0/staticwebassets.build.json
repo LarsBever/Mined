@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "JC8xJa34zEeeNEq1tIT7Yx8FUpuP6L7bDKquGPZbYKE=",
+  "Hash": "KlZvSpSnSnhhiXPM1SnSvJYABopIP/7N1kTbwl/S+Zo=",
   "Source": "Mined",
   "BasePath": "_content/Mined",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Mined.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\css\\Simplex.css",
+      "SourceId": "Mined",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\",
+      "BasePath": "_content/Mined",
+      "RelativePath": "css/Simplex.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Simplex.css"
     },
     {
       "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\css\\site.css",
