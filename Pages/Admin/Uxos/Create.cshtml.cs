@@ -10,11 +10,11 @@ namespace Mined.Pages.Admin.Uxos
     {
         private readonly MinedDbContext _db;
 
-		//      public Uxo Uxo { get; set; }
-		//public Payload Payload { get; set; }
+		public Uxo Uxo { get; set; }
+		public Payload Payload { get; set; }
 		[BindProperty]
         public Category Category { get; set; }
-		// public UxoPayload UxoPayload { get; set; }
+		public UxoPayload UxoPayload { get; set; }
 		public CreateModel(MinedDbContext db)
 		{
 			_db = db;
@@ -27,10 +27,10 @@ namespace Mined.Pages.Admin.Uxos
         {
 			if (ModelState.IsValid) 
             {
-				//await _db.Uxos.AddAsync(Uxo);
+				await _db.Uxos.AddAsync(Uxo);
 				await _db.Categories.AddAsync(category);
-				//await _db.Payloads.AddAsync(Payload);
-				//await _db.UxoPayloads.AddAsync(UxoPayload);
+				await _db.Payloads.AddAsync(Payload);
+				await _db.UxoPayloads.AddAsync(UxoPayload);
 				await _db.SaveChangesAsync();
 				return RedirectToPage("Index");
             }
