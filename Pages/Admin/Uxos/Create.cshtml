@@ -13,11 +13,18 @@
 			<input asp-for="@Model.Uxo.UxoName" class="form-control" />
 			<span asp-validation-for="Uxo.UxoName" class="text-danger"></span>
 		</div>
-@*		<div class="mb-3">
-			<label asp-for="@Model.Uxo.CategoryId">CategoryId</label>
-			<input asp-for="@Model.Uxo.CategoryId" class="form-control" />
-			<span asp-validation-for="Uxo.CategoryId" class="text-danger"></span>
-		</div>*@
+		<div class="mb-3">
+			<!Hiervan een listbox maken>
+			<label asp-for="Category.MainCategoryNatoNl">Main Category NATO (Dutch)</label>
+			<input asp-for="Category.MainCategoryNatoNl" class="form-control" />
+			<span asp-validation-for="Category.MainCategoryNatoNl" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<!Hiervan een listbox maken>
+			<label asp-for="Category.SubCategoryNatoNl">Subcategory NATO (Dutch)</label>
+			<input asp-for="Category.SubCategoryNatoNl" class="form-control" />
+			<span asp-validation-for="Category.SubCategoryNatoNl" class="text-danger"></span>
+		</div>
 		<div class="mb-3">
 			<label asp-for="@Model.Uxo.NameNato">NATO Name</label>
 			<input asp-for="@Model.Uxo.NameNato" class="form-control" />
@@ -58,7 +65,7 @@
 			<input asp-for="@Model.Uxo.Description_Eng" class="form-control" />
 			<span asp-validation-for="Uxo.Description_Eng" class="text-danger"></span>
 		</div>
-		<div class="row pb-2">
+		@*<div class="row pb-2">
 			<hr />
 			<h4 class="text-primary pl-3">UXO Payload Data</h4>
 			<hr />
@@ -148,7 +155,7 @@
 			<label asp-for="Category.SubCategoryUsNl">Subcategory US (Dutch)</label>
 			<input asp-for="Category.SubCategoryUsNl" class="form-control" />
 			<span asp-validation-for="Category.SubCategoryUsNl" class="text-danger"></span>
-		</div>
+		</div>*@
 		<button type="submit" class="btn btn-primary" style="width:150px;">Add</button>
 	</div>
 </form>
