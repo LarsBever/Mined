@@ -3910,6 +3910,7 @@
       "Microsoft.EntityFrameworkCore >= 7.0.9",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.2",
       "Mined.DataAccess >= 1.0.0",
+      "Mined.Models >= 1.0.0",
       "MySql.EntityFrameworkCore >= 7.0.2"
     ]
   },
@@ -3943,6 +3944,9 @@
           "projectReferences": {
             "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined.DataAccess\\Mined.DataAccess.csproj": {
               "projectPath": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined.DataAccess\\Mined.DataAccess.csproj"
+            },
+            "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined.Models\\Mined.Models.csproj": {
+              "projectPath": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined.Models\\Mined.Models.csproj"
             }
           }
         }

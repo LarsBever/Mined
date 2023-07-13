@@ -209,6 +209,9 @@
             "projectReferences": {
               "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined.DataAccess\\Mined.DataAccess.csproj": {
                 "projectPath": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined.DataAccess\\Mined.DataAccess.csproj"
+              },
+              "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined.Models\\Mined.Models.csproj": {
+                "projectPath": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined.Models\\Mined.Models.csproj"
               }
             }
           }

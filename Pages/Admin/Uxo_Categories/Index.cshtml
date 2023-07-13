@@ -1,0 +1,49 @@
+﻿@page
+@model Mined.Pages.Admin.Uxo_Categories.IndexModel
+
+<div class="container p-3">
+	<div class="row pt-4">
+		<h2 class="text-primary">Uxo List</h2>
+	</div>
+	<div class="col-6">
+		<a asp-page="create" class="btn btn-primary">
+			Add new U.X.O. Category
+		</a>
+
+	</div>
+</div>
+
+<br />
+<br />
+
+<table class="table table-bordered table-striped" style="width:100%">
+	<thread>
+		<tr>
+			<th>
+				Category Id
+			</th>
+			<th>
+				NATO U.X.O. Main Category
+			</th>
+			<th>
+				NATO U.X.O. Subcategory
+			</th>
+		</tr>
+	</thread>
+	<tbody>
+		@*		@foreach(var obj in Model.Uxos)
+		{
+		<tr>
+		<td width="50">@obj.UxoName</td>
+		<td width="50">@obj.NameNato</td>
+		<td width="50">@obj.NameRussian</td>
+		<td width="50">@obj.NameOrigin</td>
+		<td width="50">@obj.NickName</td>
+		<td width="30">@obj.Dod_Code</td>
+		<td width="30">@obj.Nato_Code</td>
+		<td width="50">@obj.Description_Nl</td>
+		<td width="50">@obj.Description_Eng</td>
+		</tr>*@
+		}
+	</tbody>
+</table>

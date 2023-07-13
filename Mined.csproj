@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Mined.DataAccess\Mined.DataAccess.csproj" />
+    <ProjectReference Include="..\Mined.Models\Mined.Models.csproj" />
   </ItemGroup>
   
 
