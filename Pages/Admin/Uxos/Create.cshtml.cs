@@ -13,7 +13,7 @@ namespace Mined.Pages.Admin.Uxos
 		//      public Uxo Uxo { get; set; }
 		//public Payload Payload { get; set; }
 		[BindProperty]
-        public Category? Category { get; set; }
+        public Category Category { get; set; }
 		// public UxoPayload UxoPayload { get; set; }
 		public CreateModel(MinedDbContext db)
 		{
