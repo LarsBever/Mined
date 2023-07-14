@@ -41,6 +41,7 @@ namespace Mined.Pages.Admin.Uxos
 				await _db.Categories.AddAsync(Category);
 				await _db.Images.AddAsync(Image);
 				await _db.SaveChangesAsync();
+				TempData["success"] = "U.X.O. created successfully";
 				return RedirectToPage("Index");
             }
             return Page();

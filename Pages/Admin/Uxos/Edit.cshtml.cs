@@ -39,10 +39,11 @@ namespace Mined.Pages.Admin.Uxos
 			}
 			if (ModelState.IsValid) 
             {
-				await _db.Uxos.AddAsync(Uxo);
-				await _db.Categories.AddAsync(Category);
-				await _db.Images.AddAsync(Image);
+				_db.Uxos.Update(Uxo);
+				_db.Categories.Update(Category);
+				_db.Images.Update(Image);
 				await _db.SaveChangesAsync();
+				TempData["success"] = "U.X.O. Edited successfully";
 				return RedirectToPage("Index");
             }
             return Page();
