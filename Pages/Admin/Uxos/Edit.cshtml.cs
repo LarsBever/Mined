@@ -3,23 +3,25 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Mined.DataAccess.Data;
 using Mined.Models;
 
+
 namespace Mined.Pages.Admin.Uxos
 {
     [BindProperties]
-    public class CreateModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly MinedDbContext _db;
 		public Uxo Uxo { get; set; }
 		public Image Image { get; set; }
 		public Category Category { get; set; }
 		public IEnumerable<Category> Categories { get; set; } 
-		public CreateModel(MinedDbContext db)
+		public EditModel(MinedDbContext db)
 		{
 			_db = db;
 		}
 
-		public void OnGet()
+		public void OnGet(int UXO_ID)
         {
+			Uxo = _db.Uxos.Find(UXO_ID);
         }
 		public async Task<IActionResult> OnPost()
         {
