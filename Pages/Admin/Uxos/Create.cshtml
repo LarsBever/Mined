@@ -46,95 +46,10 @@
 				</div>
 			</div>
 		</div>
-			<div class="col-xl-12">
-				<div class="card mb-4">
-					<div class="card-header">Add U.X.O. Additional Information</div>
-					<div class="card-body">
-
-							<div class="row gx-3 mb-3">
-								<!--Russian U.X.O. Name-->
-								<div class="form-group col md-6">
-									<label asp-for="@Model.Uxo.NameRussian">Russian Name</label>
-									<input asp-for="@Model.Uxo.NameRussian" class="form-control" />
-									<span asp-validation-for="Uxo.NameRussian" class="text-danger"></span>
-
-									<!--Origin Name-->
-									<label asp-for="@Model.Uxo.NameOrigin">Origin Name</label>
-									<input asp-for="@Model.Uxo.NameOrigin" class="form-control" />
-									<span asp-validation-for="Uxo.NameOrigin" class="text-danger"></span>
-
-									<!--Nickname-->
-									<label asp-for="@Model.Uxo.NickName">U.X.O. Nickname</label>
-									<input asp-for="@Model.Uxo.NickName" class="form-control" />
-									<span asp-validation-for="Uxo.NickName" class="text-danger"></span>
-
-									<!--Dept. of Defense Code-->
-									<label asp-for="@Model.Uxo.Dod_Code">Department of Defense Code</label>
-									<input asp-for="@Model.Uxo.Dod_Code" class="form-control" />
-									<span asp-validation-for="Uxo.Dod_Code" class="text-danger"></span>
-
-									<!--NATO Code-->
-									<label asp-for="@Model.Uxo.Nato_Code">NATO Code</label>
-									<input asp-for="@Model.Uxo.Nato_Code" class="form-control" />
-									<span asp-validation-for="Uxo.Nato_Code" class="text-danger"></span>
-								</div>
-
-								<!--Description-->
-								<div class="form-group col md-6">
-									<label asp-for="@Model.Uxo.Description_Eng">Description</label>
-									<textarea asp-for="Uxo.Description_Eng" rows="11" class="form-control"></textarea>
-									<span asp-validation-for="Uxo.Description_Eng" class="text-danger"></span>
-								</div>
-							</div>
-
-						<div class="row gx-3 mb-3">
-							<div class="form-group col md-6">
-							<a asp-page="Index" class="btn btn-secondary" style="width:300px">Back</a>
-							</div>
-							<div class="form-group col md-6">
-							<button type="submit" class="btn btn-primary" style="float:right; width:300px">Add</button>
-							</div>
-						</div>
-					</div>
-				</div>
-		</div>
 	</form>
 </div>
 
-		@*<div class="row pb-2">
-			<hr />
-			<h4 class="text-primary pl-3">UXO Payload Data</h4>
-			<hr />
-		</div>
-		<div class="mb-3">
-			<label asp-for="@Model.Payload.AbbreviationRussian">Russian Abbreviation</label>
-			<input asp-for="@Model.Payload.AbbreviationRussian" class="form-control" />
-			<span asp-validation-for="Payload.AbbreviationRussian" class="text-danger"></span>
-		</div>
-		<div class="mb-3">
-			<label asp-for="@Model.Payload.AbbreviationNato">NATO Abbreviation</label>
-			<input asp-for="@Model.Payload.AbbreviationNato" class="form-control" />
-			<span asp-validation-for="Payload.AbbreviationNato" class="text-danger"></span>
-		</div>
-		<div class="mb-3">
-			<!Hiervan een listbox maken>
-			<label asp-for="@Model.Payload.PayloadTypeEng">Payload Type (English)</label>
-			<input asp-for="@Model.Payload.PayloadTypeEng" class="form-control" />
-			<span asp-validation-for="Payload.PayloadTypeEng" class="text-danger"></span>
-		</div>
-		<div class="mb-3">
-			<!Hiervan een listbox maken>
-			<label asp-for="@Model.Payload.PayloadTypeNl">Payload Type (Dutch)</label>
-			<input asp-for="@Model.Payload.PayloadTypeNl" class="form-control" />
-			<span asp-validation-for="Payload.PayloadTypeNl" class="text-danger"></span>
-		</div>
-		<div class="mb-3">
-			<!Hiervan een listbox maken>
-			<label asp-for="@Model.Payload.ChemicalPayload">Chemical Payload</label>
-			<input asp-for="@Model.Payload.ChemicalPayload" class="form-control" />
-			<span asp-validation-for="Payload.ChemicalPayload" class="text-danger"></span>
-		</div>
-		
+		@*
 		<div class="mb-3">
 			<!Hiervan een listbox maken>
 			<label asp-for="Category.MainCategoryNatoEng">Main Category NATO (English)</label>
