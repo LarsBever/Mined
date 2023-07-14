@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Mined.DataAccess.Data;
+using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
 
 
@@ -9,19 +10,18 @@ namespace Mined.Pages.Admin.Uxos
     [BindProperties]
     public class EditModel : PageModel
     {
-        private readonly MinedDbContext _db;
+		private readonly IUnitOfWork _unitOfWork;
+		public EditModel(IUnitOfWork unitOfWork)
+		{
+			_unitOfWork = unitOfWork;
+		}
 		public Uxo Uxo { get; set; }
 		public Image Image { get; set; }
 		public Category Category { get; set; }
 		public IEnumerable<Category> Categories { get; set; } 
-		public EditModel(MinedDbContext db)
-		{
-			_db = db;
-		}
-
 		public void OnGet(int UXO_ID)
         {
-			Uxo = _db.Uxos.Find(UXO_ID);
+			Uxo = _unitOfWork.Uxo.GetFirstOrDefault(u=>u.Uxo_ID==Uxo.Uxo_ID);
         }
 		public async Task<IActionResult> OnPost()
         {
@@ -39,10 +39,10 @@ namespace Mined.Pages.Admin.Uxos
 			}
 			if (ModelState.IsValid) 
             {
-				_db.Uxos.Update(Uxo);
-				_db.Categories.Update(Category);
-				_db.Images.Update(Image);
-				await _db.SaveChangesAsync();
+				_unitOfWork.Uxo.Update(Uxo);
+				_unitOfWork.Category.Update(Category);
+				_unitOfWork.Image.Update(Image);
+				_unitOfWork.Save();
 				TempData["success"] = "U.X.O. Edited successfully";
 				return RedirectToPage("Index");
             }

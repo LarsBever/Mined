@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Mined.DataAccess.Data;
+using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
 
 namespace Mined.Pages.Admin.Uxos
@@ -8,15 +9,15 @@ namespace Mined.Pages.Admin.Uxos
     [BindProperties]
     public class CreateModel : PageModel
     {
-        private readonly MinedDbContext _db;
+		private readonly IUnitOfWork _unitOfWork;
+		public CreateModel(IUnitOfWork unitOfWork)
+		{
+			_unitOfWork = unitOfWork;
+		}
 		public Uxo Uxo { get; set; }
 		public Image Image { get; set; }
 		public Category Category { get; set; }
 		public IEnumerable<Category> Categories { get; set; } 
-		public CreateModel(MinedDbContext db)
-		{
-			_db = db;
-		}
 
 		public void OnGet()
         {
@@ -37,10 +38,9 @@ namespace Mined.Pages.Admin.Uxos
 			}
 			if (ModelState.IsValid) 
             {
-				await _db.Uxos.AddAsync(Uxo);
-				await _db.Categories.AddAsync(Category);
-				await _db.Images.AddAsync(Image);
-				await _db.SaveChangesAsync();
+				_unitOfWork.Uxo.Add(Uxo);
+				_unitOfWork.Image.Add(Image);
+				_unitOfWork.Save();
 				TempData["success"] = "U.X.O. created successfully";
 				return RedirectToPage("Index");
             }
