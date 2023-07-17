@@ -31,7 +31,7 @@
 						<div class="form-group col-md-6">
 							<!--Hiervan een listbox maken-->
 							<label asp-for="Category.MainCategoryNato">NATO U.X.O. Main Category</label>
-@*							<select asp-for="Category.MainCategoryNato" asp-items="Model.Categories" class="form-control" />*@
+							<select asp-for="Category.MainCategoryNato" asp-items="@(new SelectList(Model.Categories,"MainCategoryNato"))" class="form-control" />
 							<span asp-validation-for="Category.MainCategoryNato" class="text-danger"></span>
 						</div>
 
@@ -187,4 +187,3 @@
 			<label asp-for="Category.SubCategoryUsNl">Subcategory US (Dutch)</label>
 			<input asp-for="Category.SubCategoryUsNl" class="form-control" />
 			<span asp-validation-for="Category.SubCategoryUsNl" class="text-danger"></span>
-*@
