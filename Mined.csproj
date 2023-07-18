@@ -28,7 +28,6 @@
 
   <ItemGroup>
     <Folder Include="Pages\Admin\Scoreboard\" />
-    <Folder Include="Pages\Admin\Uxo_Images\" />
     <Folder Include="Pages\Player\" />
   </ItemGroup>
 
