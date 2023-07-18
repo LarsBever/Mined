@@ -32,13 +32,16 @@ namespace Mined.Pages.Admin.Uxos
 			});
 
         }
-		public IActionResult OnPost()
+		public async Task<IActionResult> OnPost()
 		{
 			string webRootPath = _hostEnvironment.WebRootPath;
 			var files = HttpContext.Request.Form.Files;
 
-			if(Image.UxoId ==  0)
+			if(Uxo.Uxo_ID ==  0)
 			{
+				Image.NameNato = Uxo.NameNato;
+				Uxo.CategoryId = Category.Category_ID;
+
 				//this is a create req.
 				string fileName_new = Guid.NewGuid().ToString();	
 				var uploads = Path.Combine(webRootPath, @"images\UxoImages");
@@ -49,6 +52,29 @@ namespace Mined.Pages.Admin.Uxos
 					files[0].CopyTo(fileStream);
 				}
 				Image.UxoImage = @"\images\UxoImages\" + fileName_new + extension;
+
+				if (Uxo.NameNato == Category.MainCategoryNato)
+				{
+					ModelState.AddModelError(string.Empty, "The Main Category and U.X.O. Name cannot be the same");
+				}
+				if (Uxo.NameNato == Category.SubCategoryNato)
+				{
+					ModelState.AddModelError(string.Empty, "The Subcategory and U.X.O. Name cannot be the same");
+				}
+				if (ModelState.IsValid)
+				{
+					_unitOfWork.Uxo.Add(Uxo);
+					_unitOfWork.Save();
+
+					//Image.UxoId =
+
+				 //   Uxo_ID = _unitOfWork.Uxo.GetFirstOrDefault(u => u.Uxo_ID == Uxo.Uxo_ID);
+					_unitOfWork.Image.Add(Image);
+					_unitOfWork.Save();
+					TempData["success"] = "U.X.O. created successfully";
+					return RedirectToPage("Index");
+				}
+
 			}
 			else
 			{
@@ -57,27 +83,6 @@ namespace Mined.Pages.Admin.Uxos
 			//is onderstaande nog nodig?
 			//Image.UxoId = Uxo.Uxo_ID;
 			//Uxo.CategoryId = Category.Category_ID;
-			if (Uxo.NameNato == Category.MainCategoryNato)
-			{
-				ModelState.AddModelError(string.Empty, "The Main Category and U.X.O. Name cannot be the same");
-			}
-			if (Uxo.NameNato == Category.SubCategoryNato)
-			{
-				ModelState.AddModelError(string.Empty, "The Subcategory and U.X.O. Name cannot be the same");
-			}
-			if (ModelState.IsValid)
-			{
-				
-				
-				_unitOfWork.Uxo.Add(Uxo);
-
-				
-				_unitOfWork.Image.Add(Image);
-
-				_unitOfWork.Save();
-				TempData["success"] = "U.X.O. created successfully";
-				return RedirectToPage("Index");
-			}
 			OnGet();
 			return Page();
 		}
