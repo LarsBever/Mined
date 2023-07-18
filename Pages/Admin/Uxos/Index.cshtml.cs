@@ -21,7 +21,7 @@ namespace Mined.Pages.Admin.Uxos
         {
             Categories = _unitOfWork.Category.GetAll();
             Images = _unitOfWork.Image.GetAll();
-            Uxos = _unitOfWork.Uxo.GetAll();
+			Uxos = _unitOfWork.Uxo.GetAll();
         }
     }
 }

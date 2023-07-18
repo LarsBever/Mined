@@ -21,15 +21,14 @@ namespace Mined.Pages.Admin.Uxos
 		public Category Category { get; set; }
 		public IEnumerable<Category> Categories { get; set; } 
 
-		public void OnGet(int UXO_ID)
+		public void OnGet(int Uxo_ID)
         {
 			Uxo = _unitOfWork.Uxo.GetFirstOrDefault(u=>u.Uxo_ID==Uxo.Uxo_ID);
         }
 		public async Task<IActionResult> OnPost()
         {
-				var uxoFromDb = _unitOfWork.Uxo.GetFirstOrDefault(u => u.Uxo_ID == Uxo.Uxo_ID);
-				var imageFromDb = _unitOfWork.Image.Find(Image.Image_ID);
-				if (uxoFromDb != null && imageFromDb != null) 
+			var uxoFromDb = _unitOfWork.Uxo.GetFirstOrDefault(u => u.Uxo_ID == Uxo.Uxo_ID);
+			if (uxoFromDb != null) 
 				{
 					_unitOfWork.Uxo.Remove(Uxo);
 					_unitOfWork.Image.Remove(Image);
