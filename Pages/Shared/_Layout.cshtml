@@ -36,10 +36,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="Admin/Scoreboard/Index">High Score</a>
                         </li>
+                        <!--Dropdown Menu Items-->
                         <li class="nav-item dropdown">
                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
                            <div class="dropdown-menu">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Admin/UXOs/Index">UXOs</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Admin/Images/Index">Images</a>
                             <a class="nav-link text-dark" asp-area="" asp-page="/Admin/Scoreboard/Index">Scoreboard</a>
                            </div>
                     </li>
@@ -50,7 +52,7 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            <!-- partial view voor toastr notificaties-->
+            <!--partial view for toastr notifications-->
             <partial name="_Notification" />
             @RenderBody()
         </main>

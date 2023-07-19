@@ -1,0 +1,75 @@
+﻿@page
+@model Mined.Pages.Admin.Uxos.IndexModel
+
+<div class="container p-3">
+	<div class="row pt-4">
+		<h2 class="text-primary">Uxo List</h2>
+	</div>
+	<!--Add U.X.O. button-->
+	<div class="col-6">
+		<a asp-page="upsert" class="btn btn-primary">
+			<i class="bi bi-plus-square"></i>
+			Add new U.X.O.
+		</a>
+	</div>
+</div>
+
+<br /><br/>
+
+<!-- U.X.O. Table-->
+<table class="table table-bordered table-striped" style="width:100%">
+	<thread>
+		<tr>
+			<th>
+				NATO Name
+			</th>
+			<th>
+				Russian Name
+			</th>
+			<th>
+				Origin Name
+			</th>
+			<th>
+				Nick Name
+			</th>
+			<th>
+				Dept. of Defense Code
+			</th>
+			<th>
+				NATO Code
+			</th>
+			<th>
+				Description
+			</th>
+		</tr>
+	</thread>
+	<tbody>
+		@foreach(var obj in Model.Uxos)
+		{
+		<tr>
+			<td width="50">@obj.NameNato</td>
+			<td width="50">@obj.NameRussian</td>
+			<td width="50">@obj.NameOrigin</td>
+			<td width="50">@obj.NickName</td>
+			<td width="30">@obj.Dod_Code</td>
+			<td width="30">@obj.Nato_Code</td>
+			<td width="50">@obj.Description_Eng</td>
+			<td width="20">
+				<div class="w-75 btn-group" role="group">
+				<!-- UXO Edit button-->
+				<a asp-page="Edit" asp-route-id="@obj.Uxo_ID" class="btn btn-primary">
+					<i class="bi bi-pencil-squaremx-2"></i>
+					Edit
+				</a>
+				<!-- UXO delete button-->
+				<a asp-page="Delete" asp-route-id="@obj.Uxo_ID" class="btn btn-danger mx-2">
+					<i class="bi bi-trash"></i>
+					Delete
+				</a>
+				</div>
+			</td>
+		</tr>
+		}
+	</tbody>
+</table>
+
