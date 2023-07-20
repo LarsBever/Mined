@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Mined.DataAccess.Data;
 using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
 using System.ComponentModel;
@@ -12,13 +13,16 @@ namespace Mined.Pages.Admin.Uxos
 	{
 		private readonly IUnitOfWork _unitOfWork;
 		private readonly IWebHostEnvironment _hostEnvironment;
+		private readonly MinedDbContext _db;
 		public UpsertModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
 		{
 			_unitOfWork = unitOfWork;
 			_hostEnvironment = hostEnvironment;
 			Uxo = new Uxo();
 			Image = new Image();
+			Category = new Category();
 		}
+
 		public Uxo Uxo { get; set; }
 		public Image Image { get; set; }
 		public Category Category { get; set; }
@@ -60,9 +64,11 @@ namespace Mined.Pages.Admin.Uxos
 			if (ModelState.IsValid)
 			{
 				////Uxo heeft een CategoryId nodig om de UXO toe te voegen
-				//Uxo.Category = _unitOfWork.Category.GetFirstOrDefault(x => x.Category_ID == Category.Category_ID);
+				Uxo.Category = _unitOfWork.Category.GetFirstOrDefault(x => x.Category_ID == Category.Category_ID);
+
+				string overdracht = Uxo.NameNato.ToString();
 				_unitOfWork.Uxo.Add(Uxo);
-				Category = null;
+				_unitOfWork.Save();
 				//_unitOfWork.Save();
 
 				//Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == Uxo.NameNato);
@@ -70,11 +76,12 @@ namespace Mined.Pages.Admin.Uxos
 
 				////Uxo heeft een CategoryId nodig om de UXO toe te voegen
 				//Uxo.Category = _unitOfWork.Category.GetFirstOrDefault(x => x.Category_ID == Category.Category_ID);
-				//Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == Uxo.NameNato);
-				//Image.UxoId = Uxo.Uxo_ID;
+				Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == overdracht);
+				Uxo.Category = _unitOfWork.Category.GetFirstOrDefault(x => x.Category_ID == Category.Category_ID);
+				Image.Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == overdracht);
 				//Image heeft een imageID nodig om de image toe te voegen
 
-				 _unitOfWork.Image.Add(Image);
+				_unitOfWork.Image.Add(Image);
 				_unitOfWork.Save();
 				TempData["success"] = "U.X.O. created successfully";
 				return RedirectToPage("Index");

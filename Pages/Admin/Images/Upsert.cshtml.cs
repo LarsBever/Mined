@@ -44,7 +44,7 @@ namespace Mined.Pages.Admin.Images
 			if(Uxo.Uxo_ID ==  0)
 			{
 			
-				Image.UxoId = Uxo.Uxo_ID;
+				Image.Uxo_ID = Uxo.Uxo_ID;
 
 				//this is a create req.
 				string fileName_new = Guid.NewGuid().ToString();	
