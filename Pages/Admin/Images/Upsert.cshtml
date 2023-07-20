@@ -1,12 +1,12 @@
 ﻿@page
-@model Mined.Pages.Admin.Uxos.UpsertModel
+@model Mined.Pages.Admin.Images.UpsertModel
 
-<div class="container-xl px-4 mt-4">
+@*@*<div class="container-xl px-4 mt-4">
 	<div asp-validation-summary="All"></div>
 	<form method="post" enctype="multipart/form-data">
 		<div class="col-xl-12">
 			<h2 class="text-bg-primary pl-3">
-				@(Model.Uxo.Uxo_ID=0 ? "Update" : "Add") U.X.O.
+				@(Model.Image.Image_ID=0 ? "Update" : "Add") U.X.O.
 			</h2>
 			<!-- Add U.X.O -->
 			<div class="card mb-4">
@@ -16,9 +16,9 @@
 					<div class="row gx-12 mb-12">
 						<!--NATO U.X.O. Name-->
 						<div class="form-group col-md-6">
-							<label asp-for="Uxo.NameNato">NATO U.X.O. name</label>
-							<input asp-for="Uxo.NameNato" class="form-control" />
-							<span asp-validation-for="Uxo.NameNato" class="text-danger"></span>
+							<label asp-for="Image.NameNato">NATO U.X.O. name</label>
+							<input asp-for="Image.NameNato" class="form-control" />
+							<span asp-validation-for="Image.NameNato" class="text-danger"></span>
 						</div>
 
 						<!-- Upload Image nr 1-->
@@ -32,8 +32,8 @@
 					<!-- NATO U.X.O. Categories-->
 					<div class="row mb-12">
 						<div class="form-group col-md-6">
-							<label asp-for="Category.MainCategoryNato">NATO U.X.O. Main Category and Subcategory</label>
-							<select asp-for="Category.Category_ID" asp-items="Model.CategoryList" class="form-select">
+							<label asp-for="Image.MainCategoryNato">NATO U.X.O. Main Category and Subcategory</label>
+							<select asp-for="Image.Category_ID" asp-items="Model.CategoryList" class="form-select">
 								<option disabled selected>--Select NATO Main Category and Subcategory--</option>
 							</select>				    
 							<span asp-validation-for="Category.MainCategoryNato" class="text-danger"></span>
@@ -54,7 +54,7 @@
 							<input type="file" name="files" id="uploadBox" class="form-control" />
 						</div>
 					</div>*@
-				</div>
+	@*			</div>
 			</div>
 		</div>
 			<div class="col-xl-12">
@@ -62,9 +62,9 @@
 					<div class="card-header">Add U.X.O. Additional Information</div>
 					<div class="card-body">
 
-							<div class="row gx-3 mb-3">
+							<div class="row gx-3 mb-3">*@
 								<!--Russian U.X.O. Name-->
-								<div class="form-group col md-6">
+						@*		<div class="form-group col md-6">
 									<label asp-for="@Model.Uxo.NameRussian">Russian Name</label>
 									<input asp-for="@Model.Uxo.NameRussian" class="form-control" />
 									<span asp-validation-for="Uxo.NameRussian" class="text-danger"></span>
@@ -110,7 +110,7 @@
 				</div>
 		</div>
 	</form>
-</div>
+</div>*@*@*
 
 @*<div class="row pb-2">
 			<hr />

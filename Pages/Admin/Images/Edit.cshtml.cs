@@ -5,7 +5,7 @@ using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
 
 
-namespace Mined.Pages.Admin.Uxos
+namespace Mined.Pages.Admin.Images
 {
     [BindProperties]
     public class EditModel : PageModel

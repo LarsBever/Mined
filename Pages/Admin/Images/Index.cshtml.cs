@@ -4,7 +4,7 @@ using Mined.DataAccess.Repository;
 using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
 
-namespace Mined.Pages.Admin.Uxos
+namespace Mined.Pages.Admin.Images
 {
     public class IndexModel : PageModel
     {

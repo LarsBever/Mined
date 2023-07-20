@@ -16,21 +16,24 @@ namespace Mined.Pages.Admin.Images
 		public UpsertModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
 		{
 			_unitOfWork = unitOfWork;
-			Uxo = new Uxo();
+
 			_hostEnvironment = hostEnvironment;
 		}
 		public Uxo Uxo { get; set; }
 		public Image Image { get; set; }
-		public Category Category { get; set; }
+
+		//Voor het toevoegen van een image aan de uxo, moet er een Uxo_ID meegegeven worden.
+		//Dit kan doorgegeven worden mbv de zojuist toegevoegde uxo. Deze gegevens moeten kunnen worden opgehaald
+		/// /(dit gebeurt ook als je bij uxo van index naar uxo upsert gaat.
+		//Voor het updaten van een image aan de uxo, moet ook een Uxo_ID meegegeven worden
+		//optie: read table met zoekfunctie (datatables) --> knop in uxo index tabel????
+
+
 		public IEnumerable<Category> Categories { get; set; } 
 		public IEnumerable<SelectListItem> CategoryList { get; set; }	
 		public void OnGet()
         {
-			CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem()
-			{
-				Text = i.MainCategoryNato +"; "+ i.SubCategoryNato,
-				Value =i.Category_ID.ToString(),
-			});
+
 
         }
 		public async Task<IActionResult> OnPost()
@@ -40,8 +43,8 @@ namespace Mined.Pages.Admin.Images
 
 			if(Uxo.Uxo_ID ==  0)
 			{
-				Image.NameNato = Uxo.NameNato;
-				Uxo.CategoryId = Category.Category_ID;
+			
+				Image.UxoId = Uxo.Uxo_ID;
 
 				//this is a create req.
 				string fileName_new = Guid.NewGuid().ToString();	
@@ -54,14 +57,6 @@ namespace Mined.Pages.Admin.Images
 				}
 				Image.UxoImage = @"\images\UxoImages\" + fileName_new + extension;
 
-				if (Uxo.NameNato == Category.MainCategoryNato)
-				{
-					ModelState.AddModelError(string.Empty, "The Main Category and U.X.O. Name cannot be the same");
-				}
-				if (Uxo.NameNato == Category.SubCategoryNato)
-				{
-					ModelState.AddModelError(string.Empty, "The Subcategory and U.X.O. Name cannot be the same");
-				}
 				if (ModelState.IsValid)
 				{
 					_unitOfWork.Uxo.Add(Uxo);

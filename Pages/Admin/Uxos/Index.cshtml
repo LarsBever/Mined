@@ -54,7 +54,11 @@
 			<td width="30">@obj.Dod_Code</td>
 			<td width="30">@obj.Nato_Code</td>
 			<td width="50">@obj.Description_Eng</td>
-			<td width="20">
+				@foreach (var img in Model.Images)
+				{
+					<td width="50">@img.UxoImage</td>
+				}
+				<td width="20">
 				<div class="w-75 btn-group" role="group">
 				<!-- UXO Edit button-->
 				<a asp-page="Edit" asp-route-id="@obj.Uxo_ID" class="btn btn-primary">
