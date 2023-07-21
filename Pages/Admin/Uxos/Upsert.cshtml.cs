@@ -5,6 +5,7 @@ using Mined.DataAccess.Data;
 using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
 using System.ComponentModel;
+using System.Linq;
 
 namespace Mined.Pages.Admin.Uxos
 {
@@ -52,7 +53,6 @@ namespace Mined.Pages.Admin.Uxos
 			}
 			Image.UxoImage = @"\images\UxoImages\" + fileName_new + extension;
 
-
 			if (Uxo.NameNato == Category.MainCategoryNato)
 			{
 				ModelState.AddModelError(string.Empty, "The Main Category and U.X.O. Name cannot be the same");
@@ -63,26 +63,25 @@ namespace Mined.Pages.Admin.Uxos
 			}
 			if (ModelState.IsValid)
 			{
-				////Uxo heeft een CategoryId nodig om de UXO toe te voegen
+				//Uxo needs a Category for the Insert into the Database
 				Uxo.Category = _unitOfWork.Category.GetFirstOrDefault(x => x.Category_ID == Category.Category_ID);
 
+				//To add an Image, the right Uxo, including Uxo_ID is needed. For this, we first need to insert the Uxo into the database.
+				//The Uxo_ID is autoincremented by the Database.
+				//We store the NameNato value in 'overdracht', so that we can retrieve the right Uxo object from the database after it is inserted.
 				string overdracht = Uxo.NameNato.ToString();
 				_unitOfWork.Uxo.Add(Uxo);
 				_unitOfWork.Save();
-				//_unitOfWork.Save();
 
-				//Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == Uxo.NameNato);
-				//Image.UxoId = Uxo.Uxo_ID;
-
-				////Uxo heeft een CategoryId nodig om de UXO toe te voegen
-				//Uxo.Category = _unitOfWork.Category.GetFirstOrDefault(x => x.Category_ID == Category.Category_ID);
-				Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == overdracht);
-				Uxo.Category = _unitOfWork.Category.GetFirstOrDefault(x => x.Category_ID == Category.Category_ID);
-				Image.Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == overdracht);
-				//Image heeft een imageID nodig om de image toe te voegen
-
+				//Now that the Uxo is inserted and the Uxo_ID is created, we can add the Images.
+				//Add Image
+				//Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == overdracht);
+				//Image.Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == overdracht);
+				Uxo.NameNato = overdracht;
 				_unitOfWork.Image.Add(Image);
 				_unitOfWork.Save();
+				//Image.Image_ID = 0;
+
 				TempData["success"] = "U.X.O. created successfully";
 				return RedirectToPage("Index");
 			}

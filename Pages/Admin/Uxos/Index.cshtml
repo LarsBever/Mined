@@ -56,7 +56,10 @@
 			<td width="50">@obj.Description_Eng</td>
 				@foreach (var img in Model.Images)
 				{
-					<td width="50">@img.UxoImage</td>
+					if(obj.Uxo_ID == img.Uxo_ID)
+					{
+						<td width="50">@img.UxoImage</td>
+					}
 				}
 				<td width="20">
 				<div class="w-75 btn-group" role="group">
