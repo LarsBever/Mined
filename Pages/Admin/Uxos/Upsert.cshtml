@@ -28,6 +28,9 @@
 							<div class="form-group col-md-6">
 								<label asp-for="Image.UxoImage">Upload U.X.O. Image</label>
 							    <input asp-for="Image.UxoImage"  type="file" name="files" id="uploadBox" class="form-control" />
+							@*	<option selected>
+									@Model.Image.UxoImage
+								</option>*@
 								<span asp-validation-for="Image.UxoImage" class="text-danger"></span>
 							</div>
 						</div>
@@ -37,9 +40,10 @@
 							<div class="form-group col-md-6">
 								<label asp-for="Category.MainCategoryNato">NATO U.X.O. Main Category and Subcategory</label>
 								<select asp-for="Category.Category_ID" asp-items="Model.CategoryList" class="form-select">
-								<option selected></option>
+								<option selected> 
+									@Model.CategoryList 
+								</option>
 								</select>
-								<span asp-validation-for="Category.MainCategoryNato" class="text-danger"></span>
 							</div>
 					</div>
 				</div>
