@@ -41,12 +41,16 @@
 			<th>
 				Description
 			</th>
+			<th>
+				Images
+			</th>
 		</tr>
 	</thread>
 	<tbody>
 		@foreach(var obj in Model.Uxos)
 		{
 		<tr>
+			
 			<td width="50">@obj.NameNato</td>
 			<td width="50">@obj.NameRussian</td>
 			<td width="50">@obj.NameOrigin</td>
@@ -54,29 +58,35 @@
 			<td width="30">@obj.Dod_Code</td>
 			<td width="30">@obj.Nato_Code</td>
 			<td width="50">@obj.Description_Eng</td>
+			<td width="50">
 				@foreach (var img in Model.Images)
 				{
 					if(obj.Uxo_ID == img.Uxo_ID)
 					{
-						<td width="50">@img.UxoImage</td>
+							<img src="@img.UxoImage" class="rounded" width="50" height="80" />
 					}
 				}
 				<td width="20">
-				<div class="w-75 btn-group" role="group">
-				<!-- UXO Edit button-->
-				<a asp-page="Edit" asp-route-id="@obj.Uxo_ID" class="btn btn-primary">
-					<i class="bi bi-pencil-squaremx-2"></i>
-					Edit
-				</a>
-				<!-- UXO delete button-->
-				<a asp-page="Delete" asp-route-id="@obj.Uxo_ID" class="btn btn-danger mx-2">
-					<i class="bi bi-trash"></i>
-					Delete
-				</a>
-				</div>
-			</td>
+					<div class="w-75 btn-group" role="group">
+						<!-- UXO Edit button-->
+						<a asp-page="Edit" asp-route-id="@obj.Uxo_ID" class="btn btn-primary">
+							<i class="bi bi-pencil-squaremx-2"></i>
+							Edit
+						</a>
+						<!-- UXO delete button-->
+						<a asp-page="Delete" asp-route-id="@obj.Uxo_ID" class="btn btn-danger mx-2">
+							<i class="bi bi-trash"></i>
+							Delete
+						</a>
+					</div>
+				</td>
 		</tr>
 		}
 	</tbody>
 </table>
 
+@section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+	}

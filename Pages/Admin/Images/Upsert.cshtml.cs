@@ -16,8 +16,10 @@ namespace Mined.Pages.Admin.Images
 		public UpsertModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
 		{
 			_unitOfWork = unitOfWork;
-
 			_hostEnvironment = hostEnvironment;
+			Uxo = new Uxo();
+			Image = new Image();
+			//Category = new Category();
 		}
 		public Uxo Uxo { get; set; }
 		public Image Image { get; set; }

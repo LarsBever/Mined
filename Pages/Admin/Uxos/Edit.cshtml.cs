@@ -19,10 +19,13 @@ namespace Mined.Pages.Admin.Uxos
 		public Image Image { get; set; }
 		public Category Category { get; set; }
 		public IEnumerable<Category> Categories { get; set; } 
-		public void OnGet(int UXO_ID)
+		public void OnGet(int id)
         {
-			Uxo = _unitOfWork.Uxo.GetFirstOrDefault(u=>u.Uxo_ID==Uxo.Uxo_ID);
-        }
+			Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.Uxo_ID == id);
+			Uxo.Category = _unitOfWork.Category.GetFirstOrDefault(x => x.Category_ID == Uxo.Category_ID);
+			Category = Uxo.Category;
+			Image = _unitOfWork.Image.GetFirstOrDefault(x => x.Uxo_ID == Uxo.Uxo_ID);
+		}
 		public async Task<IActionResult> OnPost()
         {
 			if(Category.MainCategoryNato == Category.SubCategoryNato)

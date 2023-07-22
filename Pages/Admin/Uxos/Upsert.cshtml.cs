@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow;
 using Mined.DataAccess.Data;
 using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
@@ -14,7 +15,6 @@ namespace Mined.Pages.Admin.Uxos
 	{
 		private readonly IUnitOfWork _unitOfWork;
 		private readonly IWebHostEnvironment _hostEnvironment;
-		private readonly MinedDbContext _db;
 		public UpsertModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
 		{
 			_unitOfWork = unitOfWork;
@@ -24,13 +24,26 @@ namespace Mined.Pages.Admin.Uxos
 			Category = new Category();
 		}
 
-		public Uxo Uxo { get; set; }
-		public Image Image { get; set; }
-		public Category Category { get; set; }
-		public IEnumerable<Category> Categories { get; set; }
-		public IEnumerable<SelectListItem> CategoryList { get; set; }
-		public void OnGet()
+		public Uxo? Uxo { get; set; }
+		public Image? Image { get; set; }
+		public Category? Category { get; set; }
+		public IEnumerable<Category>? Categories { get; set; }
+		public IEnumerable<SelectListItem>? CategoryList { get; set; }
+		public void OnGet(int id)
 		{
+			if(id != 0) 
+			{
+				Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.Uxo_ID == id);
+				Uxo.Category = _unitOfWork.Category.GetFirstOrDefault(x => x.Category_ID == Uxo.Category_ID);
+				Category = Uxo.Category;
+				Image = _unitOfWork.Image.GetFirstOrDefault(x => x.Uxo_ID == Uxo.Uxo_ID);
+			}
+			else
+			{
+				Uxo.Uxo_ID = 0;
+			}
+
+			//Fill Category Dropdownlist
 			CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem()
 			{
 				Text = i.MainCategoryNato + "; " + i.SubCategoryNato,
@@ -40,6 +53,10 @@ namespace Mined.Pages.Admin.Uxos
 		}
 		public async Task<IActionResult> OnPost()
 		{
+			//if(Image.UxoImage == )
+			//{
+
+			//}
 			string webRootPath = _hostEnvironment.WebRootPath;
 			var files = HttpContext.Request.Form.Files;
 
@@ -66,7 +83,7 @@ namespace Mined.Pages.Admin.Uxos
 				//Uxo needs a Category for the Insert into the Database
 				Uxo.Category = _unitOfWork.Category.GetFirstOrDefault(x => x.Category_ID == Category.Category_ID);
 
-				//To add an Image, the right Uxo, including Uxo_ID is needed. For this, we first need to insert the Uxo into the database.
+				//To add an Image, the correct Uxo object, including Uxo_ID is needed. For this, we first need to insert the Uxo into the database.
 				//The Uxo_ID is autoincremented by the Database.
 				//We store the NameNato value in 'overdracht', so that we can retrieve the right Uxo object from the database after it is inserted.
 				string overdracht = Uxo.NameNato.ToString();
@@ -75,17 +92,15 @@ namespace Mined.Pages.Admin.Uxos
 
 				//Now that the Uxo is inserted and the Uxo_ID is created, we can add the Images.
 				//Add Image
-				//Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == overdracht);
-				//Image.Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == overdracht);
+				Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == overdracht);
+				Image.Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == overdracht);
 				Uxo.NameNato = overdracht;
 				_unitOfWork.Image.Add(Image);
 				_unitOfWork.Save();
-				//Image.Image_ID = 0;
 
 				TempData["success"] = "U.X.O. created successfully";
 				return RedirectToPage("Index");
 			}
-			OnGet();
 			return Page();
 		}
 	}
