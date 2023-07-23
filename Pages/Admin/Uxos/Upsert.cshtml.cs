@@ -28,11 +28,12 @@ namespace Mined.Pages.Admin.Uxos
 		public Image? Image { get; set; }
 		public IEnumerable<Image> Images { get; set; }
 		public Category? Category { get; set; }
-		//public IEnumerable<Category>? Categories { get; set; }
 		public IEnumerable<SelectListItem>? CategoryList { get; set; }
 		public void OnGet(int id)
 		{
+			//For Update: load all images related to the U.X.O. 
 			Images = _unitOfWork.Image.GetAll();
+
 			if (id != 0)
 			{
 				//Update item
@@ -62,12 +63,14 @@ namespace Mined.Pages.Admin.Uxos
 				var uploads = Path.Combine(webRootPath, @"images\UxoImages");
 				var extension = Path.GetExtension(files[0].FileName);
 
+				//Add new image
 				using (var fileStream = new FileStream(Path.Combine(uploads, fileName_new + extension), FileMode.Create))
 				{
 					files[0].CopyTo(fileStream);
 				}
 				Image.UxoImage = @"\images\UxoImages\" + fileName_new + extension;
 
+				//Validate whether the given U.X.O. Name is not the same as the category names
 				if (Uxo.NameNato == Category.MainCategoryNato)
 				{
 					ModelState.AddModelError(string.Empty, "The Main Category and U.X.O. Name cannot be the same");
@@ -78,7 +81,7 @@ namespace Mined.Pages.Admin.Uxos
 				}
 				if (ModelState.IsValid)
 				{
-					//Uxo needs a Category for the Insert into the Database
+					//Uxo needs a Category object for the insert into the Database
 					Uxo.Category = _unitOfWork.Category.GetFirstOrDefault(x => x.Category_ID == Category.Category_ID);
 
 					//To add an Image, the correct Uxo object, including Uxo_ID is needed. For this, we first need to insert the Uxo into the database.
@@ -88,7 +91,7 @@ namespace Mined.Pages.Admin.Uxos
 					_unitOfWork.Uxo.Add(Uxo);
 					_unitOfWork.Save();
 
-					//Now that the Uxo is inserted and the Uxo_ID is created, we can add the Images.
+					//Now that the Uxo is inserted and the Uxo_ID is created, we can add the Images using the U.X.O. Name.
 					//Add Image
 					Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == transferstring);
 					Image.Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == transferstring);
@@ -108,28 +111,28 @@ namespace Mined.Pages.Admin.Uxos
 
 				if (files.Count > 0)
 				{
+					//For when the image gets updated
+
 					string fileName_new = Guid.NewGuid().ToString();
 					var uploads = Path.Combine(webRootPath, @"images\UxoImages");
 					var extension = Path.GetExtension(files[0].FileName);
 
-					//delete the old image
+					//Delete the old image
 					var oldImagePath = Path.Combine(webRootPath, Image.UxoImage.TrimStart('\\'));
 					if (System.IO.File.Exists(oldImagePath))
 					{
 						System.IO.File.Delete(oldImagePath);
 					}
-					//new upload
+
+					//New image upload
 					using (var fileStream = new FileStream(Path.Combine(uploads, fileName_new + extension), FileMode.Create))
 					{
 						files[0].CopyTo(fileStream);
 					}
 					Image.UxoImage = @"\images\UxoImages\" + fileName_new + extension;
 				}
-				else
-				{
-					////klopt dit??
-					//Image = image;
-				}
+
+				//Validate whether the given U.X.O. Name is not the same as the category names
 				if (Uxo.NameNato == Category.MainCategoryNato)
 				{
 					ModelState.AddModelError(string.Empty, "The Main Category and U.X.O. Name cannot be the same");
@@ -151,8 +154,8 @@ namespace Mined.Pages.Admin.Uxos
 					_unitOfWork.Uxo.Update(Uxo);
 					_unitOfWork.Save();
 
-					//Now that the Uxo is inserted and the Uxo_ID is created, we can add the Images.
-					//Add Image
+					//Now that the Uxo is inserted and the Uxo_ID is created, we can update the Image.
+					//update Image
 					Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == transferstring);
 					Image.Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == transferstring);
 					Uxo.NameNato = transferstring;

@@ -27,7 +27,7 @@
   
 
   <ItemGroup>
-    <Folder Include="Pages\Admin\Scoreboard\" />
+    <Folder Include="Pages\Admin\ScoreBoard\" />
     <Folder Include="Pages\Player\" />
     <Folder Include="wwwroot\images\UxoImages\" />
   </ItemGroup>
