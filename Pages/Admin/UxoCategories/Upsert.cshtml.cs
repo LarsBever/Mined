@@ -19,150 +19,61 @@ namespace Mined.Pages.Admin.UxoCategories
 		{
 			_unitOfWork = unitOfWork;
 			_hostEnvironment = hostEnvironment;
-			Uxo = new();
-			Image = new();
 			Category = new();
 		}
 		public int Id { get; set; }
-		public Uxo? Uxo { get; set; }
-		public Image? Image { get; set; }
-		public IEnumerable<Image> Images { get; set; }
 		public Category? Category { get; set; }
 		public IEnumerable<SelectListItem>? CategoryList { get; set; }
 		public void OnGet(int id)
 		{
-			//For Update: load all images related to the U.X.O. 
-			Images = _unitOfWork.Image.GetAll();
-
 			if (id != 0)
 			{
 				//Update item
-				Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.Uxo_ID == id);
-				Uxo.Category = _unitOfWork.Category.GetFirstOrDefault(x => x.Category_ID == Uxo.Category_ID);
-				Category = Uxo.Category;
-				Image = _unitOfWork.Image.GetFirstOrDefault(x => x.Uxo_ID == Uxo.Uxo_ID);
-
+				Category = _unitOfWork.Category.GetFirstOrDefault(x => x.Category_ID == id);
 			}
-
-			//Fill Category Dropdownlist
-			CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem()
-			{
-				Text = i.MainCategoryNato + "; " + i.SubCategoryNato,
-				Value = i.Category_ID.ToString(),
-			});
 		}
 		public async Task<IActionResult> OnPost()
 		{
-			string webRootPath = _hostEnvironment.WebRootPath;
-			var files = HttpContext.Request.Form.Files;
-
-			if (Uxo.Uxo_ID == 0)
+			if (Category.Category_ID == 0)
 			{
 				//Add
-				string fileName_new = Guid.NewGuid().ToString();
-				var uploads = Path.Combine(webRootPath, @"images\UxoImages");
-				var extension = Path.GetExtension(files[0].FileName);
-
-				//Add new image
-				using (var fileStream = new FileStream(Path.Combine(uploads, fileName_new + extension), FileMode.Create))
-				{
-					files[0].CopyTo(fileStream);
-				}
-				Image.UxoImage = @"\images\UxoImages\" + fileName_new + extension;
 
 				//Validate whether the given U.X.O. Name is not the same as the category names
-				if (Uxo.NameNato == Category.MainCategoryNato)
-				{
-					ModelState.AddModelError(string.Empty, "The Main Category and U.X.O. Name cannot be the same");
-				}
-				if (Uxo.NameNato == Category.SubCategoryNato)
-				{
-					ModelState.AddModelError(string.Empty, "The Subcategory and U.X.O. Name cannot be the same");
-				}
+				//if (Uxo.NameNato == Category.MainCategoryNato)
+				//{
+				//	ModelState.AddModelError(string.Empty, "The Main Category and U.X.O. Name cannot be the same");
+				//}
+				//if (Uxo.NameNato == Category.SubCategoryNato)
+				//{
+				//	ModelState.AddModelError(string.Empty, "The Subcategory and U.X.O. Name cannot be the same");
+				//}
 				if (ModelState.IsValid)
 				{
-					//Uxo needs a Category object for the insert into the Database
-					Uxo.Category = _unitOfWork.Category.GetFirstOrDefault(x => x.Category_ID == Category.Category_ID);
-
-					//To add an Image, the correct Uxo object, including Uxo_ID is needed. For this, we first need to insert the Uxo into the database.
-					//The Uxo_ID is autoincremented by the Database.
-					//We store the NameNato value in 'overdracht', so that we can retrieve the right Uxo object from the database after it is inserted.
-					string transferstring = Uxo.NameNato.ToString();
-					_unitOfWork.Uxo.Add(Uxo);
+					_unitOfWork.Category.Add(Category);
 					_unitOfWork.Save();
-
-					//Now that the Uxo is inserted and the Uxo_ID is created, we can add the Images using the U.X.O. Name.
-					//Add Image
-					Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == transferstring);
-					Image.Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == transferstring);
-					Uxo.NameNato = transferstring;
-					_unitOfWork.Image.Add(Image);
-					_unitOfWork.Save();
-					TempData["success"] = "U.X.O. added successfully";
+					TempData["success"] = "Category added successfully";
 					return RedirectToPage("Index");
 				}
 			}
 			else
 			{
 				//Update
-				
-				//For when anything except the image gets updated
-				Image = _unitOfWork.Image.GetFirstOrDefault(u => u.Uxo_ID == Uxo.Uxo_ID);			
-
-				if (files.Count > 0)
-				{
-					//For when the image gets updated
-
-					string fileName_new = Guid.NewGuid().ToString();
-					var uploads = Path.Combine(webRootPath, @"images\UxoImages");
-					var extension = Path.GetExtension(files[0].FileName);
-
-					//Delete the old image
-					var oldImagePath = Path.Combine(webRootPath, Image.UxoImage.TrimStart('\\'));
-					if (System.IO.File.Exists(oldImagePath))
-					{
-						System.IO.File.Delete(oldImagePath);
-					}
-
-					//New image upload
-					using (var fileStream = new FileStream(Path.Combine(uploads, fileName_new + extension), FileMode.Create))
-					{
-						files[0].CopyTo(fileStream);
-					}
-					Image.UxoImage = @"\images\UxoImages\" + fileName_new + extension;
-				}
 
 				//Validate whether the given U.X.O. Name is not the same as the category names
-				if (Uxo.NameNato == Category.MainCategoryNato)
-				{
-					ModelState.AddModelError(string.Empty, "The Main Category and U.X.O. Name cannot be the same");
-				}
-				if (Uxo.NameNato == Category.SubCategoryNato)
-				{
-					ModelState.AddModelError(string.Empty, "The Subcategory and U.X.O. Name cannot be the same");
-				}
+				//if (Uxo.NameNato == Category.MainCategoryNato)
+				//{
+				//	ModelState.AddModelError(string.Empty, "The Main Category and U.X.O. Name cannot be the same");
+				//}
+				//if (Uxo.NameNato == Category.SubCategoryNato)
+				//{
+				//	ModelState.AddModelError(string.Empty, "The Subcategory and U.X.O. Name cannot be the same");
+				//}
 				if (ModelState.IsValid)
 				{
-					//Uxo needs a Category for the Insert into the Database
-					Uxo.Category = _unitOfWork.Category.GetFirstOrDefault(x => x.Category_ID == Category.Category_ID);
-					Uxo.Category_ID = Category.Category_ID;
-
-					//To add an Image, the correct Uxo object, including Uxo_ID is needed. For this, we first need to insert the Uxo into the database.
-					//The Uxo_ID is autoincremented by the Database.
-					//We store the NameNato value in 'overdracht', so that we can retrieve the right Uxo object from the database after it is inserted.
-					string transferstring = Uxo.NameNato.ToString();
-					_unitOfWork.Uxo.Update(Uxo);
-					_unitOfWork.Save();
-
-					//Now that the Uxo is inserted and the Uxo_ID is created, we can update the Image.
-					//update Image
-					Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == transferstring);
-					Image.Uxo = _unitOfWork.Uxo.GetFirstOrDefault(x => x.NameNato == transferstring);
-					Uxo.NameNato = transferstring;
-					_unitOfWork.Image.Update(Image);				
+					_unitOfWork.Category.Update(Category);
 					_unitOfWork.Save();
 				}
-				TempData["success"] = "U.X.O. saved successfully";
+				TempData["success"] = "Category saved successfully";
 				return RedirectToPage("Index");
 			}
 			return Page();

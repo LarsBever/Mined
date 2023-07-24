@@ -4,12 +4,15 @@ using Microsoft.Extensions.Options;
 using Mined.DataAccess.Data;
 using Mined.DataAccess.Repository;
 using Mined.DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<MinedDbContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("MinedDBConnection")));
+
+builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<MinedDbContext>();
 
 //Register Unit of Work
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
