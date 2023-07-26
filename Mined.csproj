@@ -6,11 +6,18 @@
 	  <Nullable>enable</Nullable>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Pages\Player\**" />
+    <Content Remove="Pages\Player\**" />
+    <EmbeddedResource Remove="Pages\Player\**" />
+    <None Remove="Pages\Player\**" />
+  </ItemGroup>
   
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.9" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.20" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.9">
@@ -25,12 +32,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Mined.DataAccess\Mined.DataAccess.csproj" />
     <ProjectReference Include="..\Mined.Models\Mined.Models.csproj" />
+    <ProjectReference Include="..\Mined.Utility\Mined.Utility.csproj" />
   </ItemGroup>
   
 
   <ItemGroup>
-    <Folder Include="Pages\Admin\ScoreBoard\" />
-    <Folder Include="Pages\Player\" />
     <Folder Include="wwwroot\images\UxoImages\" />
   </ItemGroup>
 

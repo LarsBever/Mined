@@ -9,13 +9,14 @@
       "Mined/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.9",
-          "Microsoft.AspNetCore.Identity.UI": "7.0.9",
+          "Microsoft.AspNetCore.Identity.UI": "6.0.20",
           "Microsoft.EntityFrameworkCore": "7.0.9",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.9",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.9",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.8",
           "Mined.DataAccess": "1.0.0",
           "Mined.Models": "1.0.0",
+          "Mined.Utility": "1.0.0",
           "MySql.EntityFrameworkCore": "7.0.5"
         },
         "runtime": {
@@ -664,15 +665,15 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Identity.UI/7.0.9": {
+      "Microsoft.AspNetCore.Identity.UI/6.0.20": {
         "dependencies": {
-          "Microsoft.Extensions.FileProviders.Embedded": "7.0.9",
+          "Microsoft.Extensions.FileProviders.Embedded": "6.0.20",
           "Microsoft.Extensions.Identity.Stores": "7.0.9"
         },
         "runtime": {
-          "lib/net7.0/Microsoft.AspNetCore.Identity.UI.dll": {
-            "assemblyVersion": "7.0.9.0",
-            "fileVersion": "7.0.923.32110"
+          "lib/net6.0/Microsoft.AspNetCore.Identity.UI.dll": {
+            "assemblyVersion": "6.0.20.0",
+            "fileVersion": "6.0.2023.32106"
           }
         }
       },
@@ -1341,20 +1342,14 @@
           }
         }
       },
-      "Microsoft.Extensions.FileProviders.Abstractions/7.0.0": {
+      "Microsoft.Extensions.FileProviders.Abstractions/6.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "7.0.0"
         }
       },
-      "Microsoft.Extensions.FileProviders.Embedded/7.0.9": {
+      "Microsoft.Extensions.FileProviders.Embedded/6.0.20": {
         "dependencies": {
-          "Microsoft.Extensions.FileProviders.Abstractions": "7.0.0"
-        },
-        "runtime": {
-          "lib/net7.0/Microsoft.Extensions.FileProviders.Embedded.dll": {
-            "assemblyVersion": "7.0.0.0",
-            "fileVersion": "7.0.923.32110"
-          }
+          "Microsoft.Extensions.FileProviders.Abstractions": "6.0.0"
         }
       },
       "Microsoft.Extensions.Identity.Core/7.0.9": {
@@ -2712,6 +2707,7 @@
       "Mined.DataAccess/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.9",
+          "Microsoft.AspNetCore.Identity.UI": "6.0.20",
           "Microsoft.EntityFrameworkCore": "7.0.9",
           "Microsoft.EntityFrameworkCore.Relational": "7.0.9",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.9",
@@ -2725,10 +2721,23 @@
       "Mined.Models/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.9",
+          "Microsoft.AspNetCore.Identity.UI": "6.0.20",
           "Microsoft.EntityFrameworkCore": "7.0.9"
         },
         "runtime": {
           "Mined.Models.dll": {}
+        }
+      },
+      "Mined.Utility/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.9",
+          "Microsoft.AspNetCore.Identity.UI": "6.0.20",
+          "Microsoft.EntityFrameworkCore": "7.0.9",
+          "Mined.DataAccess": "1.0.0",
+          "Mined.Models": "1.0.0"
+        },
+        "runtime": {
+          "Mined.Utility.dll": {}
         }
       }
     }
@@ -3152,12 +3161,12 @@
       "path": "microsoft.aspnetcore.identity.entityframeworkcore/7.0.9",
       "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.7.0.9.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Identity.UI/7.0.9": {
+    "Microsoft.AspNetCore.Identity.UI/6.0.20": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-P1LVi2fB3C0RJcW9OGrvUjT2bzHCpSDdiClwyKLuiC+EjtTrWng+ehG/Xjrow5++pkd2nQ19m4RxNflpIhRg5Q==",
-      "path": "microsoft.aspnetcore.identity.ui/7.0.9",
-      "hashPath": "microsoft.aspnetcore.identity.ui.7.0.9.nupkg.sha512"
+      "sha512": "sha512-GX46Lu8NVupl/5Wvy2WDjHOQXNXZQttkQrP8gg0U0euzqb9w2ff8xyoqanlx631BYMI4FlUYMy2OVRm3VV/OqA==",
+      "path": "microsoft.aspnetcore.identity.ui/6.0.20",
+      "hashPath": "microsoft.aspnetcore.identity.ui.6.0.20.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Razor.Language/6.0.11": {
       "type": "package",
@@ -3390,19 +3399,19 @@
       "path": "microsoft.extensions.dependencymodel/7.0.0",
       "hashPath": "microsoft.extensions.dependencymodel.7.0.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.FileProviders.Abstractions/7.0.0": {
+    "Microsoft.Extensions.FileProviders.Abstractions/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-NyawiW9ZT/liQb34k9YqBSNPLuuPkrjMgQZ24Y/xXX1RoiBkLUdPMaQTmxhZ5TYu8ZKZ9qayzil75JX95vGQUg==",
-      "path": "microsoft.extensions.fileproviders.abstractions/7.0.0",
-      "hashPath": "microsoft.extensions.fileproviders.abstractions.7.0.0.nupkg.sha512"
+      "sha512": "sha512-0pd4/fho0gC12rQswaGQxbU34jOS1TPS8lZPpkFCH68ppQjHNHYle9iRuHeev1LhrJ94YPvzcRd8UmIuFk23Qw==",
+      "path": "microsoft.extensions.fileproviders.abstractions/6.0.0",
+      "hashPath": "microsoft.extensions.fileproviders.abstractions.6.0.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.FileProviders.Embedded/7.0.9": {
+    "Microsoft.Extensions.FileProviders.Embedded/6.0.20": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-iksK9eQAzoSDgSEgjJP5IZyLqOalFZEUKuSBIOt4WiHbeHzbundDIDKSJWfUMNyI1EZV2OIP1g9FZW0wvnXmEQ==",
-      "path": "microsoft.extensions.fileproviders.embedded/7.0.9",
-      "hashPath": "microsoft.extensions.fileproviders.embedded.7.0.9.nupkg.sha512"
+      "sha512": "sha512-AdOPzQk0x0YTEqedTl2OwWlnjpxwS3FLEXGko6lbqmxhpeJ63V+1I69stQCnD+2fyJeW0SJwc3IdYmIkoFedZw==",
+      "path": "microsoft.extensions.fileproviders.embedded/6.0.20",
+      "hashPath": "microsoft.extensions.fileproviders.embedded.6.0.20.nupkg.sha512"
     },
     "Microsoft.Extensions.Identity.Core/7.0.9": {
       "type": "package",
@@ -4425,6 +4434,11 @@
       "sha512": ""
     },
     "Mined.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Mined.Utility/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

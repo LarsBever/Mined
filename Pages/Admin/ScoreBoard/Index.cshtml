@@ -1,0 +1,78 @@
+﻿@page
+@model Mined.Pages.Admin.Scores.IndexModel
+
+<div class="container p-3">
+	<div class="row pt-4">
+		<h2 class="text-primary">High Scores</h2>
+	</div>
+	<!--Add Score button-->
+	<div class="col-6">
+		<a asp-page="upsert" class="btn btn-primary">
+			<i class="bi bi-plus-square"></i>
+			Add new Score
+		</a>
+	</div>
+</div>
+
+<br /><br/>
+
+<!-- Category Table-->
+<table class="table table-bordered table-striped" style="width:100%">
+	<thread>
+		<tr>
+			<th>
+				NickName
+			</th>
+			<th>
+				Number Of Mistakes
+			</th>
+			<th>
+				Uxo Mistakes
+			</th>
+			<th>
+				Score
+			</th>
+		</tr>
+	</thread>
+	<tbody>
+		<tr>
+		<td width="50">
+			@foreach (var name in Model.MinedUsers)
+			{
+				if (name.Score_ID == name.Score_ID)
+				{
+					@name.Nickname
+				}
+			}
+		</td>
+		</tr>
+		@foreach(var obj in Model.Scores)
+		{
+		<tr>
+			<td width="50">@obj.NumberOfMistakes</td>
+			<td width="50">@obj.UxoMistakes</td>
+			<td width="50">@obj.PlayerScore</td>
+				<td width="20">
+					<div class="w-75 btn-group" role="group">
+						<!-- UXO Edit button-->
+						<a asp-page="Upsert" asp-route-id="@obj.Score_ID" class="btn btn-primary">
+							<i class="bi bi-pencil-squaremx-2"></i>
+							Edit
+						</a>
+						<!-- UXO delete button-->
+						<a asp-page="Delete" asp-route-id="@obj.Score_ID" class="btn btn-danger mx-2">
+							<i class="bi bi-trash"></i>
+							Delete
+						</a>
+					</div>
+				</td>
+		</tr>
+		}
+	</tbody>
+</table>
+
+@section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+	}

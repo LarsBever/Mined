@@ -17,7 +17,11 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Mined;
+using Mined.Models;
+using Mined.Utility;
 
 namespace Mined.Areas.Identity.Pages.Account
 {
@@ -29,21 +33,25 @@ namespace Mined.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public RegisterModel(
+		public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            RoleManager<IdentityRole> roleManager)
+        
         {
-            _userManager = userManager;
+			_userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
-        }
+            _roleManager = roleManager;
+		}
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -116,10 +124,33 @@ namespace Mined.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
+                if(!await _roleManager.RoleExistsAsync(SD.AdminRole))
+                {
+                    _roleManager.CreateAsync(new IdentityRole(SD.AdminRole)).GetAwaiter().GetResult();
+                    _roleManager.CreateAsync(new IdentityRole(SD.InstructorRole)).GetAwaiter().GetResult();
+                    _roleManager.CreateAsync(new IdentityRole(SD.PlayerRole)).GetAwaiter().GetResult();
+                }
                 if (result.Succeeded)
                 {
+                    string role = Request.Form["rdUserRole"].ToString();
+                    if(role == SD.AdminRole)
+                    {
+                        await _userManager.AddToRoleAsync(user, SD.AdminRole);
+                    }
+                    else
+                    {
+                        if (role == SD.InstructorRole)
+                        {
+                            await _userManager.AddToRoleAsync(user, SD.InstructorRole);
+                        }
+                        else
+                        {
+                            await _userManager.AddToRoleAsync(user, SD.PlayerRole);
+                        }
+                    }
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
@@ -154,11 +185,11 @@ namespace Mined.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private IdentityUser CreateUser()
+        private MinedUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<IdentityUser>();
+                return Activator.CreateInstance<MinedUser>();
             }
             catch
             {
