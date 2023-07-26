@@ -18,7 +18,6 @@ namespace Mined.Pages.Admin.Scores
 			_unitOfWork = unitOfWork;
 		}
 		public Score Score { get; set; }
-		public MinedUser? MinedUser { get; set; }
 		public void OnGet(int id)
 		{
 			Score = _unitOfWork.Score.GetFirstOrDefault(x => x.Score_ID == id);

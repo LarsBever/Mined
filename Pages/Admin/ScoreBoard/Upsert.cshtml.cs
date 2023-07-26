@@ -24,7 +24,6 @@ namespace Mined.Pages.Admin.Scores
 		}
 		public int Id { get; set; }
 		public Score? Score { get; set; }
-		public MinedUser? MinedUser { get; set; }
 		public void OnGet(int id)
 		{
 			if (id != 0)
