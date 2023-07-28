@@ -1,0 +1,109 @@
+﻿	@page
+@model Mined.Pages.Admin.Uxos.DetailsModel
+
+		<form method="post">
+		<input hidden asp-for="Uxo.Uxo_ID" />
+			<div class="col-xl-12">
+
+				<!-- Delete U.X.O -->
+				<div class="card mb-4">
+					<div class="card-header">U.X.O. Detailed Information</div>
+					<div class="card-body">
+
+						<div class="row gx-12 mb-12">
+							<!--NATO U.X.O. Name-->
+							<div class="form-group col-md-6">
+								<label asp-for="Uxo.NameNato">NATO U.X.O. name</label>
+							    <input asp-for="Uxo.NameNato" disabled class="form-control">
+							</div>
+
+						<!-- NATO U.X.O. Categories-->
+						<div class="row mb-12">
+							<div class="form-group col-md-6">
+							<label asp-for="Category.MainCategoryNato">Main Category</label>
+							<input asp-for= "Category.MainCategoryNato"  disabled class="form-control">
+							</div>
+							<div class="form-group col-md-6">
+							<label asp-for="Category.SubCategoryNato">Subcategory</label>
+							<input asp-for="Category.SubCategoryNato" disabled class="form-control">
+						    </div>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+				<div class="col-xl-12">
+					<div class="card mb-4">
+						<div class="card-header">U.X.O. Additional Information</div>
+							<div class="card-body">
+								<div class="row gx-3 mb-3">
+										<!--Russian U.X.O. Name-->
+										<div class="form-group col md-6">
+										<label asp-for="@Model.Uxo.NameRussian">Russian Name</label>
+							            <input asp-for="@Model.Uxo.NameRussian" disabled class="form-control" />
+
+										<!--Origin Name-->
+										<label asp-for="@Model.Uxo.NameOrigin">Origin Name</label>
+							            <input asp-for="@Model.Uxo.NameOrigin" disabled class="form-control" />
+
+										<!--Nickname-->
+										<label asp-for="@Model.Uxo.NickName">U.X.O. Nickname</label>
+							            <input asp-for="@Model.Uxo.NickName" disabled class="form-control" />
+
+										<!--Dept. of Defense Code-->
+										<label asp-for="@Model.Uxo.Dod_Code">Department of Defense Code</label>
+							            <input asp-for="@Model.Uxo.Dod_Code" disabled class="form-control" />
+
+										<!--NATO Code-->
+										<label asp-for="@Model.Uxo.Nato_Code">NATO Code</label>
+							            <input asp-for="@Model.Uxo.Nato_Code" disabled class="form-control" />
+									</div>
+
+									<!--Description-->
+									<div class="form-group col md-6">
+										<label asp-for="@Model.Uxo.Description_Eng">Description</label>
+							            <textarea asp-for="@Model.Uxo.Description_Eng" rows="11" disabled class="form-control"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+		
+			<!-- Show Images that belong to the U.X.O.-->
+			<div class="col-xl-12">
+				<div class="card mb-4">
+					<div class="card-header">U.X.O. Images</div>
+						<div class="card-body">
+							<div class="row gx-3 mb-3">
+								@foreach (var img in Model.Images)
+								{
+									if (Model.Uxo.Uxo_ID == img.Uxo_ID)
+									{
+										<div class="form-group col md-3">
+										<img src="@img.UxoImage" class="rounded" width="300" />
+										</div>
+									}
+								}
+						    </div>
+					    </div>
+				</div>
+			<div class="col-xl-12">
+						<div class="card mb-4">
+							<div class="row gx-3 mb-3">
+								<div class="form-group col md-6">
+									<a asp-page="/Admin/UXOs/Index" class="btn btn-secondary" style="width:300px">Back</a>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+</form>
+
+	@section Scripts{
+		@{
+		<partial name="_ValidationScriptsPartial" />
+		}
+	}
+	
+
+		

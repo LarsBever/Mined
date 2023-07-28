@@ -1,0 +1,64 @@
+﻿@page
+@model QuizApp.Pages.ResultsModel
+@{
+        ViewData["Title"] = "Results";
+}
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> userManager
+
+<div class="text-center align-items-center">
+    <br>
+    <p>Here you can see the results of your last game.</p>
+    <br>
+@{
+    var playerResults = Model.Results.Where(c => c.user_id == userManager.GetUserId(User)).ToList();
+
+    if(playerResults.Count() != 5)
+    {
+            <p>Complete the game from start to finish to see your results!</p>
+        }
+        else
+        {
+            var imagePath = "";
+            var altText = "Oops! there should be an image of the U.X.O. here...";
+            var cor = new Models.Uxo();
+            var sel = new Models.Uxo();
+
+            var points = playerResults.Where(c => c.correct_answer.Equals(c.selected_answer)).Count();
+
+            <p class="display-6"> Your result is:  </p>
+            <p class="display-3" style="color:#431C8D">@points / 5</p><br>
+
+            <form class="questions" method="post">
+                <input class="btn btn-primary" type="submit" value="Try Again" asp-page-handler="Submit"/>
+            </form>
+            <br><br>
+            <table class="table-sm custom-table">
+                @foreach (var res in playerResults)
+            {
+                    cor = Model.Uxos.Where(c => c.Uxo_ID == res.correct_answer).First();
+                    sel = Model.Uxos.Where(c => c.Uxo_ID == res.selected_answer).First();
+                    imagePath = "~/css/images/" + @cor.Uxo_ID;
+                    <tr>
+                    <td style="padding:20px;">
+                    <img src="@Url.Content(imagePath)" alt="@altText" />
+                    </td>
+                    <td>
+                    @if(res.correct_answer.Equals(res.selected_answer))
+                    {
+                        <span style="color: #5BB318">@cor.NameNato</span>
+                    }
+                    else
+                    {
+                                <span style="color: #C21010"><del>@sel.NameNato</del><br> </span>
+
+                                <span style="color: #5BB318"> @cor.NameNato</span>
+                    }
+                    </td>
+</tr>                
+            }
+            </table>
+    }
+}
+
+</div>

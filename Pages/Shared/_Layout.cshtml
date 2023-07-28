@@ -1,10 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using Mined.Utility
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Mined</title>
-    <link rel="stylesheet" href="~/css/Simplex.css" />
+    <link rel="stylesheet" href="~/css/Sandstone.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Mined.styles.css" asp-append-version="true" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
@@ -36,15 +38,18 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Admin/Scores/Index">Leader Board</a>
                         </li>
-                        <!--Dropdown Menu Items-->
-                        <li class="nav-item dropdown">
-                           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
-                           <div class="dropdown-menu">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Admin/UXOs/Index">UXOs</a>
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Admin/UxoCategories/Index">Categories</a>
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Admin/Scores/Index">Leader Board</a>
-                           </div>
-                    </li>
+                     @*   @if (User.IsInRole(SD.AdminRole) || User.IsInRole(SD.InstructorRole))
+                        {*@
+                            <!-- Admin Dropdown Menu Items-->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+                                <div class="dropdown-menu">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Admin/UXOs/Index">UXOs</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Admin/UxoCategories/Index">Categories</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Admin/Scores/Index">Leader Board</a>
+                                </div>
+                            </li>
+                       @* }*@
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
