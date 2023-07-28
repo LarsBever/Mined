@@ -1,3 +1,10 @@
+C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\Mined.csproj.AssemblyReference.cache
+C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\Mined.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\Mined.csproj.CoreCompileInputs.cache
+C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\Mined.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\Mined.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\Mined.RazorAssemblyInfo.cache
+C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\Mined.RazorAssemblyInfo.cs
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\bin\Debug\net7.0\appsettings.json
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\bin\Debug\net7.0\Mined.staticwebassets.runtime.json
@@ -253,13 +260,6 @@ C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\bin\Debug
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\bin\Debug\net7.0\Mined.DataAccess.pdb
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\bin\Debug\net7.0\Mined.Models.pdb
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\bin\Debug\net7.0\Mined.Utility.pdb
-C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\Mined.csproj.AssemblyReference.cache
-C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\Mined.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\Mined.csproj.CoreCompileInputs.cache
-C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\Mined.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\Mined.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\Mined.RazorAssemblyInfo.cache
-C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\Mined.RazorAssemblyInfo.cs
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\staticwebassets\msbuild.Mined.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\staticwebassets\msbuild.build.Mined.props
 C:\Users\mail\Desktop\HBO ICT\Semester 2\EindOpdracht Semester 2\Mined\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.Mined.props

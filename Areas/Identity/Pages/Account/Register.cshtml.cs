@@ -131,7 +131,6 @@ namespace Mined.Areas.Identity.Pages.Account
                 {
                     _roleManager.CreateAsync(new IdentityRole(SD.AdminRole)).GetAwaiter().GetResult();
                     _roleManager.CreateAsync(new IdentityRole(SD.InstructorRole)).GetAwaiter().GetResult();
-                    _roleManager.CreateAsync(new IdentityRole(SD.PlayerRole)).GetAwaiter().GetResult();
                 }
                 if (result.Succeeded)
                 {
@@ -185,11 +184,11 @@ namespace Mined.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private MinedUser CreateUser()
+        private IdentityUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<MinedUser>();
+                return Activator.CreateInstance<IdentityUser>();
             }
             catch
             {
