@@ -7,7 +7,7 @@ using Mined.Models;
 using System.ComponentModel;
 using System.Linq;
 
-namespace Mined.Pages.Admin.Scores
+namespace Mined.Pages.Admin.LeaderBoard
 {
 	[BindProperties]
 	public class DeleteModel : PageModel

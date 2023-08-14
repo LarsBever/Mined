@@ -11,16 +11,20 @@ using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace MinedApp.Pages.Admin.GameModel
+namespace Mined.Pages.Admin.GameModel
 {
     [BindProperties]
     public class GameModel : PageModel
     {
-        private readonly IUnitOfWork _unitOfWork;
+		private readonly UserManager<IdentityUser> userManager;
+		private readonly SignInManager<IdentityUser> signInManager;
+		private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _hostEnvironment;
-        public GameModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
+        public GameModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
-            _unitOfWork = unitOfWork;
+			this.userManager = userManager;
+			this.signInManager = signInManager;
+			_unitOfWork = unitOfWork;
             _hostEnvironment = hostEnvironment;
             Uxo = new();
             Image = new();
@@ -33,14 +37,23 @@ namespace MinedApp.Pages.Admin.GameModel
         public IEnumerable<Image> Images { get; set; }
         public Score? Score { get; set; }
         public IEnumerable<Score> Scores { get; set; }
-     
+
 
         public async Task OnGetAsync(int id)
         {
-            Uxos = _unitOfWork.Uxo.GetAll();
-            Images = _unitOfWork.Image.GetAll();
-            Scores = _unitOfWork.Score.GetAll();
-        }
+			if (_unitOfWork.Uxo != null)
+			{
+				Uxos = _unitOfWork.Uxo.GetAll();
+			}
+			if (_unitOfWork.Image != null)
+			{
+				Images = _unitOfWork.Image.GetAll();
+			}
+			if (_unitOfWork.Score != null)
+			{
+				Scores = _unitOfWork.Score.GetAll();
+			}
+		}
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -56,14 +69,18 @@ namespace MinedApp.Pages.Admin.GameModel
                 selected_answer = Score.selected_answer,
                 Nickname = Score.Nickname,
                 NumberOfMistakes = Score.NumberOfMistakes,
-                UxoMistakes =   Score.UxoMistakes,
-                PlayerScore =   Score.PlayerScore
-            };
+                UxoMistakes = Score.UxoMistakes,
+                PlayerScore = Score.PlayerScore,
+
+				//Nickname moet worden gebruikt ipv user_id
+				//user_id is alleen voor het inloggen van admins
+				//Er moet wel gecontroleerd worden of de nickname niet al bestaat.
+			};
 
             _unitOfWork.Score.Add(score);
             _unitOfWork.Save();
 
-            if (_unitOfWork.Score.GetFirstOrDefault(c => c.Nickname == Score.Nickname).ToList().Count() >= 10)
+            if (_unitOfWork.Score.GetAll().Count() >= 5)
             {
                 return RedirectToPage("./Score");
             }

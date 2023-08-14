@@ -1,11 +1,9 @@
 ﻿@page
-@model Mined.Pages.Admin.Game.GameModel
+@model Mined.Pages.Admin.GameModel.GameModel
 @{
     ViewData["Title"] = "Game";
 }
 @using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> userManager
 
 @functions{
 
@@ -64,9 +62,9 @@
 
 @{
 
-    var playerResults = Model.Score.Where(c => c.NickName == userManager.GetUserId(User)).ToList();
+    var playerResults = Model.Scores.Where(c => c.Score_ID == Model.Score.Score_ID).ToList();
     var questionNumber = playerResults.Count() + 1;
-    var uxoCount = Model.Uxo.Count();
+    var uxoCount = Model.Uxos.Count();
     var imagePath = "";
     var altText = "Oops! there should be an image of an U.X.O. here...";
 
@@ -106,10 +104,10 @@
     } while (n2 == @random_id || n2 == n1 || @ids.Contains(n2));
 
     //find country with id drawn as the correct
-    var correct = Model.Uxo.Where(c => c.id == @random_id).First();
-    var incorrects = Model.Uxo.Where(c => c.id == n1 || c.id == n2).ToArray();
+    var correct = Model.Uxos.Where(c => c.Uxo_ID == @random_id).First();
+    var incorrects = Model.Uxos.Where(c => c.Uxo_ID == n1 || c.Uxo_ID == n2).ToArray();
 
-    imagePath = "~/css/images/" + @correct.image_name;
+    imagePath = "~/css/images/" + @correct.Uxo_ID;
 }
 
 <div class="text-center">

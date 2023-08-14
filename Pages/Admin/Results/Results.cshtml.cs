@@ -7,53 +7,81 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Mined.Data;
+using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
 
-namespace QuizApp.Pages
+namespace Mined.Pages.Admin.ResultsModel
 {
     [Authorize(Roles = "RegularUser, Administrator")]
     public class ResultsModel : PageModel
     {
-        private readonly QuizApp.Data.QuizAppContext _context;
-        private readonly UserManager<IdentityUser> userManager;
+		//private readonly Mined.Data.QuizAppContext _context;
+		//private readonly UserManager<IdentityUser> userManager;
 
-        public ResultsModel(QuizApp.Data.QuizAppContext context, UserManager<IdentityUser> userManager)
+		private readonly IUnitOfWork _unitOfWork;
+		private readonly IWebHostEnvironment _hostEnvironment;
+
+		//public ResultsModel(QuizApp.Data.QuizAppContext context, UserManager<IdentityUser> userManager)
+  //      {
+  //          _context = context;
+  //          this.userManager = userManager;
+  //      }
+
+		public ResultsModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
+		{
+			_unitOfWork = unitOfWork;
+			_hostEnvironment = hostEnvironment;
+			Uxo = new();
+			Image = new();
+			Score = new();
+		}
+		public Uxo? Uxo { get; set; }
+		public IEnumerable<Uxo> Uxos { get; set; }
+		public Image? Image { get; set; }
+		public IEnumerable<Image> Images { get; set; }
+		public Score? Score { get; set; }
+		public IEnumerable<Score> Scores { get; set; }
+
+		public async Task OnGetAsync()
         {
-            _context = context;
-            this.userManager = userManager;
+            if (_unitOfWork.Uxo != null)
+            {
+				Uxos = _unitOfWork.Uxo.GetAll();
+			}
+
+            if (_unitOfWork.Score != null)
+            {
+                Scores = _unitOfWork.Score.GetAll();
+			}
         }
-        public IList<Uxo> Uxos { get; set; } = default!;
-        public IList<Result> Results { get; set; } = default!;
 
-
-        public async Task OnGetAsync()
+        //Try Again button to redirect to Delete score and redirect to game
+		public async Task<IActionResult> OnPostAsync()
         {
-            if (_context.Country != null)
+            
+            //Hier moet de computer weten bij welke nickname de score/het antwoord hoort.
+            // dus iets in de trend van var nickname = nickname...
+            // daarnaast moet de computer weten bij welke score de antwoorden toegevoegd moeten worden
+            var uScoreID = Score.Score_ID;
+            var uScore = _unitOfWork.Score.GetFirstOrDefault(c => c.Score_ID == Score.Score_ID);
+
+            if (uScore != null)
             {
-                Country = await _context.Country.ToListAsync();
+                // Here the previous answers will be deleted and all data except Score_ID and nickname are set to 0 or null.
+
+
+                //foreach (var answer in uScore)
+                //{
+                //_unitOfWork.Score.Remove(answer);
+                //}
+                Score.NumberOfMistakes = 0;
+                Score.UxoMistakes = null;
+                Score.PlayerScore = 0;
+
+                _unitOfWork.Score.Update(Score);
             }
 
-            if (_context.Result != null)
-            {
-                Results = await _context.Result.ToListAsync();
-            }
-        }
-
-
-        public async Task<IActionResult> OnPostAsync()
-        {
-            var uId = userManager.GetUserId(User);
-            var userResults = _context.Result.Where(c => c.user_id == uId).ToList();
-            if (userResults != null)
-            {
-                foreach (var answer in userResults)
-                {
-                    _context.Result.Remove(answer);
-                }
-            }
-
-            await _context.SaveChangesAsync();
+            _unitOfWork.Save();
 
             return RedirectToPage("./Quiz");
         }

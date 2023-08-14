@@ -1,9 +1,10 @@
 ﻿@page
-@model QuizApp.Pages.ResultsModel
+@model Mined.Pages.Admin.ResultsModel.ResultsModel
 @{
         ViewData["Title"] = "Results";
 }
 @using Microsoft.AspNetCore.Identity
+
 @inject UserManager<IdentityUser> userManager
 
 <div class="text-center align-items-center">
@@ -11,7 +12,7 @@
     <p>Here you can see the results of your last game.</p>
     <br>
 @{
-    var playerResults = Model.Results.Where(c => c.user_id == userManager.GetUserId(User)).ToList();
+        var playerResults = Model.Scores.Where(c => c.Score_ID == Model.Score.Score_ID).ToList();
 
     if(playerResults.Count() != 5)
     {
