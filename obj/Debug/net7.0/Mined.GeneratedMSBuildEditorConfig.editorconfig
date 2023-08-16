@@ -176,30 +176,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Admin/Game/Game.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cR2FtZVxHYW1lLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Admin/LeaderBoard/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTGVhZGVyQm9hcmRcRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Admin/LeaderBoard/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTGVhZGVyQm9hcmRcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Admin/LeaderBoard/Upsert.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTGVhZGVyQm9hcmRcVXBzZXJ0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Admin/Results/Results.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUmVzdWx0c1xSZXN1bHRzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Admin/Train/Train.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVHJhaW5cVHJhaW4uY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Admin/UxoCategories/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXhvQ2F0ZWdvcmllc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -234,6 +210,34 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Player/Game/Game.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxheWVyXEdhbWVcR2FtZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Player/LeaderBoard/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxheWVyXExlYWRlckJvYXJkXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Player/LeaderBoard/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxheWVyXExlYWRlckJvYXJkXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Player/LeaderBoard/Upsert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxheWVyXExlYWRlckJvYXJkXFVwc2VydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Player/Results/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxheWVyXFJlc3VsdHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Player/Train/Train.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxheWVyXFRyYWluXFRyYWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Player/Train/TrainNickname.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxheWVyXFRyYWluXFRyYWluTmlja25hbWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Privacy.cshtml]

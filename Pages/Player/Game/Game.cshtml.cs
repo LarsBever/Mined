@@ -68,8 +68,6 @@ namespace Mined.Pages.Admin.GameModel
                 correct_answer = Score.correct_answer,
                 selected_answer = Score.selected_answer,
                 Nickname = Score.Nickname,
-                NumberOfMistakes = Score.NumberOfMistakes,
-                UxoMistakes = Score.UxoMistakes,
                 PlayerScore = Score.PlayerScore,
 
 				//Nickname moet worden gebruikt ipv user_id

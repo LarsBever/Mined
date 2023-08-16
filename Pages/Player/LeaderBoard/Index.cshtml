@@ -1,5 +1,5 @@
 ﻿@page
-@model Mined.Pages.Admin.LeaderBoard.IndexModel
+@model Mined.Pages.Player.LeaderBoard.IndexModel
 @using Mined.Utility
 
 <div class="container p-3">
@@ -44,7 +44,6 @@
 		<tr>
 			<td width="50">@obj.Nickname</td>
 			<td width="50">@obj.NumberOfMistakes</td>
-			<td width="50">@obj.UxoMistakes</td>
 			<td width="50">@obj.PlayerScore</td>
 				@if (User.IsInRole(SD.AdminRole) || User.IsInRole(SD.InstructorRole))
 				{

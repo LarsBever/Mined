@@ -4,7 +4,7 @@ using Mined.DataAccess.Repository;
 using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
 
-namespace Mined.Pages.Admin.LeaderBoard
+namespace Mined.Pages.Player.LeaderBoard
 {
     public class IndexModel : PageModel
     {

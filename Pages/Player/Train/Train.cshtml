@@ -6,48 +6,25 @@
 
 <div class="container-xl px-4 mt-4">
 	<div asp-validation-summary="All"></div>
-	<form method="post" enctype="multipart/form-data">
-		<input hidden asp-for="Score.Score_ID" />
-        <div class="col-xl-12">
+    @{
+        var playerResults = Model.Scores.Where(c => c.Score_ID == HttpContext.Session.GetInt32("SessionScoreId"));
+        var questionNumber = Model.Scores.Count() + 1;
+        var uxos = Model.Uxos;
+        var firstUxo = Model.Uxos.First();
+        var firstUxoId = firstUxo.Uxo_ID;
+        var lastUxo = Model.Uxos.Last();
+        var lastUxoId = lastUxo.Uxo_ID;
+        var imagePath = "";
+        var altText = "Oops! there should be an image of an U.X.O. here...";
 
+        List<int> uxoList = new List<int>();
+        foreach (var uxo in uxos)
+        {
+            uxoList.Add(uxos.First().Uxo_ID);
 
-    @if (Model.Score.Nickname == null)
-    {
-                //If the player does not have a nickname yet, this has to be created first.
-
-        //<div class="text-center">
-            //<br>
-            //    <div class="question">
-            //        <div class="col-xl-12">
-                        <h2 class="text-bg-primary pl-3">
-                            Please enter a Nickname
-                        </h2>
-                        <!-- Add Nickname -->
-                        <div class="card mb-4">
-                            <div class="card-header">Nickname</div>
-                            <div class="card-body">
-                                <div class="row gx-12 mb-12">
-                                    <!--Nickname-->
-                                    <div class="form-group col-md-6">
-                                        <label asp-for="Score.Nickname">Nickname</label>
-                                        <input asp-for="Score.Nickname" class="form-control" />
-                                        <span asp-validation-for="Score.Nickname" class="text-danger"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    //</div>
-
-                    <br>
-                    <input type="submit" class="btn btn-primary" value="Submit" asp-page-handler="Submit" />
-    }
-    else
-    {
-            var playerResults = Model.Scores.Where(c => c.Score_ID == Model.Score.Score_ID).ToList();
-            var questionNumber = playerResults.Count() + 1;
-            var uxoCount = Model.Uxos.Count();
-            var imagePath = "";
-            var altText = "Oops! there should be an image of an U.X.O. here...";
+            // Recursively Go through Ienumerable UXO's (and delete the previously added UXO_ID from the Ienumerable) 
+            uxos = uxos.Where(u => u.Uxo_ID != uxos.First().Uxo_ID).ToList();
+        }
 
             Random rnd = new Random();
 
@@ -70,35 +47,34 @@
             //draw id of correct answer
             do
             {
-                random_id = rnd.Next(1, uxoCount + 1);
-            } while (ids.Contains(random_id));
+                random_id = rnd.Next(firstUxoId, lastUxoId);
+            } while (ids.Contains(random_id) || !uxoList.Contains(random_id));
 
             //draw ids of incorrect answers
             do
             {
-                n1 = rnd.Next(1, uxoCount + 1);
-            } while (n1 == @random_id || @ids.Contains(n1));
+            n1 = rnd.Next(firstUxoId, lastUxoId);
+            } while (n1 == @random_id || @ids.Contains(n1) || !uxoList.Contains(n1));
 
             do
             {
-                n2 = rnd.Next(1, uxoCount + 1);
-            } while (n2 == @random_id || n2 == n1 || @ids.Contains(n2));
+            n2 = rnd.Next(firstUxoId, lastUxoId);
+            } while (n2 == @random_id || n2 == n1 || @ids.Contains(n2) || !uxoList.Contains(n2));
 
             //find Uxo with id drawn as the correct
-            var correct = Model.Uxos.Where(c => c.Uxo_ID == @random_id).First();
+            var correct = Model.Uxos.FirstOrDefault(c => c.Uxo_ID == @random_id);
             var incorrects = Model.Uxos.Where(c => c.Uxo_ID == n1 || c.Uxo_ID == n2).ToArray();
             var image = Model.Images.Where(c => c.Uxo_ID == correct.Uxo_ID).First();
 
             imagePath = @image.UxoImage;
+   }
 
             <div class="text-center">
                 <br>
                 <p>Guess the names of the randomly selected U.X.O.s: </p>
                 <form class="questions" method="post">
-                    <div class="question">
-                        @{
+                     @{
                             <p>
-                                @questionNumber
                                 <img src="@Url.Content(imagePath)" alt="@altText" />
                             </p>
                             <div class="answers">
@@ -109,13 +85,10 @@
 
                             <br>
                             <input type="submit" class="btn btn-primary" value="Submit" asp-page-handler="Submit" />
-                        }
-                    </div>
+                      }
                 </form>
             </div>
-    }
-    </form>
-</div>
+    </div>
 
  @functions {
      void displayOptions(int nr, int uxoName, Models.Uxo correct, Models.Uxo incorrect1, Models.Uxo incorrect2)
@@ -172,11 +145,12 @@
  }
 
 
-@section Scripts{
+@section Scripts
+{
     @{
         <partial name="_ValidationScriptsPartial" />
     }
-	}
+}
 
 
 

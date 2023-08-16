@@ -1,11 +1,5 @@
 ﻿@page
-@model Mined.Pages.Admin.ResultsModel.ResultsModel
-@{
-        ViewData["Title"] = "Results";
-}
-@using Microsoft.AspNetCore.Identity
-
-@inject UserManager<IdentityUser> userManager
+@model Mined.Pages.Player.ResultsModel.ResultsModel
 
 <div class="text-center align-items-center">
     <br>
@@ -14,12 +8,12 @@
 @{
         var playerResults = Model.Scores.Where(c => c.Score_ID == Model.Score.Score_ID).ToList();
 
-    if(playerResults.Count() != 5)
-    {
-            <p>Complete the game from start to finish to see your results!</p>
-        }
-        else
-        {
+    //if(playerResults.Count() != 5)
+    //{
+        //    <p>Complete the game from start to finish to see your results!</p>
+        //}
+        //else
+        //{
             var imagePath = "";
             var altText = "Oops! there should be an image of the U.X.O. here...";
             var cor = new Models.Uxo();
@@ -39,7 +33,7 @@
             {
                     cor = Model.Uxos.Where(c => c.Uxo_ID == res.correct_answer).First();
                     sel = Model.Uxos.Where(c => c.Uxo_ID == res.selected_answer).First();
-                    imagePath = "~/css/images/" + @cor.Uxo_ID;
+                    imagePath = "~/images/UxoImages" + @cor.Uxo_ID;
                     <tr>
                     <td style="padding:20px;">
                     <img src="@Url.Content(imagePath)" alt="@altText" />
@@ -59,7 +53,7 @@
 </tr>                
             }
             </table>
-    }
+    //}
 }
 
 </div>

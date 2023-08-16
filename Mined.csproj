@@ -6,13 +6,6 @@
 	  <Nullable>enable</Nullable>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Pages\Player\**" />
-    <Content Remove="Pages\Player\**" />
-    <EmbeddedResource Remove="Pages\Player\**" />
-    <None Remove="Pages\Player\**" />
-  </ItemGroup>
   
 
   <ItemGroup>

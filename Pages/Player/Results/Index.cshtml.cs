@@ -10,9 +10,9 @@ using Microsoft.EntityFrameworkCore;
 using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
 
-namespace Mined.Pages.Admin.ResultsModel
+namespace Mined.Pages.Player.ResultsModel
 {
-    [Authorize(Roles = "RegularUser, Administrator")]
+    //[Authorize(Roles = "RegularUser, Administrator")]
     public class ResultsModel : PageModel
     {
 		//private readonly Mined.Data.QuizAppContext _context;
@@ -49,6 +49,11 @@ namespace Mined.Pages.Admin.ResultsModel
 				Uxos = _unitOfWork.Uxo.GetAll();
 			}
 
+            if (_unitOfWork.Image != null)
+            {
+                Images = _unitOfWork.Image.GetAll();
+            }
+
             if (_unitOfWork.Score != null)
             {
                 Scores = _unitOfWork.Score.GetAll();
@@ -75,7 +80,6 @@ namespace Mined.Pages.Admin.ResultsModel
                 //_unitOfWork.Score.Remove(answer);
                 //}
                 Score.NumberOfMistakes = 0;
-                Score.UxoMistakes = null;
                 Score.PlayerScore = 0;
 
                 _unitOfWork.Score.Update(Score);
@@ -83,7 +87,7 @@ namespace Mined.Pages.Admin.ResultsModel
 
             _unitOfWork.Save();
 
-            return RedirectToPage("./Quiz");
+            return RedirectToPage("/Player/Train/Train");
         }
 
     }

@@ -1,0 +1,54 @@
+﻿@page
+@model Mined.Pages.Admin.TrainNicknameModel.TrainNicknameModel
+@{
+    ViewData["Title"] = "TrainNickname";
+}
+
+<div class="container-xl px-4 mt-4">
+	<div asp-validation-summary="All"></div>
+	<form method="post" enctype="multipart/form-data">
+		<input hidden asp-for="Score.Score_ID" />
+        <input hidden asp-for="Uxos" />
+            <br>
+            <div class="col-xl-12">
+
+                @{
+                    if(Model.Uxos.Count() == 0)
+                    {
+                        <a asp-page="/TrainNickname" class="btn btn-danger" style="width:300px">Back</a>
+                    }
+                    else
+                    {
+                        <h2 class="text-bg-primary pl-3">
+                                Please enter a Nickname
+                            </h2>
+                            <!-- Add Nickname -->
+                            <div class="card mb-4">
+                                <div class="card-header">Pick  a Nickname (that does not exist yet)</div>
+                                <div class="card-body">
+                                    <div class="row gx-12 mb-12">
+                                        <!--Nickname-->
+                                        <div class="form-group col-md-6">
+                                            <label asp-for="Score.Nickname">Nickname</label>
+                                            <input asp-for="Score.Nickname" class="form-control" />
+                                            <span asp-validation-for="Score.Nickname" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <br>
+                        <input type="submit" class="btn btn-primary" value="Submit" asp-page-handler="Submit" />
+                    }
+                }
+            </div>                   
+    </form>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+	}
+
+
+
