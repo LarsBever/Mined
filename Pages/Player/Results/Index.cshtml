@@ -6,40 +6,43 @@
     <p>Here you can see the results of your last game.</p>
     <br>
 @{
-        var playerResults = Model.Scores.Where(c => c.Score_ID == Model.Score.Score_ID).ToList();
+    if(Model.Results.Count() < 5)
+    {
+            <p>Complete the game from start to finish to see your results!</p>
+        }
+        else
+        {
 
-    //if(playerResults.Count() != 5)
-    //{
-        //    <p>Complete the game from start to finish to see your results!</p>
-        //}
-        //else
-        //{
+         
             var imagePath = "";
             var altText = "Oops! there should be an image of the U.X.O. here...";
             var cor = new Models.Uxo();
             var sel = new Models.Uxo();
 
-            var points = playerResults.Where(c => c.correct_answer.Equals(c.selected_answer)).Count();
+            var points = Model.Results.Where(c => c.Correct_answer.Equals(c.Selected_answer)).Count();
+            var total = Model.Results.Count();
 
             <p class="display-6"> Your result is:  </p>
-            <p class="display-3" style="color:#431C8D">@points / 5</p><br>
+            <p class="display-3" style="color:#431C8D">@points / @total</p><br>
 
             <form class="questions" method="post">
                 <input class="btn btn-primary" type="submit" value="Try Again" asp-page-handler="Submit"/>
             </form>
             <br><br>
             <table class="table-sm custom-table">
-                @foreach (var res in playerResults)
+                @foreach (var res in Model.Results)
             {
-                    cor = Model.Uxos.Where(c => c.Uxo_ID == res.correct_answer).First();
-                    sel = Model.Uxos.Where(c => c.Uxo_ID == res.selected_answer).First();
-                    imagePath = "~/images/UxoImages" + @cor.Uxo_ID;
+                    cor = Model.Uxos.Where(c => c.Uxo_ID == res.Correct_answer).First();
+                    sel = Model.Uxos.Where(c => c.Uxo_ID == res.Selected_answer).First();
+                    var image = Model.Images.Where(c => c.Uxo_ID == cor.Uxo_ID).First();
+                    imagePath = @image.UxoImage;
+
                     <tr>
                     <td style="padding:20px;">
                     <img src="@Url.Content(imagePath)" alt="@altText" />
                     </td>
                     <td>
-                    @if(res.correct_answer.Equals(res.selected_answer))
+                        @if (res.Correct_answer.Equals(res.Selected_answer))
                     {
                         <span style="color: #5BB318">@cor.NameNato</span>
                     }
@@ -53,7 +56,7 @@
 </tr>                
             }
             </table>
-    //}
+    }
 }
 
 </div>

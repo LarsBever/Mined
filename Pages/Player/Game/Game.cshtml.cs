@@ -1,90 +1,143 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Build.Construction;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using Mined.Utility;
+using MySqlX.XDevAPI.Common;
 
-namespace Mined.Pages.Admin.GameModel
+namespace Mined.Pages.Player.Game.GameModel
 {
     [BindProperties]
     public class GameModel : PageModel
     {
-		private readonly UserManager<IdentityUser> userManager;
-		private readonly SignInManager<IdentityUser> signInManager;
-		private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _hostEnvironment;
-        public GameModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public int selected_answer { get; set; }
+        public int correct_answer { get; set; }
+
+        public GameModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {
-			this.userManager = userManager;
-			this.signInManager = signInManager;
-			_unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
             _hostEnvironment = hostEnvironment;
             Uxo = new();
             Image = new();
             Score = new();
         }
 
-        public Uxo? Uxo { get; set; }
+        public Uxo Uxo { get; set; }
         public IEnumerable<Uxo> Uxos { get; set; }
-        public Image? Image { get; set; }
+        public Image Image { get; set; }
         public IEnumerable<Image> Images { get; set; }
-        public Score? Score { get; set; }
+        public Score Score { get; set; }
+        ////public IList<Result> Results { get; set; } = default!;
         public IEnumerable<Score> Scores { get; set; }
+        //public int scoreID { get; set; }
 
+        public int? playerScore = 0;
+        public int? questionNr = 0;
+        public int? numberOfMistakes = 0; 
 
+        //Get Uxo for the next question and qet the scores
         public async Task OnGetAsync(int id)
         {
-			if (_unitOfWork.Uxo != null)
-			{
-				Uxos = _unitOfWork.Uxo.GetAll();
-			}
-			if (_unitOfWork.Image != null)
-			{
-				Images = _unitOfWork.Image.GetAll();
-			}
-			if (_unitOfWork.Score != null)
-			{
-				Scores = _unitOfWork.Score.GetAll();
-			}
-		}
+            if (_unitOfWork.Uxo != null)
+            {
+                Uxos = _unitOfWork.Uxo.GetAll();
+            }
+            if (_unitOfWork.Image != null)
+            {
+                Images = _unitOfWork.Image.GetAll();
+            }
+            if (_unitOfWork.Score != null)
+            {
+                Scores = _unitOfWork.Score.GetAll();
+            }
+        }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid || _unitOfWork.Score == null || Score == null)
+            Score = _unitOfWork.Score.GetFirstOrDefault(u => u.Score_ID == HttpContext.Session.GetInt32("SessionScoreId"));
+
+            if ((HttpContext.Session.GetInt32("SessionQuestionNr")) != null)
             {
-                return Page();
+            //    questionNr = 0;
+            //}
+            //else
+            //{
+                questionNr = HttpContext.Session.GetInt32("SessionQuestionNr");
             }
 
-            var score = new Score()
+            if ((HttpContext.Session.GetInt32("SessionPlayerScore")) != null)
             {
-                Score_ID = Score.Score_ID,
+            //    playerScore = 0;
+            //}
+            //else
+            //{
+                playerScore = HttpContext.Session.GetInt32("SessionPlayerScore");
+            }
+
+            if ((HttpContext.Session.GetInt32("SessionnumberOfMistakes")) != null)
+            {
+            //    numberOfMistakes = 0;
+            //}
+            //else
+            //{
+                numberOfMistakes = HttpContext.Session.GetInt32("SessionnumberOfMistakes");
+            }
+
+            var res = new Score()
+            {
                 correct_answer = Score.correct_answer,
                 selected_answer = Score.selected_answer,
-                Nickname = Score.Nickname,
-                PlayerScore = Score.PlayerScore,
+            };
 
-				//Nickname moet worden gebruikt ipv user_id
-				//user_id is alleen voor het inloggen van admins
-				//Er moet wel gecontroleerd worden of de nickname niet al bestaat.
-			};
-
-            _unitOfWork.Score.Add(score);
-            _unitOfWork.Save();
-
-            if (_unitOfWork.Score.GetAll().Count() >= 5)
+            //as long as the questionnr is 5 or lower, the player can keep playing.
+            if (questionNr <= 5)
             {
-                return RedirectToPage("./Score");
-            }
 
+                if (selected_answer == correct_answer)
+                {
+                    playerScore++;
+                    HttpContext.Session.SetInt32(SD.SessionPlayerScore, (int)playerScore);
+
+                }
+                else
+                {
+                    if(playerScore != 0)
+                    {
+                        playerScore--;
+                        HttpContext.Session.SetInt32(SD.SessionPlayerScore, (int)playerScore);
+                    }
+                    
+                    numberOfMistakes++;
+                    HttpContext.Session.SetInt32(SD.SessionnumberOfMistakes, (int)numberOfMistakes);
+                }
+            }
+            else
+            {
+                Score.NumberOfMistakes = (int)numberOfMistakes;
+                Score.PlayerScore = (int)playerScore;
+                _unitOfWork.Score.Update(Score);
+                _unitOfWork.Save();
+
+                HttpContext.Session.SetInt32(SD.SessionPlayerScore, 0);
+                HttpContext.Session.SetInt32(SD.SessionQuestionNr, 0);
+                HttpContext.Session.SetInt32(SD.SessionnumberOfMistakes, 0);
+                return RedirectToPage("/Player/LeaderBoard/Index");
+            }
+            questionNr++;
+
+            //session score en questionnr lijken goed te werken (ook bij max aantal vragen??? nog checken!!)
+            //nu nog fixen dat de score goed wordt opgeslagen (ook tabel aanpassen)
+            //code wat netter verwerken (evt. inkorten?)
+            //ipv naar leaderboardnaar results gaan!
+            //Score mag niet bewerkt kunnen worden door players = oplossen!!!
+            HttpContext.Session.SetInt32(SD.SessionQuestionNr, (int)questionNr);
             return RedirectToPage("./Game");
         }
-
     }
 }

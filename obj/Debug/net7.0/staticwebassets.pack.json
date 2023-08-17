@@ -17,12 +17,24 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\BackGround\\homebackground.webp",
+      "PackagePath": "staticwebassets\\images\\BackGround\\homebackground.webp"
+    },
+    {
       "Id": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\050e2bef-1573-4589-aba7-ffb5d996503c.jpg",
       "PackagePath": "staticwebassets\\images\\UxoImages\\050e2bef-1573-4589-aba7-ffb5d996503c.jpg"
     },
     {
+      "Id": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\05a056ad-46f3-4a6c-a92d-3aa0849280cf.jpg",
+      "PackagePath": "staticwebassets\\images\\UxoImages\\05a056ad-46f3-4a6c-a92d-3aa0849280cf.jpg"
+    },
+    {
       "Id": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\0aa42fac-61fc-42d8-8315-e6a2baa25103.jpg",
       "PackagePath": "staticwebassets\\images\\UxoImages\\0aa42fac-61fc-42d8-8315-e6a2baa25103.jpg"
+    },
+    {
+      "Id": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\0e64e710-c43e-4970-834b-5fff0dafd72d.jpg",
+      "PackagePath": "staticwebassets\\images\\UxoImages\\0e64e710-c43e-4970-834b-5fff0dafd72d.jpg"
     },
     {
       "Id": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\12b2a234-66b0-4b72-a78f-ea7bb99dce76.jpg",
@@ -63,6 +75,10 @@
     {
       "Id": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\5d83bf1c-5858-4fe4-bae6-44499d855011.jpg",
       "PackagePath": "staticwebassets\\images\\UxoImages\\5d83bf1c-5858-4fe4-bae6-44499d855011.jpg"
+    },
+    {
+      "Id": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\6743ece1-737f-490c-95ba-b998d926307b.jpg",
+      "PackagePath": "staticwebassets\\images\\UxoImages\\6743ece1-737f-490c-95ba-b998d926307b.jpg"
     },
     {
       "Id": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\7010eed7-a481-4864-9935-fc8ac7bcefd5.jpg",
@@ -183,6 +199,14 @@
     {
       "Id": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\f1177b6d-c8bd-4bf7-952a-3e9bf33a83d6.jpg",
       "PackagePath": "staticwebassets\\images\\UxoImages\\f1177b6d-c8bd-4bf7-952a-3e9bf33a83d6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\f251e888-c96a-46b0-bbf8-3bb4af9186d0.jpg",
+      "PackagePath": "staticwebassets\\images\\UxoImages\\f251e888-c96a-46b0-bbf8-3bb4af9186d0.jpg"
+    },
+    {
+      "Id": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\f65f69b4-fca4-4b7d-b67a-7fade824c6b7.jpg",
+      "PackagePath": "staticwebassets\\images\\UxoImages\\f65f69b4-fca4-4b7d-b67a-7fade824c6b7.jpg"
     },
     {
       "Id": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\js\\site.js",

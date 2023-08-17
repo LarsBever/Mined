@@ -6,8 +6,12 @@ using Microsoft.Build.Construction;
 using Microsoft.EntityFrameworkCore;
 using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
+using System.Linq;
 using Mined.Utility;
 using MySqlX.XDevAPI.Common;
+using System.Collections.Generic;
+using System.Collections;
+using Result = Mined.Models.Result;
 
 namespace Mined.Pages.Admin.TrainModel
 {
@@ -16,8 +20,8 @@ namespace Mined.Pages.Admin.TrainModel
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _hostEnvironment;
-        public int selected_answer { get; set; }
-        public int correct_answer { get; set; }
+        public int Selected_answer { get; set; }
+        public int Correct_answer { get; set; }
 
         public TrainModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {
@@ -25,21 +29,16 @@ namespace Mined.Pages.Admin.TrainModel
             _hostEnvironment = hostEnvironment;
             Uxo = new();
             Image = new();
-            Score = new();
+            Result = new Result();
         }
 
         public Uxo Uxo { get; set; }
         public IEnumerable<Uxo> Uxos { get; set; }
         public Image Image { get; set; }
         public IEnumerable<Image> Images { get; set; }
-        public Score Score { get; set; }
-        ////public IList<Result> Results { get; set; } = default!;
-        public IEnumerable<Score> Scores { get; set; }
+        public Result Result { get; set; }
+        public IList<Result> Results { get; set; }
         //public int scoreID { get; set; }
-
-        public int? playerScore { get; set; }
-        public int? questionNr { get; set; }
-        public int? numberOfMistakes { get; set; }
 
         //Get Uxo for the next question and qet the scores
         public async Task OnGetAsync(int id)
@@ -54,90 +53,46 @@ namespace Mined.Pages.Admin.TrainModel
             }
             if (_unitOfWork.Score != null)
             {
-                Scores = _unitOfWork.Score.GetAll();
+                Results = _unitOfWork.Result.GetAll().ToList();
             }
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            Score = _unitOfWork.Score.GetFirstOrDefault(u => u.Score_ID == HttpContext.Session.GetInt32("SessionScoreId"));
+            //playerScores = _unitOfWork.Score.GetFirstOrDefault(u => u.Score_ID == HttpContext.Session.GetInt32("SessionScoreId"));
 
-            //correct_answer = Score.correct_answer,
-            //selected_answer = Score.selected_answer,
+            // eerst alle scores ophalen, dan de specifieke ophalen met goede ID.
+            // //Daarna toevoegen aan 2e lijst die je gebruikt voor de rest??
 
-            if ((HttpContext.Session.GetInt32("SessionQuestionNr")) == null)
-            {
-                questionNr = 0;
-            }
-            else
-            {
-                questionNr = HttpContext.Session.GetInt32("SessionQuestionNr");
-            }
+            var ResultList = _unitOfWork.Result.GetAll().ToList();
 
-            if ((HttpContext.Session.GetInt32("SessionPlayerScore")) == null)
+
+            foreach (var results in ResultList)
             {
-                playerScore = 0;
-            }
-            else
-            {
-                playerScore = HttpContext.Session.GetInt32("SessionPlayerScore");
+               Results.Add(results);
             }
 
-            if ((HttpContext.Session.GetInt32("SessionnumberOfMistakes")) == null)
-            {
-                numberOfMistakes = 0;
-            }
-            else
-            {
-                numberOfMistakes = HttpContext.Session.GetInt32("SessionnumberOfMistakes");
-            }
+            var result = new Result();
+            result.Correct_answer = Correct_answer;
+            result.Selected_answer = Selected_answer;
 
-
-            var res = new Score()
-            {
-                correct_answer = Score.correct_answer,
-                selected_answer = Score.selected_answer,
-            };
-
-            //selected_answer = 0;
-            //correct_answer = 0;
-
+            ////scores moet goed worden doorgegeven in de sessie en goed worden opgeslagen
+            //HttpContext.Session.Set<IList>(SD.SessionScores, PlayerResults);
+            _unitOfWork.Result.Add(result);
+            _unitOfWork.Save();
+            //HttpContext.Session.SetInt32(SD.SessionTrainingId, _unitOfWork.Result.GetFirstOrDefault(
+            //                                                    u => u.TrainingId == Result.TrainingId).TrainingId);
 
             //as long as the questionnr is 5 or lower, the player can keep playing.
-            if (questionNr <= 5)
+
+            if (Results.Count >= 5)
             {
-                //var res = new Score()
-                //{
-                //    correct_answer = Score.correct_answer,
-                //    selected_answer = Score.selected_answer,
-                //};
-
-                if (selected_answer == correct_answer)
-                {
-                    playerScore++;
-                    HttpContext.Session.SetInt32(SD.SessionPlayerScore, (int)playerScore);
-
-                }
-                else
-                {
-                    playerScore--;
-                    HttpContext.Session.SetInt32(SD.SessionPlayerScore, (int)playerScore);
-                    
-                    numberOfMistakes++;
-                    HttpContext.Session.SetInt32(SD.SessionnumberOfMistakes, (int)numberOfMistakes);
-                    
-                }
+                return RedirectToPage("/Player/Results/Index");
             }
             else
             {
-                Score.NumberOfMistakes = (int)numberOfMistakes;
-                Score.PlayerScore = (int)playerScore;
-                _unitOfWork.Score.Update(Score);
-                _unitOfWork.Save();
-                return RedirectToPage("/Player/Results/Index");
+                return RedirectToPage("./Train");
             }
-            questionNr++;
-
             //session score en questionnr lijken goed te werken (ook bij max aantal vragen??? nog checken!!)
             //nu nog fixen dat de score goed wordt opgeslagen (ook tabel aanpassen)
             //code wat netter verwerken (evt. inkorten?)
@@ -145,9 +100,6 @@ namespace Mined.Pages.Admin.TrainModel
             //Score mag niet bewerkt kunnen worden door players = oplossen!!!
 
             ///Score mag niet in de min gaan!!
-
-            HttpContext.Session.SetInt32(SD.SessionQuestionNr, (int)questionNr);
-            return RedirectToPage("./Train");
         }
     }
 }

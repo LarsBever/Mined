@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DfQmQJBZcx+bILgVoPDzIlA+PZ3+jafibUoFfNjadkw=",
+  "Hash": "D33BDLysifbJNLbrGgu0XPTkKVEVbzrpm8ShDokXdzM=",
   "Source": "Mined",
   "BasePath": "_content/Mined",
   "Mode": "Default",
@@ -1122,6 +1122,23 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\BackGround\\homebackground.webp",
+      "SourceId": "Mined",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\",
+      "BasePath": "_content/Mined",
+      "RelativePath": "images/BackGround/homebackground.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\BackGround\\homebackground.webp"
+    },
+    {
       "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\050e2bef-1573-4589-aba7-ffb5d996503c.jpg",
       "SourceId": "Mined",
       "SourceType": "Discovered",
@@ -1139,6 +1156,23 @@
       "OriginalItemSpec": "wwwroot\\images\\UxoImages\\050e2bef-1573-4589-aba7-ffb5d996503c.jpg"
     },
     {
+      "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\05a056ad-46f3-4a6c-a92d-3aa0849280cf.jpg",
+      "SourceId": "Mined",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\",
+      "BasePath": "_content/Mined",
+      "RelativePath": "images/UxoImages/05a056ad-46f3-4a6c-a92d-3aa0849280cf.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\UxoImages\\05a056ad-46f3-4a6c-a92d-3aa0849280cf.jpg"
+    },
+    {
       "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\0aa42fac-61fc-42d8-8315-e6a2baa25103.jpg",
       "SourceId": "Mined",
       "SourceType": "Discovered",
@@ -1154,6 +1188,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\UxoImages\\0aa42fac-61fc-42d8-8315-e6a2baa25103.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\0e64e710-c43e-4970-834b-5fff0dafd72d.jpg",
+      "SourceId": "Mined",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\",
+      "BasePath": "_content/Mined",
+      "RelativePath": "images/UxoImages/0e64e710-c43e-4970-834b-5fff0dafd72d.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\UxoImages\\0e64e710-c43e-4970-834b-5fff0dafd72d.jpg"
     },
     {
       "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\12b2a234-66b0-4b72-a78f-ea7bb99dce76.jpg",
@@ -1324,6 +1375,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\UxoImages\\5d83bf1c-5858-4fe4-bae6-44499d855011.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\6743ece1-737f-490c-95ba-b998d926307b.jpg",
+      "SourceId": "Mined",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\",
+      "BasePath": "_content/Mined",
+      "RelativePath": "images/UxoImages/6743ece1-737f-490c-95ba-b998d926307b.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\UxoImages\\6743ece1-737f-490c-95ba-b998d926307b.jpg"
     },
     {
       "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\7010eed7-a481-4864-9935-fc8ac7bcefd5.jpg",
@@ -1834,6 +1902,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\UxoImages\\f1177b6d-c8bd-4bf7-952a-3e9bf33a83d6.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\f251e888-c96a-46b0-bbf8-3bb4af9186d0.jpg",
+      "SourceId": "Mined",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\",
+      "BasePath": "_content/Mined",
+      "RelativePath": "images/UxoImages/f251e888-c96a-46b0-bbf8-3bb4af9186d0.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\UxoImages\\f251e888-c96a-46b0-bbf8-3bb4af9186d0.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\f65f69b4-fca4-4b7d-b67a-7fade824c6b7.jpg",
+      "SourceId": "Mined",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\",
+      "BasePath": "_content/Mined",
+      "RelativePath": "images/UxoImages/f65f69b4-fca4-4b7d-b67a-7fade824c6b7.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\UxoImages\\f65f69b4-fca4-4b7d-b67a-7fade824c6b7.jpg"
     },
     {
       "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\js\\site.js",

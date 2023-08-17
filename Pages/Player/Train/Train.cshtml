@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
 	<div asp-validation-summary="All"></div>
     @{
-        var playerResults = Model.Scores.Where(c => c.Score_ID == HttpContext.Session.GetInt32("SessionScoreId"));
-        var questionNumber = Model.Scores.Count() + 1;
+        var playerResults = Model.Results.Where(c => c.TrainingId == HttpContext.Session.GetInt32("SessionTrainingId"));
+        var questionNumber = Model.Results.Count() + 1;
         var uxos = Model.Uxos;
         var firstUxo = Model.Uxos.First();
         var firstUxoId = firstUxo.Uxo_ID;
@@ -40,8 +40,8 @@
             List<int> ids = new List<int>();
             foreach (var res in playerResults)
             {
-                ids.Add(@res.correct_answer);
-                ids.Add(@res.selected_answer);
+                ids.Add(@res.Correct_answer);
+                ids.Add(@res.Selected_answer);
             }
 
             //draw id of correct answer

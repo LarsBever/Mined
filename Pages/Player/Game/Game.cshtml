@@ -1,55 +1,139 @@
 ﻿@page
-@model Mined.Pages.Admin.GameModel.GameModel
+@model Mined.Pages.Player.Game.GameModel.GameModel
 @{
-    ViewData["Title"] = "Game";
+    ViewData["Title"] = "Train";
 }
-@using Microsoft.AspNetCore.Identity
 
-@functions{
+<div class="container-xl px-4 mt-4">
+	<div asp-validation-summary="All"></div>
+    @{
+        var playerResults = Model.Scores.Where(c => c.Score_ID == HttpContext.Session.GetInt32("SessionScoreId"));
+        var questionNumber = Model.Scores.Count() + 1;
+        var uxos = Model.Uxos;
+        var firstUxo = Model.Uxos.First();
+        var firstUxoId = firstUxo.Uxo_ID;
+        var lastUxo = Model.Uxos.Last();
+        var lastUxoId = lastUxo.Uxo_ID;
+        var imagePath = "";
+        var altText = "Oops! there should be an image of an U.X.O. here...";
 
-    void displayOptions(int nr, int place, Models.Uxo correct, Models.Uxo incorrect1, Models.Uxo incorrect2)
-    {
+        List<int> uxoList = new List<int>();
+        foreach (var uxo in uxos)
+        {
+            uxoList.Add(uxos.First().Uxo_ID);
+
+            // Recursively Go through Ienumerable UXO's (and delete the previously added UXO_ID from the Ienumerable) 
+            uxos = uxos.Where(u => u.Uxo_ID != uxos.First().Uxo_ID).ToList();
+        }
+
+            Random rnd = new Random();
+
+            //uxoName of the correct answer
+            var uxoName = rnd.Next(1, 4);
+
+            //ids of 3 drawn countries
+            var n1 = 0;
+            var n2 = 0;
+            var random_id = 1;
+
+            //every option in current game will be unique
+            List<int> ids = new List<int>();
+            foreach (var res in playerResults)
+            {
+                ids.Add(@res.correct_answer);
+                ids.Add(@res.selected_answer);
+            }
+
+            //draw id of correct answer
+            do
+            {
+                random_id = rnd.Next(firstUxoId, lastUxoId);
+            } while (ids.Contains(random_id) || !uxoList.Contains(random_id));
+
+            //draw ids of incorrect answers
+            do
+            {
+            n1 = rnd.Next(firstUxoId, lastUxoId);
+            } while (n1 == @random_id || @ids.Contains(n1) || !uxoList.Contains(n1));
+
+            do
+            {
+            n2 = rnd.Next(firstUxoId, lastUxoId);
+            } while (n2 == @random_id || n2 == n1 || @ids.Contains(n2) || !uxoList.Contains(n2));
+
+            //find Uxo with id drawn as the correct
+            var correct = Model.Uxos.FirstOrDefault(c => c.Uxo_ID == @random_id);
+            var incorrects = Model.Uxos.Where(c => c.Uxo_ID == n1 || c.Uxo_ID == n2).ToArray();
+            var image = Model.Images.Where(c => c.Uxo_ID == correct.Uxo_ID).First();
+
+            imagePath = @image.UxoImage;
+   }
+
+            <div class="text-center">
+                <br>
+                <p>Guess the names of the randomly selected U.X.O.s: </p>
+                <form class="questions" method="post">
+                     @{
+                            <p>
+                                <img src="@Url.Content(imagePath)" alt="@altText" />
+                            </p>
+                            <div class="answers">
+                                @{
+                                    displayOptions(@questionNumber, @uxoName, @correct, @incorrects[0], @incorrects[1]);
+                                }
+                            </div>
+
+                            <br>
+                            <input type="submit" class="btn btn-primary" value="Submit" asp-page-handler="Submit" />
+                      }
+                </form>
+            </div>
+    </div>
+
+ @functions {
+     void displayOptions(int nr, int uxoName, Models.Uxo correct, Models.Uxo incorrect1, Models.Uxo incorrect2)
+     {
         var tmp = "tmp";
-        switch(place)
+        switch (uxoName)
         {
             case 1:
                 <input id="correct" type="hidden" name="correct_answer" value="@correct.Uxo_ID" checked>
-                <input id="correct" type="hidden" name="user_id" value="@tmp" checked>
-                <div class="custom-radio" >
+                <input id="correct" type="hidden" name="Nickname" value="@tmp" checked>
+                <div class="custom-radio">
                     <input id="correct" type="radio" name="selected_answer" value="@correct.Uxo_ID" required="required"> @correct.NameNato
                 </div>
-                <div class="custom-radio" >
+                <div class="custom-radio">
                     <input id="incorrect1" type="radio" name="selected_answer" value="@incorrect1.Uxo_ID" required="required"> @incorrect1.NameNato
                 </div>
-                <div class="custom-radio" >
+                <div class="custom-radio">
                     <input id="incorrect2" type="radio" name="selected_answer" value="@incorrect2.Uxo_ID" required="required"> @incorrect2.NameNato
                 </div>
                 break;
 
             case 2:
                 <input id="correct" type="hidden" name="correct_answer" value="@correct.Uxo_ID" checked>
-                <input id="correct" type="hidden" name="user_id" value="@tmp" checked>
-                <div class="custom-radio" >
+                <input id="correct" type="hidden" name="Nickname" value="@tmp" checked>
+                <div class="custom-radio">
                     <input id="incorrect1" type="radio" name="selected_answer" value="@incorrect1.Uxo_ID" required="required"> @incorrect1.NameNato
                 </div>
-                <div class="custom-radio" >
+                <div class="custom-radio">
                     <input id="correct" type="radio" name="selected_answer" value="@correct.Uxo_ID" required="required"> @correct.NameNato
                 </div>
-                <div class="custom-radio" >
+                <div class="custom-radio">
                     <input id="incorrect2" type="radio" name="selected_answer" value="@incorrect2.Uxo_ID" required="required"> @incorrect2.NameNato
                 </div>
                 break;
 
             case 3:
                 <input id="correct" type="hidden" name="correct_answer" value="@correct.Uxo_ID" checked>
-                <input id="correct" type="hidden" name="user_id" value="@tmp" checked>
-                <div class="custom-radio" >
+                <input id="correct" type="hidden" name="Nickname" value="@tmp" checked>
+                <div class="custom-radio">
                     <input id="incorrect1" type="radio" name="selected_answer" value="@incorrect1.Uxo_ID" required="required"> @incorrect1.NameNato
                 </div>
-                <div class="custom-radio" >
+                <div class="custom-radio">
                     <input id="incorrect2" type="radio" name="selected_answer" value="@incorrect2.Uxo_ID" required="required"> @incorrect2.NameNato
                 </div>
-                <div class="custom-radio" >
+                <div class="custom-radio">
                     <input id="correct" type="radio" name="selected_answer" value="@correct.Uxo_ID" required="required"> @correct.NameNato
                 </div>
                 break;
@@ -58,76 +142,15 @@
                 break;
         }
     }
-} 
+ }
 
-@{
 
-    var playerResults = Model.Scores.Where(c => c.Score_ID == Model.Score.Score_ID).ToList();
-    var questionNumber = playerResults.Count() + 1;
-    var uxoCount = Model.Uxos.Count();
-    var imagePath = "";
-    var altText = "Oops! there should be an image of an U.X.O. here...";
-
-    Random rnd = new Random();
-
-    //place of the correct answer
-    var place = rnd.Next(1, 4);
-
-    //ids of 3 drawn countries
-    var n1 = 0;
-    var n2 = 0;
-    var random_id = 1;
-
-    //every option in current game will be unique 
-    List<int> ids = new List<int>();
-    foreach(var res in playerResults)
-    {
-        ids.Add(@res.correct_answer);
-        ids.Add(@res.selected_answer);
+@section Scripts
+{
+    @{
+        <partial name="_ValidationScriptsPartial" />
     }
-
-    //draw id of correct answer
-    do
-    {
-        random_id = rnd.Next(1, uxoCount + 1);
-    } while (ids.Contains(random_id));
-
-    //draw ids of incorrect answers
-    do
-    {
-        n1 = rnd.Next(1, uxoCount + 1);
-    } while (n1 == @random_id || @ids.Contains(n1));
-
-    do
-    {
-        n2 = rnd.Next(1, uxoCount + 1);
-    } while (n2 == @random_id || n2 == n1 || @ids.Contains(n2));
-
-    //find country with id drawn as the correct
-    var correct = Model.Uxos.Where(c => c.Uxo_ID == @random_id).First();
-    var incorrects = Model.Uxos.Where(c => c.Uxo_ID == n1 || c.Uxo_ID == n2).ToArray();
-
-    imagePath = "~/css/images/" + @correct.Uxo_ID;
 }
 
-<div class="text-center">
-    <br>
-    <p>Guess the names of the randomly selected U.X.O.s: </p>
-    <form class="questions" method="post">
-        <div class="question">
-            <p>@questionNumber ) 
-            <img src="@Url.Content(imagePath)" alt="@altText" /> 
-            </p>
-            <div class="answers">
-                @{
-                    displayOptions(@questionNumber, @place, @correct, @incorrects[0], @incorrects[1]);
-                }
-            </div>
-        </div>
-        <br>
-        <input type="submit" class="btn btn-primary" value="Submit" asp-page-handler="Submit"/>
-    </form>
 
-
-</div>
 

@@ -30,6 +30,7 @@
   
 
   <ItemGroup>
+    <Folder Include="wwwroot\images\BackGround\" />
     <Folder Include="wwwroot\images\UxoImages\" />
   </ItemGroup>
 

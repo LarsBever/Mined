@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Build.Construction;
 using Mined.DataAccess.Data;
 using Mined.DataAccess.Repository;
 using Mined.DataAccess.Repository.IRepository;
@@ -17,6 +18,17 @@ namespace Mined.Pages.Player.LeaderBoard
 		public void OnGet()
         {
             Scores = _unitOfWork.Score.GetAll();
+			
+			foreach (Score score in Scores)
+			{
+				//eerst sorteren van hoog naar laag?
+
+				////recursieve functie?
+				//if(score is van hoogste 10)
+				//{
+				//	toevoegen aan lijst
+				//}
+			}
 
 		}
     }
