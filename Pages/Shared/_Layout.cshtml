@@ -35,8 +35,8 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Player/LeaderBoard/Index">Leader Board</a>
                         </li>
-                     @*   @if (User.IsInRole(SD.AdminRole) || User.IsInRole(SD.InstructorRole))
-                        {*@
+                        @if (User.IsInRole(SD.AdminRole) || User.IsInRole(SD.InstructorRole))
+                        {
                             <!-- Admin Dropdown Menu Items-->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
@@ -46,7 +46,7 @@
                                     <a class="nav-link text-dark" asp-area="" asp-page="/Player/LeaderBoard/Index">Leader Board</a>
                                 </div>
                             </li>
-                       @* }*@
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
