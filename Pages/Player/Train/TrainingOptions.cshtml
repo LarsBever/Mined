@@ -1,0 +1,60 @@
+﻿@page
+@model Mined.Pages.Player.Train.TrainingOptionsModel.TrainingOptionsModel
+
+<div class="container-xl px-4 mt-4">
+    <div asp-validation-summary="All"></div>
+    <form method="post">
+        <br>
+        <div class="col-xl-12">
+
+            @{
+                if (Model.Uxos.Count() == 0)
+                {
+                    <p>
+                        Sorry, but to train, you'll need some U.X.O. data. The Database does not contain enough U.X.O.s.
+                    </p>
+                    <a asp-page="/GameNickname" class="btn btn-danger" style="width:300px">Back</a>
+                }
+                else
+                {
+                    <h2 class="text-bg-primary pl-3">
+                        Training Options
+                    </h2>
+                    <!-- Add Nickname -->
+                    <div class="card mb-4">
+                        <div class="card-header">Please choose how you would like to train</div>
+                        <div class="card-body">
+                            <div class="row gx-12 mb-12">
+                                <!--Choose how many questions you want-->
+                                <div class="form-group col-md-6">
+                                    <label asp-for="ChosenNumberOfQuestions">How many questions would you like?</label>
+                                    <input asp-for="ChosenNumberOfQuestions" class="form-control" value="1" min="1" max="100" />
+                                    <span asp-validation-for="ChosenNumberOfQuestions" class="text-danger"></span>
+                                </div>
+
+                            <div class="row mb-12">
+                                <div class="form-group col-md-12">
+                                    <label asp-for="ChosenCategory">NATO U.X.O. Main Category and Subcategory</label>
+                                    <select asp-for="ChosenCategory" asp-items="@Model.CategoryList" class="form-select">
+                                        <option disabled selected>-- Select Catagory--</option>
+                                        <option>All Categories</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" class="btn btn-primary" value="Submit" asp-page-handler="Submit" />
+                }
+            }
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+	}

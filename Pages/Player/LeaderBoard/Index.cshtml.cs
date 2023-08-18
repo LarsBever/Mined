@@ -1,9 +1,12 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Build.Construction;
 using Mined.DataAccess.Data;
 using Mined.DataAccess.Repository;
 using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
+using Mined.Utility;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace Mined.Pages.Player.LeaderBoard
 {
@@ -15,21 +18,19 @@ namespace Mined.Pages.Player.LeaderBoard
 		{
 			_unitOfWork = unitOfWork;
 		}
+        
+       
 		public void OnGet()
         {
             Scores = _unitOfWork.Score.GetAll();
-			
-			foreach (Score score in Scores)
-			{
-				//eerst sorteren van hoog naar laag?
-
-				////recursieve functie?
-				//if(score is van hoogste 10)
-				//{
-				//	toevoegen aan lijst
-				//}
-			}
-
 		}
-    }
+
+		public async Task<IActionResult> OnPost()
+		{
+			HttpContext.Session.SetInt32(SD.SessionPlayerScore, 0);
+			HttpContext.Session.SetInt32(SD.SessionQuestionNr, 0);
+			HttpContext.Session.SetInt32(SD.SessionnumberOfMistakes, 0);
+			return RedirectToPage("/Player/Game/Game");
+		}
+	}
 }

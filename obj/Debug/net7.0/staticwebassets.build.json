@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "D33BDLysifbJNLbrGgu0XPTkKVEVbzrpm8ShDokXdzM=",
+  "Hash": "CRWZjElknk5LrSQ4NmHiP0X13EHcCF43DHuWKOo+O0c=",
   "Source": "Mined",
   "BasePath": "_content/Mined",
   "Mode": "Default",
@@ -1137,6 +1137,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\BackGround\\homebackground.webp"
+    },
+    {
+      "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\GameOver\\funny-meme-about-forbidden-tuna-landmine-funny-landmine.png",
+      "SourceId": "Mined",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\",
+      "BasePath": "_content/Mined",
+      "RelativePath": "images/GameOver/funny-meme-about-forbidden-tuna-landmine-funny-landmine.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\GameOver\\funny-meme-about-forbidden-tuna-landmine-funny-landmine.png"
     },
     {
       "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\050e2bef-1573-4589-aba7-ffb5d996503c.jpg",

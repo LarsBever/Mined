@@ -220,6 +220,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxheWVyXEdhbWVcR2FtZU5pY2tuYW1lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Player/Game/GameOver.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxheWVyXEdhbWVcR2FtZU92ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Player/LeaderBoard/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxheWVyXExlYWRlckJvYXJkXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -238,6 +242,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Player/Train/Train.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxheWVyXFRyYWluXFRyYWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Player/Train/TrainingOptions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxheWVyXFRyYWluXFRyYWluaW5nT3B0aW9ucy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/mail/Desktop/HBO ICT/Semester 2/EindOpdracht Semester 2/Mined/Pages/Privacy.cshtml]

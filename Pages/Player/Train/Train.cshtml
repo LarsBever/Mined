@@ -67,8 +67,7 @@
             var image = Model.Images.Where(c => c.Uxo_ID == correct.Uxo_ID).First();
 
             imagePath = @image.UxoImage;
-   }
-
+   
             <div class="text-center">
                 <br>
                 <p>Guess the names of the randomly selected U.X.O.s: </p>
@@ -88,7 +87,9 @@
                       }
                 </form>
             </div>
+    }
     </div>
+    
 
  @functions {
      void displayOptions(int nr, int uxoName, Models.Uxo correct, Models.Uxo incorrect1, Models.Uxo incorrect2)

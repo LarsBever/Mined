@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Build.Construction;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
@@ -42,7 +43,37 @@ namespace Mined.Pages.Player.Game.GameModel
         public int? numberOfMistakes = 0; 
 
         //Get Uxo for the next question and qet the scores
-        public async Task OnGetAsync(int id)
+
+        public int GetlowestHighScore(IList<Score> Scores)
+        {
+            foreach (var score in Scores)
+            {
+                if(Scores.Count > 2){
+					if (score.PlayerScore < Scores[1].PlayerScore)
+					{
+						Scores.RemoveAt(1);
+						return GetlowestHighScore(Scores);
+						// de scores moet 1 minder worden en als de lijst leeg is, de waarde teruggeven
+					}
+					if (score.PlayerScore >= Scores[1].PlayerScore)
+					{
+						//if the first score is equal or higher than the other value, it is not the lowest score in the highscore. It should be deleted
+						//the search for the lowest value continues.
+
+						Scores.RemoveAt(0);
+						return GetlowestHighScore(Scores);
+					}
+				}
+                if(score.PlayerScore < Scores[1].PlayerScore)
+                {
+                    return Scores[0].PlayerScore;
+                }
+            }
+			//if the list has been searched for other higher values and the list is empty, the lowest highscore can be returned.
+			return Scores[1].PlayerScore;
+		}
+
+		public async Task OnGetAsync(int id)
         {
             if (_unitOfWork.Uxo != null)
             {
@@ -56,13 +87,15 @@ namespace Mined.Pages.Player.Game.GameModel
             {
                 Scores = _unitOfWork.Score.GetAll();
             }
-        }
+			//var test123 = HttpContext.Session.GetInt32("SessionScoreId");
+		}
 
         public async Task<IActionResult> OnPostAsync()
         {
-            Score = _unitOfWork.Score.GetFirstOrDefault(u => u.Score_ID == HttpContext.Session.GetInt32("SessionScoreId"));
+			//var test123 = HttpContext.Session.GetInt32("SessionScoreId");
+			Score = _unitOfWork.Score.GetFirstOrDefault(u => u.Score_ID == HttpContext.Session.GetInt32("SessionScoreId"));
 
-            if ((HttpContext.Session.GetInt32("SessionQuestionNr")) != null)
+            if (HttpContext.Session.GetInt32("SessionQuestionNr") != null)
             {
             //    questionNr = 0;
             //}
@@ -71,7 +104,7 @@ namespace Mined.Pages.Player.Game.GameModel
                 questionNr = HttpContext.Session.GetInt32("SessionQuestionNr");
             }
 
-            if ((HttpContext.Session.GetInt32("SessionPlayerScore")) != null)
+            if (HttpContext.Session.GetInt32("SessionPlayerScore") != null)
             {
             //    playerScore = 0;
             //}
@@ -80,7 +113,7 @@ namespace Mined.Pages.Player.Game.GameModel
                 playerScore = HttpContext.Session.GetInt32("SessionPlayerScore");
             }
 
-            if ((HttpContext.Session.GetInt32("SessionnumberOfMistakes")) != null)
+            if (HttpContext.Session.GetInt32("SessionnumberOfMistakes") != null)
             {
             //    numberOfMistakes = 0;
             //}
@@ -96,14 +129,12 @@ namespace Mined.Pages.Player.Game.GameModel
             };
 
             //as long as the questionnr is 5 or lower, the player can keep playing.
-            if (questionNr <= 5)
+            if (questionNr <= 2)
             {
-
                 if (selected_answer == correct_answer)
                 {
                     playerScore++;
                     HttpContext.Session.SetInt32(SD.SessionPlayerScore, (int)playerScore);
-
                 }
                 else
                 {
@@ -112,17 +143,49 @@ namespace Mined.Pages.Player.Game.GameModel
                         playerScore--;
                         HttpContext.Session.SetInt32(SD.SessionPlayerScore, (int)playerScore);
                     }
-                    
                     numberOfMistakes++;
                     HttpContext.Session.SetInt32(SD.SessionnumberOfMistakes, (int)numberOfMistakes);
                 }
             }
             else
             {
-                Score.NumberOfMistakes = (int)numberOfMistakes;
-                Score.PlayerScore = (int)playerScore;
-                _unitOfWork.Score.Update(Score);
-                _unitOfWork.Save();
+                //List of all scores, to compare current score with. This comparison is meant to Add the new score if it is high enough.
+                
+                var allScores = _unitOfWork.Score.GetAll().ToList();
+
+                //Only the top 100 scores will be saved on the Leader Board
+				if (allScores.Count > 100)
+                {
+                    //Minimale waarde van de lijst vinden en deze vergelijken
+                    if(playerScore > GetlowestHighScore(allScores))
+                    {
+                        //find and current lowest highscore
+                        var currentLowestHighscore = GetlowestHighScore(allScores);
+                        var playerLowestHighScore = _unitOfWork.Score.GetFirstOrDefault(x => x.PlayerScore == currentLowestHighscore);
+                        allScores.Remove(playerLowestHighScore);
+
+                        //Save the new data
+						Score.NumberOfMistakes = (int)numberOfMistakes;
+						Score.PlayerScore = (int)playerScore;
+						_unitOfWork.Score.Update(Score);
+						_unitOfWork.Save();
+					}
+                    else
+                    {
+						//If the player's score is lower than the lowest score on the leaderboard, the score will not be added and the player is lead to the Game Over page
+						HttpContext.Session.SetInt32(SD.SessionPlayerScore, 0);
+                        HttpContext.Session.SetInt32(SD.SessionQuestionNr, 0);
+                        HttpContext.Session.SetInt32(SD.SessionnumberOfMistakes, 0);
+                        return RedirectToPage("/Player/Game/Gameover");
+					}
+                }
+                else
+                {
+					Score.NumberOfMistakes = (int)numberOfMistakes;
+					Score.PlayerScore = (int)playerScore;
+					_unitOfWork.Score.Update(Score);
+					_unitOfWork.Save();
+				}
 
                 HttpContext.Session.SetInt32(SD.SessionPlayerScore, 0);
                 HttpContext.Session.SetInt32(SD.SessionQuestionNr, 0);

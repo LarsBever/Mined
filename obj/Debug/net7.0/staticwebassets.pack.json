@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\images\\BackGround\\homebackground.webp"
     },
     {
+      "Id": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\GameOver\\funny-meme-about-forbidden-tuna-landmine-funny-landmine.png",
+      "PackagePath": "staticwebassets\\images\\GameOver\\funny-meme-about-forbidden-tuna-landmine-funny-landmine.png"
+    },
+    {
       "Id": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\050e2bef-1573-4589-aba7-ffb5d996503c.jpg",
       "PackagePath": "staticwebassets\\images\\UxoImages\\050e2bef-1573-4589-aba7-ffb5d996503c.jpg"
     },

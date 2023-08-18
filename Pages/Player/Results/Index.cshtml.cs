@@ -49,7 +49,7 @@ namespace Mined.Pages.Player.ResultsModel
             {
                 Results = _unitOfWork.Result.GetAll().ToList();
             }
-        }
+		}
 
         //Try Again button to redirect to Delete score and redirect to game
         public async Task<IActionResult> OnPostAsync()

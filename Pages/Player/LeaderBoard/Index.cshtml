@@ -36,7 +36,10 @@
 		</tr>
 	</thread>
 	<tbody>
-		@foreach(var obj in Model.Scores)
+		@{
+			var orderScores = Model.Scores.OrderByDescending(s => s.PlayerScore);
+		}
+		@foreach(var obj in orderScores)
 		{
 		<tr>
 			<td width="50">@obj.Nickname</td>
@@ -60,6 +63,15 @@
 					</td>
 				}
 		</tr>
+		}
+		@if (HttpContext.Session.GetInt32("SessionScoreId") != null)
+		{
+			<form method="post">
+				<div class="form-group col md-6">
+					<button type="submit" class="btn btn-primary" style="width:300px">Try again and improve my score</button>
+				</div>
+			</form>
+			
 		}
 	</tbody>
 </table>

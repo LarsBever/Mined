@@ -34,43 +34,80 @@ namespace Mined.Pages.Admin.TrainModel
 
         public Uxo Uxo { get; set; }
         public IEnumerable<Uxo> Uxos { get; set; }
+        public IList<Uxo> ChosenUxos { get; set; }
+        public IList<Uxo> ChosenImages { get; set; }
+        public IList<int> ChosenUxoIds { get; set; }
         public Image Image { get; set; }
         public IEnumerable<Image> Images { get; set; }
         public Result Result { get; set; }
         public IList<Result> Results { get; set; }
-        //public int scoreID { get; set; }
+        public int? ChosenNumberOfQuestions { get; set; }
+        public int? ChosenCategory { get; set; } 
 
-        //Get Uxo for the next question and qet the scores
         public async Task OnGetAsync(int id)
         {
+            //Retrieve the category chosen by the player
+            ChosenCategory = HttpContext.Session.GetInt32("SessionChosenCategory");
+            IList<Uxo> ChosenUxos = new List<Uxo>();
+            IList<int> ChosenUxoIds = new List<int>();
+            IList<Image> ChosenImages = new List<Image>();
+
             if (_unitOfWork.Uxo != null)
             {
                 Uxos = _unitOfWork.Uxo.GetAll();
+                //If the player wants to practice a specified category of Uxos, the chosenCategory != 0.
+                if (ChosenCategory != 0)
+                {
+                    foreach (var uxo in Uxos)
+                    {
+                        //If the UXO matches the chosen category, add Uxo to the list for training.
+                        if (uxo.Category_ID == ChosenCategory)
+                        {
+                            ChosenUxos.Add(uxo);
+                            ChosenUxoIds.Add(uxo.Uxo_ID);
+                        }
+                        Uxos = ChosenUxos;
+                    }
+                }
             }
+
             if (_unitOfWork.Image != null)
             {
                 Images = _unitOfWork.Image.GetAll();
+                if (ChosenCategory != 0)
+                {
+                    foreach (var image in Images)
+                    {
+                        if(ChosenUxoIds.Count != 0 && image.Uxo_ID == ChosenUxoIds[0])
+                        {
+                            ChosenImages.Add(Image);
+                            ChosenUxoIds.RemoveAt(0);
+                        }
+                        Images = ChosenImages;
+                    }
+                }
+
             }
-            if (_unitOfWork.Score != null)
+
+            if (_unitOfWork.Result != null)
             {
                 Results = _unitOfWork.Result.GetAll().ToList();
-            }
+				if (Results.Count >= ChosenNumberOfQuestions)
+                {
+					foreach (var answer in Results)
+					{
+						_unitOfWork.Result.Remove(answer);
+                        _unitOfWork.Save();
+					}
+				};
+			}
+           
+            
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            //playerScores = _unitOfWork.Score.GetFirstOrDefault(u => u.Score_ID == HttpContext.Session.GetInt32("SessionScoreId"));
-
-            // eerst alle scores ophalen, dan de specifieke ophalen met goede ID.
-            // //Daarna toevoegen aan 2e lijst die je gebruikt voor de rest??
-
-            var ResultList = _unitOfWork.Result.GetAll().ToList();
-
-
-            foreach (var results in ResultList)
-            {
-               Results.Add(results);
-            }
+            
 
             var result = new Result();
             result.Correct_answer = Correct_answer;
@@ -80,12 +117,16 @@ namespace Mined.Pages.Admin.TrainModel
             //HttpContext.Session.Set<IList>(SD.SessionScores, PlayerResults);
             _unitOfWork.Result.Add(result);
             _unitOfWork.Save();
-            //HttpContext.Session.SetInt32(SD.SessionTrainingId, _unitOfWork.Result.GetFirstOrDefault(
-            //                                                    u => u.TrainingId == Result.TrainingId).TrainingId);
+			//HttpContext.Session.SetInt32(SD.SessionTrainingId, _unitOfWork.Result.GetFirstOrDefault(
+			//                                                    u => u.TrainingId == Result.TrainingId).TrainingId);
 
-            //as long as the questionnr is 5 or lower, the player can keep playing.
+			//as long as the questionnr is 5 or lower, the player can keep playing.
 
-            if (Results.Count >= 5)
+			//To add the new answer, first all previous answers/ results need to be retrieved.
+			var ResultList = _unitOfWork.Result.GetAll().ToList();
+
+            ChosenNumberOfQuestions = HttpContext.Session.GetInt32("SessionChosenNumberOfQuestions");
+            if (ResultList.Count >= ChosenNumberOfQuestions)
             {
                 return RedirectToPage("/Player/Results/Index");
             }
