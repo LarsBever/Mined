@@ -6,6 +6,7 @@
     <p>Here you can see the results of your last game.</p>
     <br>
 @{
+    //Show message if the game has not yet been finished.
     if(Model.Results.Count() < Model.ChosenNumberOfQuestions)
     {
             <p>Complete the game from start to finish to see your results!</p>
@@ -23,10 +24,13 @@
             <p class="display-6"> Your result is:  </p>
             <p class="display-3" style="color:#431C8D">@points / @total</p><br>
 
+            //Try again button
             <form class="questions" method="post">
                 <input class="btn btn-primary" type="submit" value="Try Again" asp-page-handler="Submit"/>
             </form>
             <br><br>
+
+            //Loop through questions and show UXO images with the correct answer and if applicable, incorrect answer.
             <table class="table-sm custom-table">
                 @foreach (var res in Model.Results)
             {
@@ -35,23 +39,26 @@
                     var image = Model.Images.Where(c => c.Uxo_ID == cor.Uxo_ID).First();
                     imagePath = @image.UxoImage;
 
-                    <tr>
+                <tr>
                     <td style="padding:20px;">
                     <img src="@Url.Content(imagePath)" alt="@altText" class="rounded" width="500" height="500" />
                     </td>
                     <td>
-                        @if (res.Correct_answer.Equals(res.Selected_answer))
-                    {
+                    
+                    @if (res.Correct_answer.Equals(res.Selected_answer))
+                    {  
+                        //In case of a correct answer: show only the answer given in green
                         <span style="color: #5BB318">@cor.NameNato</span>
                     }
                     else
                     {
+                                //In case of an incorrect answer: show the given answer in red and the correct answer in green.
                                 <span style="color: #C21010"><del>@sel.NameNato</del><br> </span>
 
                                 <span style="color: #5BB318"> @cor.NameNato</span>
                     }
                     </td>
-</tr>                
+                </tr>                
             }
             </table>
     }

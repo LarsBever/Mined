@@ -5,21 +5,17 @@ using Mined.Models;
 
 namespace Mined.Pages.Player.ResultsModel
 {
-    //[Authorize(Roles = "RegularUser, Administrator")]
     public class ResultsModel : PageModel
     {
-        //private readonly Mined.Data.QuizAppContext _context;
-        //private readonly UserManager<IdentityUser> userManager;
-
+        public Uxo? Uxo { get; set; }
+        public IEnumerable<Uxo> Uxos { get; set; }
+        public Image? Image { get; set; }
+        public IEnumerable<Image> Images { get; set; }
+        public Result? Result { get; set; }
+        public IList<Result> Results { get; set; }
+        public int? ChosenNumberOfQuestions { get; set; }
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _hostEnvironment;
-
-        //public ResultsModel(QuizApp.Data.QuizAppContext context, UserManager<IdentityUser> userManager)
-        //      {
-        //          _context = context;
-        //          this.userManager = userManager;
-        //      }
-
         public ResultsModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {
             _unitOfWork = unitOfWork;
@@ -28,18 +24,9 @@ namespace Mined.Pages.Player.ResultsModel
             Image = new();
             Result = new();
         }
-        public Uxo? Uxo { get; set; }
-        public IEnumerable<Uxo> Uxos { get; set; }
-        public Image? Image { get; set; }
-        public IEnumerable<Image> Images { get; set; }
-        public Result? Result { get; set; }
-        public IList<Result> Results { get; set; }
-
-        public int? ChosenNumberOfQuestions { get; set; }
 
         public async Task OnGetAsync()
         {
-
             ChosenNumberOfQuestions = HttpContext.Session.GetInt32("SessionChosenNumberOfQuestions");
             if (_unitOfWork.Uxo != null)
             {
@@ -58,15 +45,7 @@ namespace Mined.Pages.Player.ResultsModel
         //Try Again button to redirect to Delete score and redirect to game
         public async Task<IActionResult> OnPostAsync()
         {
-
-            //Hier moet de computer weten bij welke nickname de score/het antwoord hoort.
-            // dus iets in de trend van var nickname = nickname...
-            // daarnaast moet de computer weten bij welke score de antwoorden toegevoegd moeten worden
-            //var uScoreID = Score.Score_ID;
-            //var uScore = _unitOfWork.Score.GetFirstOrDefault(c => c.Score_ID == Score.Score_ID);
-
-            // Here the previous answers will be deleted and all data except Score_ID and nickname are set to 0 or null.
-
+            //The players results will be deleted before the training can be done again:
             var userResults = _unitOfWork.Result.GetAll().ToList();
             if (userResults != null)
             {

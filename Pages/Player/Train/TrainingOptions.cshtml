@@ -8,10 +8,11 @@
         <div class="col-xl-12">
 
             @{
+                //If the Database does not have enough UXO's, show this error. Hide this error if another error (like invalid Nickname) pops up.
                 if (Model.Uxos.Count() == 0)
                 {
                     <p>
-                        The Database does not contain enough U.X.O.s. Ask an Admin to add at least 4 U.X.O.'s to play the game.
+                        The Database does not contain enough U.X.O.s. Ask an admin to add at least 4 U.X.O.'s to play the game.
                     </p>
                     <a asp-page="/GameNickname" class="btn btn-danger" style="width:300px">Back</a>
                 }
@@ -34,7 +35,7 @@
 
                             <div class="row mb-12">
                                 <div class="form-group col-md-12">
-                                    <label asp-for="ChosenCategory">NATO U.X.O. Main Category and Subcategory</label>
+                                    <label asp-for="ChosenCategory">Category</label>
                                     <select asp-for="ChosenCategory" asp-items="@Model.CategoryList" class="form-select">
                                         <option disabled selected>-- Select Catagory--</option>
                                         <option>All Categories</option>

@@ -1,16 +1,7 @@
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Build.Construction;
-using Microsoft.EntityFrameworkCore;
 using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
-using System.Linq;
-using Mined.Utility;
-using MySqlX.XDevAPI.Common;
-using System.Collections.Generic;
-using System.Collections;
 using Result = Mined.Models.Result;
 
 namespace Mined.Pages.Admin.TrainModel
@@ -18,20 +9,6 @@ namespace Mined.Pages.Admin.TrainModel
     [BindProperties]
     public class TrainModel : PageModel
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IWebHostEnvironment _hostEnvironment;
-        public int Selected_answer { get; set; }
-        public int Correct_answer { get; set; }
-
-        public TrainModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
-        {
-            _unitOfWork = unitOfWork;
-            _hostEnvironment = hostEnvironment;
-            Uxo = new();
-            Image = new();
-            Result = new Result();
-        }
-
         public Uxo Uxo { get; set; }
         public IEnumerable<Uxo> Uxos { get; set; }
         public IList<Uxo> ChosenUxos { get; set; }
@@ -42,8 +19,20 @@ namespace Mined.Pages.Admin.TrainModel
         public Result Result { get; set; }
         public IList<Result> Results { get; set; }
         public int? ChosenNumberOfQuestions { get; set; }
-        public int? ChosenCategory { get; set; } 
+        public int? ChosenCategory { get; set; }
+        public int Selected_answer { get; set; }
+        public int Correct_answer { get; set; }
 
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _hostEnvironment;
+        public TrainModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
+        {
+            _unitOfWork = unitOfWork;
+            _hostEnvironment = hostEnvironment;
+            Uxo = new();
+            Image = new();
+            Result = new Result();
+        }
         public async Task OnGetAsync(int id)
         {
             //Retrieve the category chosen by the player
@@ -55,7 +44,7 @@ namespace Mined.Pages.Admin.TrainModel
             if (_unitOfWork.Uxo != null)
             {
                 Uxos = _unitOfWork.Uxo.GetAll();
-                //If the player wants to practice a specified category of Uxos, the chosenCategory != 0.
+                //If the player wants to practice a specified category of Uxos:
                 if (ChosenCategory != 0)
                 {
                     foreach (var uxo in Uxos)
@@ -73,6 +62,7 @@ namespace Mined.Pages.Admin.TrainModel
 
             if (_unitOfWork.Image != null)
             {
+                //If present, add all images related to the UXOs from the specified category to a list.
                 Images = _unitOfWork.Image.GetAll();
                 if (ChosenCategory != 0)
                 {
@@ -89,6 +79,7 @@ namespace Mined.Pages.Admin.TrainModel
 
             }
 
+            //Empty the player results after the training.
             if (_unitOfWork.Result != null)
             {
                 Results = _unitOfWork.Result.GetAll().ToList();
@@ -100,9 +91,7 @@ namespace Mined.Pages.Admin.TrainModel
                         _unitOfWork.Save();
 					}
 				};
-			}
-           
-            
+			}    
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -113,34 +102,22 @@ namespace Mined.Pages.Admin.TrainModel
             result.Correct_answer = Correct_answer;
             result.Selected_answer = Selected_answer;
 
-            ////scores moet goed worden doorgegeven in de sessie en goed worden opgeslagen
-            //HttpContext.Session.Set<IList>(SD.SessionScores, PlayerResults);
             _unitOfWork.Result.Add(result);
             _unitOfWork.Save();
-			//HttpContext.Session.SetInt32(SD.SessionTrainingId, _unitOfWork.Result.GetFirstOrDefault(
-			//                                                    u => u.TrainingId == Result.TrainingId).TrainingId);
 
-			//as long as the questionnr is 5 or lower, the player can keep playing.
-
-			//To add the new answer, first all previous answers/ results need to be retrieved.
 			var ResultList = _unitOfWork.Result.GetAll().ToList();
 
             ChosenNumberOfQuestions = HttpContext.Session.GetInt32("SessionChosenNumberOfQuestions");
             if (ResultList.Count >= ChosenNumberOfQuestions)
             {
+                //Go to results page if the ChosenNumberOfQuestions has been reached
                 return RedirectToPage("/Player/Results/Index");
             }
             else
             {
+                //Keep training if the ChosenNumberOfQuestions has not yet been reached
                 return RedirectToPage("./Train");
             }
-            //session score en questionnr lijken goed te werken (ook bij max aantal vragen??? nog checken!!)
-            //nu nog fixen dat de score goed wordt opgeslagen (ook tabel aanpassen)
-            //code wat netter verwerken (evt. inkorten?)
-            //ipv naar leaderboardnaar results gaan!
-            //Score mag niet bewerkt kunnen worden door players = oplossen!!!
-
-            ///Score mag niet in de min gaan!!
         }
     }
 }

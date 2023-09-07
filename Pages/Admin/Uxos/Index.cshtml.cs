@@ -9,7 +9,6 @@ namespace Mined.Pages.Admin.Uxos
 		private readonly IUnitOfWork _unitOfWork;
 		public IEnumerable<Image> Images { get; set; }
 		public IEnumerable<Uxo> Uxos { get; set; }
-		public IEnumerable<Category> Categories { get; set; }
 		public IndexModel(IUnitOfWork unitOfWork)
 		{
 			_unitOfWork = unitOfWork;
@@ -17,7 +16,6 @@ namespace Mined.Pages.Admin.Uxos
 
 		public void OnGet()
 		{
-			//Categories = _unitOfWork.Category.GetAll();
 			Images = _unitOfWork.Image.GetAll();
 			Uxos = _unitOfWork.Uxo.GetAll();
 		}

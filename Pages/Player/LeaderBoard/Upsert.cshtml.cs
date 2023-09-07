@@ -1,13 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow;
-using Mined.DataAccess.Data;
 using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
-using System.ComponentModel;
-using System.Linq;
-
 
 namespace Mined.Pages.Admin.LeaderBoard
 {
@@ -29,35 +23,28 @@ namespace Mined.Pages.Admin.LeaderBoard
 		{
 			if (id != 0)
 			{
-				//Update item
+				//Update score
 				Score = _unitOfWork.Score.GetFirstOrDefault(x => x.Score_ID == id);
 			}
 		}
 		public async Task<IActionResult> OnPost()
 		{
+			//Add new score
 			if (Score.Score_ID == 0)
 			{
-				//Add
-
-				//Validate whether the given U.X.O. Name is not the same as the category names
-				//if (Uxo.NameNato == Category.MainCategoryNato)
-				//{
-				//	ModelState.AddModelError(string.Empty, "The Main Category and U.X.O. Name cannot be the same");
-				//}
-				//if (Uxo.NameNato == Category.SubCategoryNato)
-				//{
-				//	ModelState.AddModelError(string.Empty, "The Subcategory and U.X.O. Name cannot be the same");
-				//}
 				Scores = _unitOfWork.Score.GetAll();
+				//Check if nickname does not already exist.
 				if (Scores.Any(c => c.Nickname == Score.Nickname))
 				{
 					ModelState.AddModelError(string.Empty, "Too bad! this Nickname has already been picked!");
 				}
+				//Validate Nr of mistakes (cannot be negative)
 				if (Score.NumberOfMistakes < 0)
 				{
 					ModelState.AddModelError(string.Empty, "Nope, it's practically impossible to get a negative nr of mistakes in this game... " +
 															" The nr of mistakes should be 0 or higher");
 				}
+				//Validate playerscore (cannot be negative)
 				if (Score.PlayerScore < 0)
 				{
 					ModelState.AddModelError(string.Empty, "Nope, it's practically impossible to get a negative score in this game... " +
@@ -71,27 +58,18 @@ namespace Mined.Pages.Admin.LeaderBoard
 					return RedirectToPage("Index");
 				}
 			}
+			//Update existing score.
 			else
 			{
-				//Update
-
-				//Validate whether the given U.X.O. Name is not the same as the category names
-				//if (Uxo.NameNato == Category.MainCategoryNato)
-				//{
-				//	ModelState.AddModelError(string.Empty, "The Main Category and U.X.O. Name cannot be the same");
-				//}
-				//if (Uxo.NameNato == Category.SubCategoryNato)
-				//{
-				//	ModelState.AddModelError(string.Empty, "The Subcategory and U.X.O. Name cannot be the same");
-				//}
 				if (ModelState.IsValid)
 				{
 					_unitOfWork.Score.Update(Score);
 					_unitOfWork.Save();
 				}
-				TempData["success"] = "Score saved successfully";
+				TempData["success"] = "Score updated successfully";
 				return RedirectToPage("Index");
 			}
+			TempData["error"] = "Something went wrong...";
 			return Page();
 		}
 	}

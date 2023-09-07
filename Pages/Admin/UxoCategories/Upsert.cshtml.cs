@@ -1,19 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow;
-using Mined.DataAccess.Data;
 using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
-using System.ComponentModel;
-using System.Linq;
 
 namespace Mined.Pages.Admin.UxoCategories
 {
 	[BindProperties]
 	public class UpsertModel : PageModel
 	{
-		private readonly IUnitOfWork _unitOfWork;
+        public int Id { get; set; }
+        public Category? Category { get; set; }
+        public IEnumerable<SelectListItem>? CategoryList { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
+        private readonly IUnitOfWork _unitOfWork;
 		private readonly IWebHostEnvironment _hostEnvironment;
 		public UpsertModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
 		{
@@ -21,11 +21,6 @@ namespace Mined.Pages.Admin.UxoCategories
 			_hostEnvironment = hostEnvironment;
 			Category = new();
 		}
-		public int Id { get; set; }
-		public Category? Category { get; set; }
-		public IEnumerable<SelectListItem>? CategoryList { get; set; }
-		public IEnumerable<Category> Categories { get; set; }
-
 		public void OnGet(int id)
 		{
 			if (id != 0)
@@ -38,16 +33,11 @@ namespace Mined.Pages.Admin.UxoCategories
 		{
 			if (Category.Category_ID == 0)
 			{
-				//Add
-				
+                //Add new Category
+
 				//Check if Category does not already exist:
-				List<string> categoryNames = new List<string>();
 				Categories = _unitOfWork.Category.GetAll();
-				foreach (Category category in Categories)
-				{
-					categoryNames.Add(category.CategoryName);
-				}
-				if (categoryNames.Contains(Category.CategoryName))
+				if (Categories.Any(c => c.CategoryName == Category.CategoryName))
 				{
 					ModelState.AddModelError(string.Empty, "This Category already Exists");
 				}
@@ -61,7 +51,8 @@ namespace Mined.Pages.Admin.UxoCategories
 			}
 			else
 			{
-				//Update
+				//Update existing Category
+
 				if (ModelState.IsValid)
 				{
 					_unitOfWork.Category.Update(Category);

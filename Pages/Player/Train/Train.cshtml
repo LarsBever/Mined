@@ -20,9 +20,10 @@
         List<int> uxoList = new List<int>();
         foreach (var uxo in uxos)
         {
+            //Add all the uxoIds to a list. This list will be later used to pick the right correct and incorrect answers.
             uxoList.Add(uxos.First().Uxo_ID);
 
-            // Recursively Go through Ienumerable UXO's (and delete the previously added UXO_ID from the Ienumerable) 
+            //Delete the previously added UXO_ID from the Ienumerable
             uxos = uxos.Where(u => u.Uxo_ID != uxos.First().Uxo_ID).ToList();
         }
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "eQU4G8l1JVzfQc/+fKcBE0bX2meReOlGtT0HBJsUsLA=",
+  "Hash": "VFkaw2LiaJ1ta9WRmO7q73bS7zl/S2tubMOaIE4XuKo=",
   "Source": "Mined",
   "BasePath": "_content/Mined",
   "Mode": "Default",
@@ -1462,12 +1462,12 @@
       "OriginalItemSpec": "wwwroot\\images\\UxoImages\\Landmines\\a-t-2-001.jpg"
     },
     {
-      "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\Landmines\\test image 1.jpg.jpg",
+      "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\Landmines\\test image 1.jpg",
       "SourceId": "Mined",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\",
       "BasePath": "_content/Mined",
-      "RelativePath": "images/UxoImages/Landmines/test image 1.jpg.jpg",
+      "RelativePath": "images/UxoImages/Landmines/test image 1.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1476,15 +1476,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\UxoImages\\Landmines\\test image 1.jpg.jpg"
+      "OriginalItemSpec": "wwwroot\\images\\UxoImages\\Landmines\\test image 1.jpg"
     },
     {
-      "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\Landmines\\test image 2.jpg.jpg",
+      "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\Landmines\\test image 2.jpg",
       "SourceId": "Mined",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\",
       "BasePath": "_content/Mined",
-      "RelativePath": "images/UxoImages/Landmines/test image 2.jpg.jpg",
+      "RelativePath": "images/UxoImages/Landmines/test image 2.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1493,15 +1493,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\UxoImages\\Landmines\\test image 2.jpg.jpg"
+      "OriginalItemSpec": "wwwroot\\images\\UxoImages\\Landmines\\test image 2.jpg"
     },
     {
-      "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\Landmines\\test image 3.jpg.jpg",
+      "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\images\\UxoImages\\Landmines\\test image 3.jpg",
       "SourceId": "Mined",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\",
       "BasePath": "_content/Mined",
-      "RelativePath": "images/UxoImages/Landmines/test image 3.jpg.jpg",
+      "RelativePath": "images/UxoImages/Landmines/test image 3.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1510,7 +1510,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\UxoImages\\Landmines\\test image 3.jpg.jpg"
+      "OriginalItemSpec": "wwwroot\\images\\UxoImages\\Landmines\\test image 3.jpg"
     },
     {
       "Identity": "C:\\Users\\mail\\Desktop\\HBO ICT\\Semester 2\\EindOpdracht Semester 2\\Mined\\wwwroot\\js\\site.js",

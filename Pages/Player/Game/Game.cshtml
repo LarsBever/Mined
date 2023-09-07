@@ -1,8 +1,5 @@
 ﻿@page
 @model Mined.Pages.Player.Game.GameModel.GameModel
-@{
-    ViewData["Title"] = "Train";
-}
 
 <div class="container-xl px-4 mt-4">
 	<div asp-validation-summary="All"></div>
@@ -20,9 +17,10 @@
         List<int> uxoList = new List<int>();
         foreach (var uxo in uxos)
         {
+            //Add all the uxoIds to a list. This list will be later used to pick the right correct and incorrect answers.
             uxoList.Add(uxos.First().Uxo_ID);
 
-            // Recursively Go through Ienumerable UXO's (and delete the previously added UXO_ID from the Ienumerable) 
+            //Delete the previously added UXO_ID from the Ienumerable
             uxos = uxos.Where(u => u.Uxo_ID != uxos.First().Uxo_ID).ToList();
         }
 
@@ -31,7 +29,7 @@
             //uxoName of the correct answer
             var uxoName = rnd.Next(1, 4);
 
-            //ids of 3 drawn countries
+            //ids of 3 drawn UXOs
             var n1 = 0;
             var n2 = 0;
             var random_id = 1;
@@ -69,6 +67,7 @@
             imagePath = @image.UxoImage;
    }
 
+   <!-- The Question that is depicted-->
             <div class="text-center">
                 <br>
                 <p>Guess the names of the randomly selected U.X.O.s: </p>
@@ -90,6 +89,7 @@
             </div>
     </div>
 
+    <!-- 3 possible answers that are shown (1 correct, 2 incorrect-->
  @functions {
      void displayOptions(int nr, int uxoName, Models.Uxo correct, Models.Uxo incorrect1, Models.Uxo incorrect2)
      {

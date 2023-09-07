@@ -1,11 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Mined.DataAccess.Data;
 using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
-using System.ComponentModel;
-using System.Linq;
 
 namespace Mined.Pages.Admin.Uxos
 {
@@ -17,7 +14,6 @@ namespace Mined.Pages.Admin.Uxos
 		{
 			_unitOfWork = unitOfWork;
 		}
-
 		public Uxo? Uxo { get; set; }
 		public Image? Image { get; set; }
 		public IEnumerable<Image> Images { get; set; }
@@ -33,6 +29,7 @@ namespace Mined.Pages.Admin.Uxos
 		}
 		public async Task<IActionResult> OnPost()
 		{
+			//Back to index page.
 			return RedirectToPage("/Admin/UXOs/Index");
 		}
 	}

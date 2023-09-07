@@ -1,8 +1,5 @@
 ﻿@page
 @model Mined.Pages.Player.Game.GameNicknameModel.GameNicknameModel
-@{
-    ViewData["Title"] = "GameNicknameModel";
-}
 
 <div class="container-xl px-4 mt-4">
 	<div asp-validation-summary="All"></div>
@@ -13,9 +10,10 @@
             <div class="col-xl-12">
 
                 @{
+                    //If the Database does not have enough UXO's, show this error. Hide this error if another error (like invalid Nickname) pops up.
                     if(Model.Uxos.Count() == 0 && Model.Score.Nickname != null)
                     {
-                        <p>The game cannot be played. Ask an Admin to add at least 4 U.X.O.'s to start the trainingsession.
+                        <p>The game cannot be played. Ask an admin to add at least 4 U.X.O.'s to start the trainingsession.
                         </p>
                         <a asp-page="/GameNickname" class="btn btn-danger" style="width:300px">Back</a>
                     }

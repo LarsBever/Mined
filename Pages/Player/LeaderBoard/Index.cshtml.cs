@@ -1,12 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Build.Construction;
-using Mined.DataAccess.Data;
-using Mined.DataAccess.Repository;
 using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
 using Mined.Utility;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace Mined.Pages.Player.LeaderBoard
 {
@@ -18,8 +14,6 @@ namespace Mined.Pages.Player.LeaderBoard
 		{
 			_unitOfWork = unitOfWork;
 		}
-        
-       
 		public void OnGet()
         {
             Scores = _unitOfWork.Score.GetAll();
@@ -27,6 +21,7 @@ namespace Mined.Pages.Player.LeaderBoard
 
 		public async Task<IActionResult> OnPost()
 		{
+			//If the player wants to play the game again, set all session values back to 0:
 			HttpContext.Session.SetInt32(SD.SessionPlayerScore, 0);
 			HttpContext.Session.SetInt32(SD.SessionQuestionNr, 0);
 			HttpContext.Session.SetInt32(SD.SessionnumberOfMistakes, 0);

@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Mined.DataAccess.Data;
-using Mined.DataAccess.Repository;
 using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
 
@@ -14,7 +12,6 @@ namespace Mined.Pages.Admin.UxoCategories
 		{
 			_unitOfWork = unitOfWork;
 		}
-
         public void OnGet()
         {
             Categories = _unitOfWork.Category.GetAll();

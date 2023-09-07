@@ -9,14 +9,15 @@ namespace Mined.Pages.Admin.UxoCategories
 	[BindProperties]
 	public class DeleteModel : PageModel
 	{
-		private readonly IUnitOfWork _unitOfWork;
-		public DeleteModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
+        public Category? Category { get; set; }
+        public IEnumerable<Category>? Categories { get; set; }
+        public IEnumerable<SelectListItem>? CategoryList { get; set; }
+        private readonly IUnitOfWork _unitOfWork;
+        public DeleteModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
 		{
 			_unitOfWork = unitOfWork;
 		}
-		public Category? Category { get; set; }
-		public IEnumerable<Category>? Categories { get; set; }
-		public IEnumerable<SelectListItem>? CategoryList { get; set; }
+
 		public void OnGet(int id)
 		{
 			//Retrieve all available categories from the database
@@ -28,7 +29,6 @@ namespace Mined.Pages.Admin.UxoCategories
 			Category = _unitOfWork.Category.GetFirstOrDefault(x => x.Category_ID == Category.Category_ID);
 			if (Category != null)
 			{
-
 				_unitOfWork.Category.Remove(Category);
 				_unitOfWork.Save();
 

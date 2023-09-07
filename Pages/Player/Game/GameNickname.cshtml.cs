@@ -1,18 +1,17 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
 using Mined.Utility;
-using MySqlX.XDevAPI.Common;
-using System.Linq;
 
 namespace Mined.Pages.Player.Game.GameNicknameModel
 {
     [BindProperties]
     public class GameNicknameModel : PageModel
     {
+        public Score Score { get; set; }
+        public IEnumerable<Score> Scores { get; set; }
+        public IEnumerable<Uxo> Uxos { get; set; }
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _hostEnvironment;
         public GameNicknameModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
@@ -20,20 +19,7 @@ namespace Mined.Pages.Player.Game.GameNicknameModel
             _unitOfWork = unitOfWork;
             _hostEnvironment = hostEnvironment;
             Score = new();
-            //Uxo = new();
         }
-        public Score Score { get; set; }
-        //public IList<Result> Results { get; set; } = default!;
-        public IEnumerable<Score> Scores { get; set; }
-        //public int scoreID { get; set; }
-
-        //public Uxo Uxo { get; set; }
-        //public IList<Result> Results { get; set; } = default!;
-        public IEnumerable<Uxo> Uxos { get; set; }
-        //public int scoreID { get; set; }
-
-
-        //Get Uxo for the next question and qet the scores
         public async Task OnGetAsync(int id)
         {
             if (_unitOfWork.Score != null)
