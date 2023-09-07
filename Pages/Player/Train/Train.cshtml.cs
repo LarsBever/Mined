@@ -35,10 +35,10 @@ namespace Mined.Pages.Admin.TrainModel
         public Uxo Uxo { get; set; }
         public IEnumerable<Uxo> Uxos { get; set; }
         public IList<Uxo> ChosenUxos { get; set; }
-        public IList<Uxo> ChosenImages { get; set; }
         public IList<int> ChosenUxoIds { get; set; }
         public Image Image { get; set; }
         public IEnumerable<Image> Images { get; set; }
+        public IList<Image> ChosenImages { get; set; }
         public Result Result { get; set; }
         public IList<Result> Results { get; set; }
         public int? ChosenNumberOfQuestions { get; set; }
@@ -80,7 +80,7 @@ namespace Mined.Pages.Admin.TrainModel
                     {
                         if(ChosenUxoIds.Count != 0 && image.Uxo_ID == ChosenUxoIds[0])
                         {
-                            ChosenImages.Add(Image);
+                            ChosenImages.Add(image);
                             ChosenUxoIds.RemoveAt(0);
                         }
                         Images = ChosenImages;

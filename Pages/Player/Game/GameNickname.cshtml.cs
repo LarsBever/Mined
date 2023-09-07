@@ -44,11 +44,6 @@ namespace Mined.Pages.Player.Game.GameNicknameModel
             {
                 Uxos = _unitOfWork.Uxo.GetAll();
             }
-            if (Uxos.Count() == 0)
-            {
-                ModelState.AddModelError(string.Empty, "Oh dear, looks like someone forgot to add the U.X.Os. please add" +
-                                                       " at least 4 U.X.O.s in the admin menu (Admin>UXO>Add UXO");
-            }
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -57,24 +52,27 @@ namespace Mined.Pages.Player.Game.GameNicknameModel
             //Nickname cannot be null
             Scores = _unitOfWork.Score.GetAll();
             
-            if (Score.Nickname == null )
+            if (Score.Nickname == null)
             {
-                return Page();
-            }
-            if (Scores.Any(c => c.Nickname == Score.Nickname))
-            {
-                ModelState.AddModelError(string.Empty, "Too bad! looks like someone has already picked this Nickname");
-                return Page();
+				ModelState.AddModelError(string.Empty, "Oops, looks like you forgot to fill in a Nickname...");
             }
             else
             {
-                _unitOfWork.Score.Add(Score);
-                _unitOfWork.Save();
-                HttpContext.Session.SetInt32(SD.SessionScoreId, (_unitOfWork.Score.GetFirstOrDefault(
-                                                u => u.Score_ID == Score.Score_ID)).Score_ID);
-                return RedirectToPage("./Game");
-            }
-        }
+				if (Scores.Any(c => c.Nickname == Score.Nickname))
+				{
+					ModelState.AddModelError(string.Empty, "Too bad! looks like someone has already picked this Nickname");
+				}
+				else
+				{
+					_unitOfWork.Score.Add(Score);
+					_unitOfWork.Save();
+					HttpContext.Session.SetInt32(SD.SessionScoreId, (_unitOfWork.Score.GetFirstOrDefault(
+													u => u.Score_ID == Score.Score_ID)).Score_ID);
+					return RedirectToPage("./Game");
+				}
+			}
+            return Page();
+		}
     }
 }
 

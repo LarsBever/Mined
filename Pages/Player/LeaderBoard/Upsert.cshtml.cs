@@ -24,6 +24,7 @@ namespace Mined.Pages.Admin.LeaderBoard
 		}
 		public int Id { get; set; }
 		public Score? Score { get; set; }
+		public IEnumerable<Score> Scores { get; set; }
 		public void OnGet(int id)
 		{
 			if (id != 0)
@@ -47,6 +48,21 @@ namespace Mined.Pages.Admin.LeaderBoard
 				//{
 				//	ModelState.AddModelError(string.Empty, "The Subcategory and U.X.O. Name cannot be the same");
 				//}
+				Scores = _unitOfWork.Score.GetAll();
+				if (Scores.Any(c => c.Nickname == Score.Nickname))
+				{
+					ModelState.AddModelError(string.Empty, "Too bad! this Nickname has already been picked!");
+				}
+				if (Score.NumberOfMistakes < 0)
+				{
+					ModelState.AddModelError(string.Empty, "Nope, it's practically impossible to get a negative nr of mistakes in this game... " +
+															" The nr of mistakes should be 0 or higher");
+				}
+				if (Score.PlayerScore < 0)
+				{
+					ModelState.AddModelError(string.Empty, "Nope, it's practically impossible to get a negative score in this game... " +
+															" The score should be 0 or higher");
+				}
 				if (ModelState.IsValid)
 				{
 					_unitOfWork.Score.Add(Score);

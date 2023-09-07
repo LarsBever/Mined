@@ -1,10 +1,12 @@
-﻿		@page
-	@model Mined.Pages.Admin.Uxos.UpsertModel
+﻿@page
+@model Mined.Pages.Admin.Uxos.UpsertModel
 
 	<div class="container-xl px-4 mt-4">
 		<div asp-validation-summary="All"></div>
 		<form method="post" enctype="multipart/form-data">
 			<input hidden asp-for="Uxo.Uxo_ID" />
+		<input hidden asp-for="Category.Category_ID" />
+
 			<div class="col-xl-12">
 				<h2 class="text-bg-primary pl-3">
 					@(Model.Uxo.Uxo_ID!=0 ? "Update" : "Add") U.X.O.
@@ -32,8 +34,8 @@
 						<!-- NATO U.X.O. Categories-->
 						<div class="row mb-12">
 							<div class="form-group col-md-12">
-								<label asp-for="Category.Category_ID">NATO U.X.O. Main Category and Subcategory</label>
-							     <select asp-for="Category.Category_ID" asp-items="@Model.CategoryList" class="form-select">
+							<label asp-for="Category.CategoryName">U.X.O. Category</label>
+							<select asp-for="Category.CategoryName" asp-items="@Model.CategoryList" class="form-select">
 								<option disabled selected>-- Select Catagory--</option>								
 								</select>
 								
@@ -113,7 +115,7 @@
 										if (Model.Uxo.Uxo_ID == img.Uxo_ID)
 										{
 											<div class="form-group col md-3">
-												<img src="@img.UxoImage" class="rounded" width="300" />
+										<img src="@Url.Content(img.UxoImage)" class="rounded" width="300" />
 											</div>
 										}
 									}

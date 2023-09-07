@@ -6,7 +6,7 @@
     <p>Here you can see the results of your last game.</p>
     <br>
 @{
-    if(Model.Results.Count() < 5)
+    if(Model.Results.Count() < Model.ChosenNumberOfQuestions)
     {
             <p>Complete the game from start to finish to see your results!</p>
         }
@@ -37,7 +37,7 @@
 
                     <tr>
                     <td style="padding:20px;">
-                    <img src="@Url.Content(imagePath)" alt="@altText" />
+                    <img src="@Url.Content(imagePath)" alt="@altText" class="rounded" width="500" height="500" />
                     </td>
                     <td>
                         @if (res.Correct_answer.Equals(res.Selected_answer))

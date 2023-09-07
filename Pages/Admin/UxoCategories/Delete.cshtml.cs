@@ -1,11 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Mined.DataAccess.Data;
 using Mined.DataAccess.Repository.IRepository;
 using Mined.Models;
-using System.ComponentModel;
-using System.Linq;
 
 namespace Mined.Pages.Admin.UxoCategories
 {
@@ -22,10 +19,12 @@ namespace Mined.Pages.Admin.UxoCategories
 		public IEnumerable<SelectListItem>? CategoryList { get; set; }
 		public void OnGet(int id)
 		{
+			//Retrieve all available categories from the database
 			Category = _unitOfWork.Category.GetFirstOrDefault(x => x.Category_ID == id);
 		}
 		public async Task<IActionResult> OnPost()
 		{
+			//Delete catagory
 			Category = _unitOfWork.Category.GetFirstOrDefault(x => x.Category_ID == Category.Category_ID);
 			if (Category != null)
 			{
@@ -36,7 +35,8 @@ namespace Mined.Pages.Admin.UxoCategories
 				TempData["success"] = "Category deleted successfully";
 				return RedirectToPage("Index");
 			}
-			return Page();
+            TempData["error"] = "Something went wrong...";
+            return Page();
 		}
 	}
 }

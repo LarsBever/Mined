@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/css/Sandstone.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Mined.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
@@ -24,9 +24,6 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Player/Train/TrainingOptions">Train</a>
                         </li>
                         <li class="nav-item">
@@ -35,7 +32,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Player/LeaderBoard/Index">Leader Board</a>
                         </li>
-                        @if (User.IsInRole(SD.AdminRole) || User.IsInRole(SD.InstructorRole))
+                        @if (User.IsInRole(SD.AdminRole))
                         {
                             <!-- Admin Dropdown Menu Items-->
                             <li class="nav-item dropdown">

@@ -23,11 +23,14 @@
 			<th>
 				Category ID
 			</th>
-			<th>
+		@*	<th>
 				Main NATO Category
 			</th>
 			<th>
 				Sub NATO Category
+			</th>*@
+			<th>
+				Category Name
 			</th>
 		</tr>
 	</thread>
@@ -37,8 +40,9 @@
 		<tr>
 			 
 			<td width="50">@obj.Category_ID</td>
-			<td width="50">@obj.MainCategoryNato</td>
-			<td width="50">@obj.SubCategoryNato</td>
+		@*	<td width="50">@obj.MainCategoryNato</td>
+			<td width="50">@obj.SubCategoryNato</td>*@
+				<td width="50">@obj.CategoryName</td>
 				<td width="20">
 					<div class="w-75 btn-group" role="group">
 						<!-- UXO Edit button-->

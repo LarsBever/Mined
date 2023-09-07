@@ -24,6 +24,8 @@ namespace Mined.Pages.Admin.UxoCategories
 		public int Id { get; set; }
 		public Category? Category { get; set; }
 		public IEnumerable<SelectListItem>? CategoryList { get; set; }
+		public IEnumerable<Category> Categories { get; set; }
+
 		public void OnGet(int id)
 		{
 			if (id != 0)
@@ -37,16 +39,18 @@ namespace Mined.Pages.Admin.UxoCategories
 			if (Category.Category_ID == 0)
 			{
 				//Add
-
-				//Validate whether the given U.X.O. Name is not the same as the category names
-				//if (Uxo.NameNato == Category.MainCategoryNato)
-				//{
-				//	ModelState.AddModelError(string.Empty, "The Main Category and U.X.O. Name cannot be the same");
-				//}
-				//if (Uxo.NameNato == Category.SubCategoryNato)
-				//{
-				//	ModelState.AddModelError(string.Empty, "The Subcategory and U.X.O. Name cannot be the same");
-				//}
+				
+				//Check if Category does not already exist:
+				List<string> categoryNames = new List<string>();
+				Categories = _unitOfWork.Category.GetAll();
+				foreach (Category category in Categories)
+				{
+					categoryNames.Add(category.CategoryName);
+				}
+				if (categoryNames.Contains(Category.CategoryName))
+				{
+					ModelState.AddModelError(string.Empty, "This Category already Exists");
+				}
 				if (ModelState.IsValid)
 				{
 					_unitOfWork.Category.Add(Category);
@@ -58,16 +62,6 @@ namespace Mined.Pages.Admin.UxoCategories
 			else
 			{
 				//Update
-
-				//Validate whether the given U.X.O. Name is not the same as the category names
-				//if (Uxo.NameNato == Category.MainCategoryNato)
-				//{
-				//	ModelState.AddModelError(string.Empty, "The Main Category and U.X.O. Name cannot be the same");
-				//}
-				//if (Uxo.NameNato == Category.SubCategoryNato)
-				//{
-				//	ModelState.AddModelError(string.Empty, "The Subcategory and U.X.O. Name cannot be the same");
-				//}
 				if (ModelState.IsValid)
 				{
 					_unitOfWork.Category.Update(Category);
@@ -76,7 +70,8 @@ namespace Mined.Pages.Admin.UxoCategories
 				TempData["success"] = "Category saved successfully";
 				return RedirectToPage("Index");
 			}
-			return Page();
+            TempData["error"] = "Something went wrong...";
+            return Page();
 		}
 	}
 }

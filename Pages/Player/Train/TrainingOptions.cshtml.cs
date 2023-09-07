@@ -32,14 +32,21 @@ namespace Mined.Pages.Player.Train.TrainingOptionsModel
             {
                 Uxos = _unitOfWork.Uxo.GetAll();
             }
-                //Fill Category Dropdownlist
-                CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem()
-            {
-                Text = i.MainCategoryNato + "; " + i.SubCategoryNato,
-                Value = i.Category_ID.ToString(),
-            });
-            
-        }
+            //    //Fill Category Dropdownlist
+            //    CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem()
+            //{
+            //    Text = i.MainCategoryNato + "; " + i.SubCategoryNato,
+            //    Value = i.Category_ID.ToString(),
+            //});
+
+			//Fill Category Dropdownlist
+			CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem()
+			{
+				Text = i.CategoryName,
+				Value = i.Category_ID.ToString(),
+			});
+
+		}
 
         public async Task<IActionResult> OnPostAsync()
         {

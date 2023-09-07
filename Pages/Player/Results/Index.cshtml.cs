@@ -35,8 +35,12 @@ namespace Mined.Pages.Player.ResultsModel
         public Result? Result { get; set; }
         public IList<Result> Results { get; set; }
 
+        public int? ChosenNumberOfQuestions { get; set; }
+
         public async Task OnGetAsync()
         {
+
+            ChosenNumberOfQuestions = HttpContext.Session.GetInt32("SessionChosenNumberOfQuestions");
             if (_unitOfWork.Uxo != null)
             {
                 Uxos = _unitOfWork.Uxo.GetAll();

@@ -1,4 +1,4 @@
-﻿	@page
+﻿@page
 @model Mined.Pages.Admin.Uxos.DetailsModel
 
 		<form method="post">
@@ -16,7 +16,7 @@
 								<label asp-for="Uxo.NameNato">NATO U.X.O. name</label>
 							    <input asp-for="Uxo.NameNato" disabled class="form-control">
 							</div>
-
+@*
 						<!-- NATO U.X.O. Categories-->
 						<div class="row mb-12">
 							<div class="form-group col-md-6">
@@ -27,7 +27,15 @@
 							<label asp-for="Category.SubCategoryNato">Subcategory</label>
 							<input asp-for="Category.SubCategoryNato" disabled class="form-control">
 						    </div>
+						</div>*@
+
+					<!-- NATO U.X.O. Categories-->
+					<div class="row mb-12">
+						<div class="form-group col-md-6">
+							<label asp-for="Category.CategoryName">Category</label>
+							<input asp-for="Category.CategoryName" disabled class="form-control">
 						</div>
+					</div>
 					</div>
 					</div>
 				</div>
@@ -80,7 +88,7 @@
 									if (Model.Uxo.Uxo_ID == img.Uxo_ID)
 									{
 										<div class="form-group col md-3">
-										<img src="@img.UxoImage" class="rounded" width="300" />
+								<img src="@Url.Content(img.UxoImage)" class="rounded" width="300" />
 										</div>
 									}
 								}

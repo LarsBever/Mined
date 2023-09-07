@@ -9,6 +9,7 @@
   
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.20" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
@@ -23,15 +24,15 @@
   
 
   <ItemGroup>
-    <ProjectReference Include="..\Mined.DataAccess\Mined.DataAccess.csproj" />
-    <ProjectReference Include="..\Mined.Models\Mined.Models.csproj" />
-    <ProjectReference Include="..\Mined.Utility\Mined.Utility.csproj" />
+    <Folder Include="wwwroot\images\BackGround\" />
+    <Folder Include="wwwroot\images\UxoImages\" />
   </ItemGroup>
   
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\BackGround\" />
-    <Folder Include="wwwroot\images\UxoImages\" />
+    <ProjectReference Include="..\Mined.DataAccess\Mined.DataAccess.csproj" />
+    <ProjectReference Include="..\Mined.Models\Mined.Models.csproj" />
+    <ProjectReference Include="..\Mined.Utility\Mined.Utility.csproj" />
   </ItemGroup>
 
 </Project>

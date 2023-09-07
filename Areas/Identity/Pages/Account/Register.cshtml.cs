@@ -130,25 +130,17 @@ namespace Mined.Areas.Identity.Pages.Account
                 if(!await _roleManager.RoleExistsAsync(SD.AdminRole))
                 {
                     _roleManager.CreateAsync(new IdentityRole(SD.AdminRole)).GetAwaiter().GetResult();
-                    _roleManager.CreateAsync(new IdentityRole(SD.InstructorRole)).GetAwaiter().GetResult();
                 }
                 if (result.Succeeded)
                 {
-                    string role = Request.Form["rdUserRole"].ToString();
+                    string role = Request.Form["idUserRole"].ToString();
                     if(role == SD.AdminRole)
                     {
                         await _userManager.AddToRoleAsync(user, SD.AdminRole);
                     }
                     else
                     {
-                        if (role == SD.InstructorRole)
-                        {
-                            await _userManager.AddToRoleAsync(user, SD.InstructorRole);
-                        }
-                        else
-                        {
-                            await _userManager.AddToRoleAsync(user, SD.PlayerRole);
-                        }
+                        
                     }
                     _logger.LogInformation("User created a new account with password.");
 

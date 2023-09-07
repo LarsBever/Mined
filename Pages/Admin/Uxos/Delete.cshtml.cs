@@ -56,7 +56,8 @@ namespace Mined.Pages.Admin.Uxos
 				TempData["success"] = "U.X.O. deleted successfully";
 				return RedirectToPage("Index");
 			}
-			return Page();
+            TempData["error"] = "Something went wrong...";
+            return Page();
 		}
 	}
 }

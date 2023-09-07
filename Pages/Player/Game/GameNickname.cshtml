@@ -13,9 +13,9 @@
             <div class="col-xl-12">
 
                 @{
-                    if(Model.Uxos.Count() == 0)
+                    if(Model.Uxos.Count() == 0 && Model.Score.Nickname != null)
                     {
-                        <p>The game cannot be played. The Database does not contain enough U.X.O.s.
+                        <p>The game cannot be played. Ask an Admin to add at least 4 U.X.O.'s to start the trainingsession.
                         </p>
                         <a asp-page="/GameNickname" class="btn btn-danger" style="width:300px">Back</a>
                     }

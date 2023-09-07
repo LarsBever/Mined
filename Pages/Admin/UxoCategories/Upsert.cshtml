@@ -15,7 +15,7 @@
 						<div class="card-header">Category Information</div>
 						<div class="card-body">
 							
-							<!-- NATO U.X.O. Categories-->
+							@*<!-- NATO U.X.O. Categories-->
 							<div class="row mb-12">
 								<div class="form-group col-md-6">
 								<label asp-for="Category.MainCategoryNato">Main Category</label>
@@ -27,7 +27,17 @@
 								<input asp-for="Category.SubCategoryNato" class="form-control">
 								<span asp-validation-for="Category.SubCategoryNato" class="text-danger"></span>
 								</div>
-							</div>
+							</div>*@
+
+					<!-- NATO U.X.O. Categories-->
+					<div class="row mb-12">
+						<div class="form-group col-md-6">
+							<label asp-for="Category.CategoryName">Category</label>
+							<input asp-for="Category.CategoryName" class="form-control">
+							<span asp-validation-for="Category.CategoryName" class="text-danger"></span>
+						</div>
+						
+					</div>
 						</div>
 						</div>
 					</div>
